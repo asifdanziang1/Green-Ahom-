@@ -293,19 +293,20 @@ const Navigation = () => {
       {/* STYLES SCOPED LOCALLY TO MINIMIZE DEPENDENCIES */}
       <style>{`
         .fixed-nav {
-          position: fixed;
+          position: sticky;
           top: 0;
           left: 0;
           width: 100%;
           z-index: 1000;
-          padding: 1.2rem 0;
+          height: 68px;
+          display: flex;
+          align-items: center;
           background: var(--white);
           border-bottom: 1px solid #eaeaea;
           transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .nav-scrolled {
-          padding: 0.8rem 0;
           background: var(--white);
           border-bottom: 1px solid #eaeaea;
           box-shadow: var(--shadow-sm);
@@ -317,8 +318,8 @@ const Navigation = () => {
           padding: 0 1.5rem;
           display: flex;
           align-items: center;
-          justify-content: space-between;
           width: 100%;
+          gap: 40px;
         }
 
         .nav-logo {
@@ -329,8 +330,8 @@ const Navigation = () => {
         }
 
         .logo-img {
-          height: 48px;
-          max-width: 240px;
+          height: 58px;
+          max-width: 280px;
           width: auto;
           object-fit: contain;
           display: block;
@@ -338,23 +339,23 @@ const Navigation = () => {
         }
 
         .nav-scrolled .logo-img {
-          height: 38px;
+          height: 46px;
         }
 
         @media (max-width: 768px) {
           .logo-img {
-            height: 38px;
-            max-width: 170px;
+            height: 46px;
+            max-width: 190px;
           }
           .nav-scrolled .logo-img {
-            height: 34px;
+            height: 40px;
           }
         }
 
         .nav-links {
           display: flex;
           align-items: center;
-          gap: clamp(15px, 2.2vw, 36px);
+          gap: 32px;
         }
 
         @media (max-width: 1024px) {
@@ -369,13 +370,13 @@ const Navigation = () => {
 
         .nav-link-item {
           font-family: var(--font-header);
-          font-weight: 700;
-          font-size: 0.82rem;
+          font-weight: 600;
+          font-size: 0.9rem;
           color: var(--primary-light);
           position: relative;
           padding: 10px 0;
-          letter-spacing: 0.6px;
-          text-transform: uppercase;
+          letter-spacing: 0.3px;
+          text-transform: capitalize;
           transition: var(--transition-fast);
         }
 
@@ -578,11 +579,17 @@ const Navigation = () => {
           align-items: center;
           gap: 16px;
           z-index: 1001;
+          margin-left: auto;
         }
 
         .donate-btn {
-          padding: 0.65rem 1.4rem;
+          padding: 0.7rem 1.8rem;
           font-size: 0.82rem;
+          display: inline-flex;
+          align-items: center;
+          gap: 6px;
+          text-transform: uppercase;
+          font-weight: 700;
         }
 
         @media (max-width: 500px) {

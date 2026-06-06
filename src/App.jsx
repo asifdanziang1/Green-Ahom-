@@ -14,7 +14,12 @@ import Partners from './pages/Partners';
 import Volunteer from './pages/Volunteer';
 import Donate from './pages/Donate';
 import Contact from './pages/Contact';
-import Admin from './pages/Admin';
+import AdminLayout from './admin/AdminLayout';
+import Dashboard from './admin/pages/Dashboard';
+import SectionsManager from './admin/pages/SectionsManager';
+import SectionEditor from './admin/pages/SectionEditor';
+import ProgramsManager from './admin/pages/ProgramsManager';
+import BlogManager from './admin/pages/BlogManager';
 
 function App() {
   const location = useLocation();
@@ -37,8 +42,13 @@ function App() {
           <Route path="/partners" element={<Partners />} />
           <Route path="/volunteer" element={<Volunteer />} />
           <Route path="/donate" element={<Donate />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/admin" element={<Admin />} />
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="sections" element={<SectionsManager />} />
+            <Route path="sections/:pageId" element={<SectionEditor />} />
+            <Route path="programs" element={<ProgramsManager />} />
+            <Route path="blog" element={<BlogManager />} />
+          </Route>
         </Routes>
       </main>
 

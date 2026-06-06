@@ -1,66 +1,14 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ImpactSlider from '../components/ImpactSlider';
+import { useContent } from '../admin/hooks/useContent';
 
 const Impact = () => {
+  const { getSection, getSectionByType, isLoading } = useContent('impact');
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
-
-  const metrics = [
-    {
-      id: 'funds',
-      title: 'Aggregated Operations',
-      val: '₹2.38Cr',
-      suffix: ' Audited Expenditure',
-      desc: 'GAF successfully scaled its grassroots programmatic disbursements from ₹3.58L in FY 2022-23 to ₹37.15L in FY 2023-24, reaching ₹1.97Cr in FY 2024-25.'
-    },
-    {
-      id: 'education',
-      title: 'Ideal Academy Students',
-      val: '364',
-      suffix: ' Enrolled Children',
-      desc: 'Providing intensive, quality conceptual Nursery to Class X learning and Hostel support inside Ideal Academy, Hailakandi (UDISE: 18230124113).'
-    },
-    {
-      id: 'health',
-      title: 'Public Health Care',
-      val: '2,635+',
-      suffix: ' Patients Supported',
-      desc: 'Delivering nutritional support kits to 935 registered TB patients (ONGC Silchar sponsored), 1,200 pregnant women and children (Luairpoa Karimganj), and 500+ eye care screening patients.'
-    },
-    {
-      id: 'relief',
-      title: 'Dry Rations & Relief',
-      val: '₹48.3L',
-      suffix: ' Hunger Elimination Aid',
-      desc: 'Direct food security dry rations mobilized across Nalbari, NC Hills, Cachar, Hailakandi, and Karimganj districts to support daily wage earners and flood survivors.'
-    }
-  ];
-
-  const fieldStories = [
-    {
-      id: 'story-1',
-      title: 'A Ray of Hope in Hailakandi',
-      author: 'Dilip Namasudra, Parent (Daily Wage Earner)',
-      quote: 'My children were dropping out of school because I could not afford standard tuition fees. GAF’s acquisition of Ideal Academy was a blessing. Today, my daughter studies in Class VIII with high-quality conceptual learning and hostel support, dreaming of becoming a doctor.',
-      iconName: 'education'
-    },
-    {
-      id: 'story-2',
-      title: 'ONGC CSR TB Patient Recovery',
-      author: 'Anjali Gogoi, Health Worker Outreach',
-      quote: 'Medical treatment alone is not enough to cure tuberculosis; rich nutritional care is critical. The high-protein ration packs that GAF distributes directly to our patient cohorts with ONGC Silchar support have successfully improved treatment success rates by providing human dignity.',
-      iconName: 'health'
-    },
-    {
-      id: 'story-3',
-      title: 'Luairpoa Maternal Nutrition Campaign',
-      author: 'Rina Begum, Lactating Mother (Karimganj)',
-      quote: 'GAF distributed highly nutritious food supplements directly to 1,200 pregnant women and young children below three years in our Luairpoa area. It helped ensure healthy pregnancy outcomes and basic infant immunity during deep financial hardship.',
-      iconName: 'health'
-    }
-  ];
 
   const renderIcon = (name) => {
     switch (name) {
@@ -97,107 +45,129 @@ const Impact = () => {
     }
   };
 
+  if (isLoading) return null;
+
+  const heroSection = getSection('impact_hero');
+  const metricsSection = getSection('impact_metrics');
+  const sliderSection = getSection('impact_slider');
+  const storiesSection = getSection('impact_stories');
+  const ctaSection = getSection('impact_cta');
+
   return (
     <div className="impact-page animate-fade-scale">
       {/* 1. HERO HEADER */}
-      <section className="hero-section-premium">
-        <div className="container-custom">
-          <span className="badge badge-gold">VERIFIED Biological &amp; Social Outcomes</span>
-          <h1 className="text-white mt-3">Grassroots Impact Dashboard</h1>
-          <p className="impact-hero-subtitle text-white-muted" style={{ maxWidth: '650px', margin: '1.5rem auto 0 auto', fontSize: '1.15rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
-            We translate community contributions into audited grassroots actions across Assam. Explore our verified indicators and direct field testimonies.
-          </p>
-        </div>
-      </section>
+      {heroSection && (
+        <section className="hero-section-premium">
+          <div className="container-custom">
+            <span className="badge badge-gold">{heroSection.badge}</span>
+            <h1 className="text-white mt-3">{heroSection.heading}</h1>
+            <p className="impact-hero-subtitle text-white-muted" style={{ maxWidth: '650px', margin: '1.5rem auto 0 auto', fontSize: '1.15rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
+              {heroSection.subtitle}
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* 2. SPECIFIC AUDITED METRICS */}
-      <section className="metrics-dashboard-section section-padding">
-        <div className="container-custom">
-          <div className="section-header text-center">
-            <span className="badge">VERIFIABLE OUTCOMES</span>
-            <h2>Ecological &amp; Humanitarian Indicators</h2>
-            <div className="gold-line margin-center" />
-          </div>
+      {metricsSection && (
+        <section className="metrics-dashboard-section section-padding">
+          <div className="container-custom">
+            <div className="section-header text-center">
+              <span className="badge">{metricsSection.badge}</span>
+              <h2>{metricsSection.heading}</h2>
+              <div className="gold-line margin-center" />
+            </div>
 
-          <div className="grid-responsive metrics-grid mt-5">
-            {metrics.map((metric) => (
-              <div className="glass-card metric-impact-card" key={metric.title}>
-                <div className="m-icon-box">{renderIcon(metric.id)}</div>
-                <h3>{metric.title}</h3>
-                <div className="m-big-stat text-gold">
-                  <strong>{metric.val}</strong>
-                  <span style={{ fontSize: '0.85rem' }}>{metric.suffix}</span>
+            <div className="grid-responsive metrics-grid mt-5">
+              {(metricsSection.items || []).map((metric) => (
+                <div className="glass-card metric-impact-card" key={metric.title}>
+                  <div className="m-icon-box">{renderIcon(metric.iconName || metric.id)}</div>
+                  <h3>{metric.title}</h3>
+                  <div className="m-big-stat text-gold">
+                    <strong>{metric.val}</strong>
+                    <span style={{ fontSize: '0.85rem' }}>{metric.suffix}</span>
+                  </div>
+                  <div className="m-divider-line" />
+                  <p style={{ fontSize: '0.92rem', color: 'var(--muted)', lineHeight: '1.5' }}>{metric.desc}</p>
                 </div>
-                <div className="m-divider-line" />
-                <p style={{ fontSize: '0.92rem', color: 'var(--muted)', lineHeight: '1.5' }}>{metric.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. VISUAL BEFORE/AFTER TRANSFORM */}
-      <section className="transformation-slider-section section-padding bg-cream">
-        <div className="container-custom">
-          <div className="section-header text-center">
-            <span className="badge">ENVIRONMENTAL TRANSFORMATION</span>
-            <h2>Witness Ecological Reforestation</h2>
-            <div className="gold-line margin-center" />
-            <p className="section-subtitle mt-2">
-              See the visual before/after changes that GAF community-led tree plantation and green awareness drives make inside educational institutions and public zones.
-            </p>
-          </div>
-
-          <ImpactSlider />
-        </div>
-      </section>
-
-      {/* 4. FIELD STORIES - VOICES FROM THE SOIL */}
-      <section className="field-stories-section section-padding">
-        <div className="container-custom">
-          <div className="section-header text-center">
-            <span className="badge">VOICES FROM THE SOIL</span>
-            <h2>Grassroots Stories of Change</h2>
-            <div className="gold-line margin-center" />
-            <p className="section-subtitle mt-2">
-              Read the real testimonies of parents, healthcare workers, and disaster relief coordinators whose lives are directly touched by GAF.
-            </p>
-          </div>
-
-          <div className="grid-responsive stories-grid mt-5">
-            {fieldStories.map((story) => (
-              <div className="glass-card story-card-premium" key={story.id}>
-                <div className="story-badge-icon">{renderIcon(story.iconName)}</div>
-                <h3>{story.title}</h3>
-                <blockquote className="story-quote-body">
-                  <p>"{story.quote}"</p>
-                </blockquote>
-                <div className="story-author-details">
-                  <strong>{story.author}</strong>
-                  <span>Verified grassroots Beneficiary</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. CALL TO ACTION AREA */}
-      <section className="impact-cta-section section-padding bg-primary text-center">
-        <div className="container-custom">
-          <div className="cta-box-wrapper-inner">
-            <span className="badge badge-gold">CREATE AN OUTCOME</span>
-            <h2 className="text-white mt-3" style={{ color: 'var(--white)' }}>Be a Catalyst for Human Dignity</h2>
-            <p className="text-white-muted max-width-center mt-3" style={{ maxWidth: '600px', margin: '0 auto', color: 'rgba(255, 255, 255, 0.75)' }}>
-              Your support directly funds monthly tuberculosis nutrition packs, disaster dry rations, student hostel mentoring, street light installations, and stray animal veterinary supplies.
-            </p>
-            <div className="cta-buttons-row mt-4">
-              <Link to="/donate" className="btn btn-gold">Donate to a Campaign</Link>
-              <Link to="/work" className="btn btn-outline-gold">View Our 20 Programs</Link>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
+
+      {/* 3. VISUAL BEFORE/AFTER TRANSFORM */}
+      {sliderSection && (
+        <section className="transformation-slider-section section-padding bg-cream">
+          <div className="container-custom">
+            <div className="section-header text-center">
+              <span className="badge">{sliderSection.badge}</span>
+              <h2>{sliderSection.heading}</h2>
+              <div className="gold-line margin-center" />
+              <p className="section-subtitle mt-2">
+                {sliderSection.subtitle}
+              </p>
+            </div>
+
+            <ImpactSlider />
+          </div>
+        </section>
+      )}
+
+      {/* 4. FIELD STORIES - VOICES FROM THE SOIL */}
+      {storiesSection && (
+        <section className="field-stories-section section-padding">
+          <div className="container-custom">
+            <div className="section-header text-center">
+              <span className="badge">{storiesSection.badge}</span>
+              <h2>{storiesSection.heading}</h2>
+              <div className="gold-line margin-center" />
+              <p className="section-subtitle mt-2">
+                {storiesSection.subtitle}
+              </p>
+            </div>
+
+            <div className="grid-responsive stories-grid mt-5">
+              {(storiesSection.items || []).map((story) => (
+                <div className="glass-card story-card-premium" key={story.id}>
+                  <div className="story-badge-icon">{renderIcon(story.iconName)}</div>
+                  <h3>{story.title}</h3>
+                  <blockquote className="story-quote-body">
+                    <p>"{story.quote}"</p>
+                  </blockquote>
+                  <div className="story-author-details">
+                    <strong>{story.author}</strong>
+                    <span>Verified grassroots Beneficiary</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 5. CALL TO ACTION AREA */}
+      {ctaSection && (
+        <section className="impact-cta-section section-padding bg-primary text-center">
+          <div className="container-custom">
+            <div className="cta-box-wrapper-inner">
+              <span className="badge badge-gold">{ctaSection.badge}</span>
+              <h2 className="text-white mt-3" style={{ color: 'var(--white)' }}>{ctaSection.heading}</h2>
+              <p className="text-white-muted max-width-center mt-3" style={{ maxWidth: '600px', margin: '0 auto', color: 'rgba(255, 255, 255, 0.75)' }}>
+                {ctaSection.subtitle}
+              </p>
+              <div className="cta-buttons-row mt-4">
+                {ctaSection.cta_primary && (
+                  <Link to={ctaSection.cta_primary.link} className="btn btn-gold">{ctaSection.cta_primary.text}</Link>
+                )}
+                {ctaSection.cta_secondary && (
+                  <Link to={ctaSection.cta_secondary.link} className="btn btn-outline-gold">{ctaSection.cta_secondary.text}</Link>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       <style>{`
 

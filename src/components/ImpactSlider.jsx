@@ -88,7 +88,7 @@ const ImpactSlider = () => {
         .impact-slider-outer {
           width: 100%;
           max-width: 900px;
-          margin: 0 auto;
+          margin: 24px auto 0 auto;
         }
 
         .impact-slider-container {
@@ -299,7 +299,7 @@ const ImpactSlider = () => {
         }
 
         .slider-caption {
-          margin-top: 1.2rem;
+          margin-top: 16px;
           text-align: center;
         }
 

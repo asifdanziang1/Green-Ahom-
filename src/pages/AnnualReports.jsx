@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useContent } from '../admin/hooks/useContent';
 
 const AnnualReports = () => {
   const [reports, setReports] = useState([]);
@@ -12,57 +13,9 @@ const AnnualReports = () => {
   });
   const [formStatus, setFormStatus] = useState('');
 
-  const defaultReports = [
-    {
-      year: '2025',
-      title: 'Annual Report 2024-2025',
-      summary: 'Statutory Operational and Financial Audit for the period ending March 31, 2025. Detail sheets outlining multi-district women tailoring training, Karimganj Patharkandi block TB patient nutrition support, Hailakandi block cataract surgeries (ONGC Silchar CSR), Sonai/Dholai street lights, stray rescues, and Howli Barpeta community center construction.',
-      metrics: '₹1,97,96,490 Expenditures | 10 Programs | Multi-District Assam',
-      fileUrl: '/client_content/ANNUAL REPORT 2024-2025.pdf',
-      size: '3.3 MB',
-      type: 'Statutory Audit'
-    },
-    {
-      year: '2024',
-      title: 'Annual Report 2023-2024',
-      summary: 'Audited financial balance sheets and comprehensive field logs for the period ending March 31, 2024. Details public health interventions, ONGC Silchar sponsored TB nutrition kits, Hailakandi Lala block eye care screening, Independence Day daily wage earners rations, and Karimganj Luairpoa maternal and child nutrition programs.',
-      metrics: '₹37,15,400 Expenditures | 4 Programs | 935 TB Patients',
-      fileUrl: '/client_content/ANNUAL REPORT 23-24.pdf',
-      size: '2.0 MB',
-      type: 'Financial Audit'
-    },
-    {
-      year: '2023',
-      title: 'Annual Report 2022-2023',
-      summary: 'Grassroots operational log and financial ledger detailing the second-year expansion progress. Outlines Srikona ITI Silchar financial literacy courses, emergency flood relief dry ration distributions across Barak Valley, World Environment Day afforestation, child labour retention counseling, and stray animal welfare activities.',
-      metrics: '₹3,58,700 Expenditures | 6 Programs | Barak Valley Relief',
-      fileUrl: '/client_content/ANNUAL REPORT 2022-23.pdf',
-      size: '2.1 MB',
-      type: 'General Audit'
-    },
-    {
-      year: 'AOA',
-      title: 'Altered Articles of Association (AOA)',
-      summary: 'Official constitutional charter outlining Green Ahom Federation’s strict non-profit status, absolute dividend prohibition, membership guidelines, shares structures, and governing board code of conduct under Section 8 of the Companies Act, 2013.',
-      metrics: 'Articles of Association | Section 8 Constitutional | Assam ROC',
-      fileUrl: '/client_content/Altered AOA OF GREEN AHOM.pdf',
-      size: '1.0 MB',
-      type: 'Constitutional Charter'
-    },
-    {
-      year: 'MOA',
-      title: 'Altered Memorandum of Association (MOA)',
-      summary: 'Registered constitutional memorandum defining the main statutory objectives: promoting conceptual education (acquiring Ideal Academy, Hailakandi), healthcare clinics, CSR collaborations, rural street lights, sports programs, and emergency humanitarian relief services.',
-      metrics: 'Memorandum of Association | INC-13 Official | Delhi CA Witnessed',
-      fileUrl: '/client_content/Altered INC-13 MOA OF GREEN AHOM.pdf',
-      size: '0.7 MB',
-      type: 'Statutory Objective'
-    }
-  ];
+  const { getSection, isLoading } = useContent('reports');
 
   useEffect(() => {
-    localStorage.setItem('gaf_reports', JSON.stringify(defaultReports));
-    setReports(defaultReports);
     window.scrollTo(0, 0);
   }, []);
 
@@ -99,77 +52,50 @@ const AnnualReports = () => {
     }, 1200);
   };
 
-  const filteredReports = reports.filter(r => 
+  if (isLoading) return null;
+
+  const heroSection = getSection('reports_hero');
+  const govSection = getSection('reports_governance');
+  const fiscalSection = getSection('reports_fiscal');
+  const downloadsSection = getSection('reports_downloads');
+  const ctaSection = getSection('reports_cta');
+
+  const fiscalData = fiscalSection?.data || {};
+  const reportsList = downloadsSection?.items || [];
+
+  const filteredReports = reportsList.filter(r => 
     r.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
     r.year.toLowerCase().includes(searchQuery.toLowerCase()) ||
     r.summary.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const fiscalData = {
-    '2024-2025': {
-      expenditure: '₹1,97,96,490',
-      description: 'The financial year 2024–25 represented a massive phase of institutional scaling for Green Ahom Federation. Backed by private philanthropy, CSR partnerships, and community stakeholders, GAF successfully completed 10 large-scale programs spanning 7 districts (Cachar, Hailakandi, Karimganj, Barpeta, Nalbari, Nagaon, and Dima Hasao). This year marked the construction of 3 community centres, multi-district tailoring courses for women, and public health cataract screenings.',
-      programs: [
-        { name: 'Nutritional Food Packets Distribution to TB Patients', location: 'Patharkandi Block, Karimganj District', budget: '₹14,45,000', impact: 'Substantial nutrition for TB patients undergoing prolonged treatment.' },
-        { name: 'Eye Camp – Spectacles Purchase (Refractive Error)', location: 'Lala Block, Hailakandi District', budget: '₹2,69,750', impact: 'Corrective vision support to rural low-income families.' },
-        { name: 'Eye Camp – Cataract Surgery Support (ONGC CSR)', location: 'Lala, South Hailakandi & Algapur Blocks', budget: '₹1,59,590', impact: 'Avoidable blindness elimination and surgical management.' },
-        { name: 'Street Light Distribution Programme', location: 'Dholai & Sonai Blocks, Cachar District', budget: '₹6,60,000', impact: 'Safety and mobility illumination in remote rural paths.' },
-        { name: 'Skill Training Programme for Women (Tailoring)', location: 'Cachar, Hailakandi, Nagaon & NC Hills', budget: '₹32,82,000', impact: 'Vocational training and tailoring kits for financial independence.' },
-        { name: 'Plantation Drive Programme', location: 'Hailakandi, Cachar & Karimganj Districts', budget: '₹3,28,000', impact: 'Afforestation saplings in schools and public premises.' },
-        { name: 'Food Distribution Programme for Eliminating Hunger', location: 'Hailakandi, Cachar, Nalbari & NC Hills', budget: '₹46,06,060', impact: 'Food security dry rations for vulnerable daily wage earners.' },
-        { name: 'Animal Feeding & Medical Support Programme', location: 'Barak Valley Districts', budget: '₹35,41,090', impact: 'Veterinary aid and daily street stray feeding campaigns.' },
-        { name: 'Community Centre Construction Work', location: 'Howli Barpeta (BH College), Borkhola Cachar, Algapur Hailakandi', budget: '₹42,37,000', impact: 'Constructed three durable socio-development hubs.' },
-        { name: 'Skill Training on Handicraft Programme', location: 'Chandipur Village (Algapur), Lakhipur Cachar', budget: '₹12,68,000', impact: 'Preservation of traditional crafts and rural livelihood creation.' }
-      ]
-    },
-    '2023-2024': {
-      expenditure: '₹37,15,400',
-      description: 'During FY 2023–24, GAF refined its programmatic approach, establishing key strategic partnerships to optimize outcomes. A highlight of the fiscal year was our public health collaboration with Oil and Natural Gas Corporation (ONGC Silchar CSR) to distribute specialized protein-dense food packets to 935 registered TB patients. The year also integrated deep ophthalmology screenings and maternal health coverage in remote blocks.',
-      programs: [
-        { name: 'Nutritional Food Packet Distribution to 935 TB Patients (ONGC Silchar)', location: 'Cachar & Hailakandi Districts', budget: '₹14,85,000', impact: 'Supported treatment adherence, recovery, and immunity levels.' },
-        { name: 'Eye Camp, Spectacle Distribution & Cataract Identification', location: 'Lala Block, Hailakandi District', budget: '₹11,17,500', impact: 'Screened 500 patients, distributed free corrective spectacles.' },
-        { name: 'Dry Ration Distribution to Daily Wage Earners', location: 'Barak Valley District Blocks', budget: '₹65,000', impact: 'Independence Day humanitarian support to low-income families.' },
-        { name: 'Nutritional Food Packet Distribution for Pregnant Women & Children', location: 'Luairpoa Area, Karimganj District', budget: '₹10,47,900', impact: 'Maternal and infant nutrition kits distributed to 1,200 beneficiaries.' }
-      ]
-    },
-    '2022-2023': {
-      expenditure: '₹3,58,700',
-      description: 'The financial year 2022–23 represented a pivotal grassroots phase for GAF, following a massive flood disaster that paralyzed Northeast India. GAF mobilized a dedicated local volunteer network to deploy essential food security kits, while establishing initial training blocks in financial literacy to combat youth unemployment.',
-      programs: [
-        { name: 'Skill Training Class on Financial Literacy & Management', location: 'ITI Srikona Campus, Silchar, Cachar District', budget: '₹25,000', impact: 'Trained youth in personal savings, budgeting, and digital banking.' },
-        { name: 'Flood Relief Dry Ration Distribution Programme', location: 'Cachar, Hailakandi, Karimganj Districts', budget: '₹1,27,000', impact: 'Distributed immediate dry ration kits to flood-displaced families.' },
-        { name: 'Plantation Drive on World Environment Day', location: 'Various Educational Institutions, Barak Valley', budget: '₹56,000', impact: 'Planted fruit-bearing and medicinal saplings in rural schools.' },
-        { name: 'Awareness Campaign Against Child Labour', location: 'Rural Primary Schools & Wage Settlements', budget: '₹35,700', impact: 'Motivational school retention counseling for parents and children.' },
-        { name: 'Animal Welfare stray Feeding & Injuries Rescue', location: 'Barak Valley Urban Margins', budget: '₹15,000', impact: 'Rescued injured stray cows and established daily feeding routes.' },
-        { name: 'Dry Ration Distribution to Daily Wage Earners', location: 'Hailakandi District Settlements', budget: '₹1,00,000', impact: 'Essential food security kits distributed to rickshaw pullers and labourers.' }
-      ]
-    }
-  };
-
   return (
     <div className="reports-page animate-fade-scale">
       {/* 1. HERO BANNER */}
-      <section className="hero-section-premium">
-        <div className="container-custom">
-          <span className="badge badge-gold">STATUTORY AUDIT &amp; COMPLIANCE</span>
-          <h1 className="text-white mt-3">Governance &amp; Financial Disclosures</h1>
-          <p className="reports-hero-subtitle text-white-muted" style={{ maxWidth: '780px', margin: '1.5rem auto 0 auto', fontSize: '1.15rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
-            Green Ahom Federation operates under absolute public transparency. Review our official Section 8 INC-13 constitutional charters, certified ROC filings, and multi-year CA-audited ledger sheets.
-          </p>
-        </div>
-      </section>
-
-      {/* 2. STATUTORY CORPORATE GOVERNANCE SUMMARY */}
-      <section className="governance-summary-section section-padding bg-cream">
-        <div className="container-custom">
-          <div className="section-header text-center">
-            <span className="badge">GOVERNING BOARD</span>
-            <h2>Section 8 Corporate Structure &amp; Registry</h2>
-            <div className="gold-line margin-center" />
-            <p className="section-subtitle mt-2">
-              Statutory details of Green Ahom Federation as incorporated under Section 8 of the Indian Companies Act, 2013 (situated in the State of Assam).
+      {heroSection && (
+        <section className="hero-section-premium">
+          <div className="container-custom">
+            <span className="badge badge-gold">{heroSection.badge}</span>
+            <h1 className="text-white mt-3">{heroSection.heading}</h1>
+            <p className="reports-hero-subtitle text-white-muted" style={{ maxWidth: '780px', margin: '1.5rem auto 0 auto', fontSize: '1.15rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
+              {heroSection.subtitle}
             </p>
           </div>
+        </section>
+      )}
+
+      {/* 2. STATUTORY CORPORATE GOVERNANCE SUMMARY */}
+      {govSection && (
+        <section className="governance-summary-section section-padding bg-cream">
+          <div className="container-custom">
+            <div className="section-header text-center">
+              <span className="badge">{govSection.badge}</span>
+              <h2>{govSection.heading}</h2>
+              <div className="gold-line margin-center" />
+              <p className="section-subtitle mt-2">
+                {govSection.subtitle}
+              </p>
+            </div>
 
           <div className="grid-responsive governance-grid mt-5">
             <div className="glass-card gov-card">
@@ -231,18 +157,20 @@ const AnnualReports = () => {
           </div>
         </div>
       </section>
+      )}
 
       {/* 3. INTERACTIVE 3-YEAR AUDITED FINANCIAL DASHBOARD */}
-      <section className="financial-dashboard-section section-padding">
-        <div className="container-custom">
-          <div className="section-header text-center">
-            <span className="badge">FINANCIAL TRACKER</span>
-            <h2>Multi-Year Audited Expenditure Ledger</h2>
-            <div className="gold-line margin-center" />
-            <p className="section-subtitle mt-2">
-              Explore the complete 3-year grassroots expenditure progression of Green Ahom Federation. Select a financial year below to review block locations, budgets, and outcomes.
-            </p>
-          </div>
+      {fiscalSection && (
+        <section className="financial-dashboard-section section-padding">
+          <div className="container-custom">
+            <div className="section-header text-center">
+              <span className="badge">{fiscalSection.badge}</span>
+              <h2>{fiscalSection.heading}</h2>
+              <div className="gold-line margin-center" />
+              <p className="section-subtitle mt-2">
+                {fiscalSection.subtitle}
+              </p>
+            </div>
 
           {/* Interactive Years Tabs */}
           <div className="fiscal-tabs-container">
@@ -290,21 +218,23 @@ const AnnualReports = () => {
                 </tbody>
               </table>
             </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* 4. SEARCH & DIRECTORY */}
-      <section className="directory-section section-padding bg-cream">
-        <div className="container-custom">
-          <div className="section-header text-center">
-            <span className="badge">REPOSITORIES</span>
-            <h2>Document Downloads Directory</h2>
-            <div className="gold-line margin-center" />
-            <p className="section-subtitle mt-2">
-              Search and download raw PDF scans of GAF's legal incorporation deeds and full annual audits.
-            </p>
-          </div>
+      {downloadsSection && (
+        <section className="directory-section section-padding bg-cream">
+          <div className="container-custom">
+            <div className="section-header text-center">
+              <span className="badge">{downloadsSection.badge}</span>
+              <h2>{downloadsSection.heading}</h2>
+              <div className="gold-line margin-center" />
+              <p className="section-subtitle mt-2">
+                Search and download raw PDF scans of GAF's legal incorporation deeds and full annual audits.
+              </p>
+            </div>
 
           <div className="search-bar-row">
             <input
@@ -345,40 +275,32 @@ const AnnualReports = () => {
               ))}
             </div>
           ) : (
-            <div className="empty-reports text-center mt-5">
-              <span className="empty-icon-wrapper">
-                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" style={{ margin: '0 auto' }}>
-                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                  <polyline points="14 2 14 8 20 8" />
-                  <line x1="16" y1="13" x2="8" y2="13" />
-                  <line x1="16" y1="17" x2="8" y2="17" />
-                  <polyline points="10 9 9 9 8 9" />
-                </svg>
-              </span>
-              <h3 className="mt-3">No disclosures matching "{searchQuery}"</h3>
-              <p>Try searching for "AOA", "MOA", "2024", or district names to find specific regulatory documents.</p>
+            <div className="no-reports-found text-center mt-4">
+              <p>No documents found matching "{searchQuery}"</p>
             </div>
           )}
         </div>
       </section>
+      )}
 
       {/* 5. CSR AUDIT REQUEST */}
-      <section className="csr-request-section section-padding bg-sand">
-        <div className="container-custom csr-wrapper">
-          <div className="csr-text-col">
-            <span className="badge">CSR PARTNERS</span>
-            <h2>Need Detailed Audit Packets?</h2>
-            <div className="gold-line" />
-            <p className="mt-3">
-              Green Ahom Federation complies with all Section 135 CSR regulations of the Companies Act, 2013. We are a verified MCA CSR-1 Implementing Agency. We provide our corporate sponsors with:
-            </p>
-            <ul className="csr-perks-list">
-              <li>Detailed geo-tagged beneficiary logs and clinic outcomes.</li>
-              <li>Official Section 80G tax exemption donation certificates.</li>
-              <li>Independent third-party medical and social audit transcripts.</li>
-              <li>Comprehensive physical balance sheets audited by certified CA firms.</li>
-            </ul>
-          </div>
+      {ctaSection && (
+        <section className="csr-request-section section-padding bg-sand">
+          <div className="container-custom csr-wrapper">
+            <div className="csr-text-col">
+              <span className="badge">{ctaSection.badge}</span>
+              <h2>{ctaSection.heading}</h2>
+              <div className="gold-line" />
+              <p className="mt-3">
+                {ctaSection.subtitle}
+              </p>
+              <ul className="csr-perks-list">
+                <li>Detailed geo-tagged beneficiary logs and clinic outcomes.</li>
+                <li>Official Section 80G tax exemption donation certificates.</li>
+                <li>Independent third-party medical and social audit transcripts.</li>
+                <li>Comprehensive physical balance sheets audited by certified CA firms.</li>
+              </ul>
+            </div>
 
           <div className="csr-form-col">
             <div className="glass-card csr-form-card">
@@ -449,6 +371,7 @@ const AnnualReports = () => {
           </div>
         </div>
       </section>
+      )}
 
       <style>{`
 

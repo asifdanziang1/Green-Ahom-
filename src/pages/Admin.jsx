@@ -8,7 +8,7 @@ const Admin = () => {
   const [activeTab, setActiveTab] = useState('cms'); // 'cms', 'projects', 'donations', 'volunteers', 'inquiries'
 
   // Dynamic state stores
-  const [stats, setStats] = useState({ trees: 154820, funds: 4820500, weavers: 340, wetlands: 12 });
+  const [stats, setStats] = useState({ students: 364, funds: 23870590, beneficiaries: 2635, strayBud: 3541090 });
   const [projects, setProjects] = useState([]);
   const [donations, setDonations] = useState([]);
   const [volunteers, setVolunteers] = useState([]);
@@ -37,7 +37,21 @@ const Admin = () => {
 
   const loadAllDatabases = () => {
     const savedStats = localStorage.getItem('gaf_stats');
-    if (savedStats) setStats(JSON.parse(savedStats));
+    if (savedStats) {
+      try {
+        const parsed = JSON.parse(savedStats);
+        const migrated = {
+          students: parsed.students !== undefined ? parsed.students : (parsed.trees !== undefined ? parsed.trees : 364),
+          funds: parsed.funds !== undefined ? parsed.funds : 23870590,
+          beneficiaries: parsed.beneficiaries !== undefined ? parsed.beneficiaries : (parsed.weavers !== undefined ? parsed.weavers : 2635),
+          strayBud: parsed.strayBud !== undefined ? parsed.strayBud : (parsed.wetlands !== undefined ? parsed.wetlands : 3541090)
+        };
+        setStats(migrated);
+        localStorage.setItem('gaf_stats', JSON.stringify(migrated));
+      } catch (e) {
+        console.error("Error loading saved stats", e);
+      }
+    }
 
     const savedProjects = localStorage.getItem('gaf_projects');
     if (savedProjects) setProjects(JSON.parse(savedProjects));
@@ -314,8 +328,8 @@ const Admin = () => {
                       <input
                         type="number"
                         className="form-control"
-                        value={stats.trees}
-                        onChange={(e) => handleStatsChange('trees', e.target.value)}
+                        value={stats.students || 0}
+                        onChange={(e) => handleStatsChange('students', e.target.value)}
                       />
                     </div>
                     <div className="form-group">
@@ -323,7 +337,7 @@ const Admin = () => {
                       <input
                         type="number"
                         className="form-control"
-                        value={stats.funds}
+                        value={stats.funds || 0}
                         onChange={(e) => handleStatsChange('funds', e.target.value)}
                       />
                     </div>
@@ -331,21 +345,21 @@ const Admin = () => {
 
                   <div className="form-group-row mt-3">
                     <div className="form-group">
-                      <label className="form-label">Weavers & Farmers Supported</label>
+                      <label className="form-label">Beneficiaries Reached</label>
                       <input
                         type="number"
                         className="form-control"
-                        value={stats.weavers}
-                        onChange={(e) => handleStatsChange('weavers', e.target.value)}
+                        value={stats.beneficiaries || 0}
+                        onChange={(e) => handleStatsChange('beneficiaries', e.target.value)}
                       />
                     </div>
                     <div className="form-group">
-                      <label className="form-label">Wetlands Protected</label>
+                      <label className="form-label">Animal Welfare Budget (INR)</label>
                       <input
                         type="number"
                         className="form-control"
-                        value={stats.wetlands}
-                        onChange={(e) => handleStatsChange('wetlands', e.target.value)}
+                        value={stats.strayBud || 0}
+                        onChange={(e) => handleStatsChange('strayBud', e.target.value)}
                       />
                     </div>
                   </div>

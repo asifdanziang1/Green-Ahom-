@@ -36,6 +36,14 @@
   --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-normal: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Spacing Scale */
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 20px;
+  --space-lg: 32px;
+  --space-xl: 48px;
+  --space-2xl: 64px;
 }
 
 /* --- RESET & BASE STYLES --- */
@@ -101,6 +109,7 @@ h1 {
 h2 {
   font-size: clamp(1.8rem, 3.5vw, 2.6rem);
   position: relative;
+  margin-bottom: 0;
 }
 
 h3 {
@@ -205,13 +214,13 @@ a {
 }
 
 .section-padding {
-  padding: clamp(5rem, 8vw, 8rem) 0;
+  padding: clamp(3.5rem, 5vw, 5.5rem) 0;
 }
 
 .container-custom {
   max-width: 1240px;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 clamp(1.5rem, 4vw, 3rem);
   width: 100%;
 }
 
@@ -354,7 +363,7 @@ a {
   height: 3px;
   width: 48px;
   background: linear-gradient(90deg, var(--gold) 0%, var(--gold-hover) 100%);
-  margin-top: 14px;
+  margin-top: 8px;
   border-radius: 2px;
 }
 
@@ -371,6 +380,7 @@ a {
   letter-spacing: 1px;
   width: fit-content;
   border: 1px solid rgba(217, 95, 67, 0.15);
+  margin-bottom: 10px;
 }
 
 /* --- KEYFRAME ANIMATIONS --- */
@@ -429,10 +439,15 @@ a {
   margin-right: auto !important;
 }
 
-/* --- PREMIUM GLOBAL SECTION DIVIDER BORDERS --- */
+/* --- GLOBAL PREMIUM SECTION DIVIDER BORDERS --- */
 section {
-  border-bottom: 1px solid #e2dfd5 !important;
-  position: relative !important;
+  border-bottom: 1px solid #e2dfd5;
+  position: relative;
+}
+
+section + section.bg-primary, 
+section + .bg-dark {
+  border-top: none;
 }
 
 /* Adaptive Dark Backdrops Override */
@@ -441,19 +456,25 @@ section.bg-dark,
 .bg-primary, 
 .bg-dark,
 .highlights-section {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 /* Double-Border Footer Prevention */
 main > :last-child,
 section:last-of-type {
-  border-bottom: none !important;
+  border-bottom: none;
+}
+
+.heading-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 /* --- GLOBAL PREMIUM HERO BACKGROUND --- */
 .hero-section-premium {
   position: relative;
-  padding: clamp(8rem, 12vw, 10rem) 0 clamp(4rem, 6vw, 6rem) 0;
+  padding: clamp(5rem, 8vw, 7rem) 0 clamp(4rem, 6vw, 6rem) 0;
   background: linear-gradient(135deg, rgba(26, 45, 66, 0.98) 0%, rgba(37, 62, 89, 0.95) 100%),
               url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat !important;
   overflow: hidden;

@@ -243,11 +243,11 @@ const RazorpayModal = ({
 
               // Increment stats
               const currentStats = JSON.parse(
-                localStorage.getItem('gaf_stats') || '{"trees": 154820, "funds": 4820500, "weavers": 340, "wetlands": 12}'
+                localStorage.getItem('gaf_stats') || '{"students": 364, "funds": 23870590, "beneficiaries": 2635, "strayBud": 3541090}'
               );
-              currentStats.funds += parseFloat(amount);
-              const treesPlanted = Math.floor(amount / 250);
-              currentStats.trees += treesPlanted;
+              currentStats.funds = (currentStats.funds || 0) + parseFloat(amount);
+              const newBeneficiaries = Math.floor(amount / 1000) || 1;
+              currentStats.beneficiaries = (currentStats.beneficiaries || 2635) + newBeneficiaries;
               localStorage.setItem('gaf_stats', JSON.stringify(currentStats));
 
               if (onPaymentSuccess) onPaymentSuccess(newDonation);
