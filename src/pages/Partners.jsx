@@ -117,11 +117,11 @@ const Partners = () => {
                 <div className="glass-card partner-card-inner" key={idx} style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--white)' }}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
                     <span className="partner-badge-label" style={{ fontFamily: 'var(--font-body)', fontWeight: '800', fontSize: '0.72rem', color: 'var(--gold)', letterSpacing: '1px' }}>{partner.badge}</span>
-                    <div className="partner-visual-logo" style={{ fontFamily: 'var(--font-header)', fontWeight: '800', fontSize: '1.1rem', color: 'var(--primary)', border: '1px solid #eaeaea', padding: '4px 10px', borderRadius: '4px', backgroundColor: '#faf9f6' }}>{partner.logoText}</div>
+                    <div className="partner-visual-logo" style={{ fontFamily: 'var(--font-header)', fontWeight: '800', fontSize: '1.1rem', color: 'var(--primary)', border: '1px solid rgba(17, 63, 39, 0.08)', padding: '4px 10px', borderRadius: '4px', backgroundColor: '#faf9f6' }}>{partner.logoText}</div>
                   </div>
                   <h3>{partner.name}</h3>
                   <span className="partner-role" style={{ fontSize: '0.85rem', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '4px', display: 'block' }}>{partner.role}</span>
-                  <div style={{ height: '1px', backgroundColor: '#eaeaea', margin: '15px 0' }} />
+                  <div style={{ height: '1px', backgroundColor: 'rgba(17, 63, 39, 0.08)', margin: '15px 0' }} />
                   <p style={{ fontSize: '0.9rem', color: 'var(--muted)', lineHeight: '1.6', flexGrow: '1' }}>{partner.desc}</p>
                 </div>
               ))}

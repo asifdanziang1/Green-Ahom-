@@ -260,7 +260,7 @@ const AboutUs = () => {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          background: linear-gradient(to bottom, rgba(26, 45, 66, 0.85), rgba(26, 45, 66, 0.95)), 
+          background: linear-gradient(to bottom, rgba(17, 63, 39, 0.85), rgba(17, 63, 39, 0.95)), 
                       url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80') center/cover no-repeat !important;
         }
 
@@ -306,7 +306,7 @@ const AboutUs = () => {
 
         .statutory-badge-box {
           background-color: var(--sand);
-          border: 1px solid #eaeaea;
+          border: 1px solid rgba(17, 63, 39, 0.08);
           border-radius: var(--radius-md);
           padding: 2rem;
           text-align: center;
@@ -327,7 +327,7 @@ const AboutUs = () => {
 
         .statutory-divider {
           height: 1px;
-          background-color: #eaeaea;
+          background-color: rgba(17, 63, 39, 0.08);
           margin: 1.5rem 0;
         }
 
@@ -386,7 +386,7 @@ const AboutUs = () => {
           font-size: 0.8rem;
           line-height: 1.4;
           color: var(--muted);
-          border-top: 1px solid #eaeaea;
+          border-top: 1px solid rgba(17, 63, 39, 0.08);
           padding-top: 12px;
         }
 

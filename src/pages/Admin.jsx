@@ -931,8 +931,8 @@ const Admin = () => {
         }
 
         .method-label-pill {
-          background-color: rgba(26, 45, 66, 0.05);
-          border: 1px solid rgba(26, 45, 66, 0.1);
+          background-color: rgba(15, 23, 42, 0.05);
+          border: 1px solid rgba(15, 23, 42, 0.1);
           color: var(--primary);
           padding: 2px 8px;
           border-radius: var(--radius-sm);
@@ -991,8 +991,8 @@ const Admin = () => {
         }
 
         .status-pill.contacted, .status-pill.read {
-          background-color: rgba(52, 78, 104, 0.05);
-          border: 1px solid rgba(52, 78, 104, 0.1);
+          background-color: rgba(51, 65, 85, 0.05);
+          border: 1px solid rgba(51, 65, 85, 0.1);
           color: var(--teal);
         }
 

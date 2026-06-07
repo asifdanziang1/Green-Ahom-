@@ -171,9 +171,8 @@ const Impact = () => {
 
       <style>{`
 
-        /* METRIC CARDS */
         .metric-impact-card {
-          padding: 2.5rem;
+          padding: 2.2rem 1.8rem;
           background-color: var(--white);
           height: 100%;
         }
@@ -182,9 +181,9 @@ const Impact = () => {
           margin-bottom: 1.2rem;
           width: 52px;
           height: 52px;
-          background-color: rgba(52, 78, 104, 0.05);
+          background-color: rgba(17, 63, 39, 0.05);
           border-radius: var(--radius-sm);
-          border: 1px solid rgba(52, 78, 104, 0.1);
+          border: 1px solid rgba(17, 63, 39, 0.1);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -199,25 +198,34 @@ const Impact = () => {
         .m-big-stat {
           margin-bottom: 1.5rem;
           font-family: var(--font-header);
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
         }
 
         .m-big-stat strong {
-          font-size: 3rem;
-          font-weight: 700;
+          font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+          font-weight: 800;
           display: block;
           line-height: 1.1;
+          letter-spacing: -0.02em;
+          color: var(--gold);
+          word-break: break-word;
+          overflow-wrap: break-word;
         }
 
         .m-big-stat span {
-          font-size: 0.85rem;
+          font-family: var(--font-body);
+          font-size: 0.78rem;
           font-weight: 700;
           text-transform: uppercase;
-          letter-spacing: 0.5px;
+          letter-spacing: 1px;
+          color: var(--muted);
         }
 
         .m-divider-line {
           height: 1px;
-          background-color: #eaeaea;
+          background-color: rgba(17, 63, 39, 0.08);
           margin-bottom: 1.5rem;
         }
 
@@ -263,7 +271,7 @@ const Impact = () => {
         }
 
         .story-author-details {
-          border-top: 1px solid #eaeaea;
+          border-top: 1px solid rgba(17, 63, 39, 0.08);
           padding-top: 1.2rem;
           display: flex;
           flex-direction: column;

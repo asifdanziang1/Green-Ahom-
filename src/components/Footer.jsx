@@ -158,7 +158,7 @@ const Footer = () => {
         .footer-logo-container {
           background: rgba(255, 255, 255, 0.98);
           padding: 12px 16px;
-          border-radius: 4px;
+          border-radius: var(--radius-md);
           display: inline-flex;
           align-items: center;
           justify-content: center;

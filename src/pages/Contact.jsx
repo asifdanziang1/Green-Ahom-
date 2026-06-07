@@ -236,21 +236,21 @@ const Contact = () => {
                     <path 
                       d="M 50,70 Q 100,50 150,60 T 250,75 T 320,60 T 380,45 Q 385,85 360,95 T 280,85 T 180,95 T 100,80 Z" 
                       fill="none" 
-                      stroke="rgba(26, 45, 66, 0.12)" 
+                      stroke="rgba(17, 63, 39, 0.12)" 
                       strokeWidth="3"
                       strokeDasharray="4 4"
                     />
                     
-                    <circle cx="80" cy="72" r="6" fill="#344e68" className="map-node-pulse" />
+                    <circle cx="80" cy="72" r="6" fill="var(--primary)" className="map-node-pulse" />
                     <text x="75" y="90" className="map-lbl-node">Guwahati</text>
                     
                     <circle cx="180" cy="62" r="6" fill="#d95f43" className="map-node-pulse" />
                     <text x="175" y="50" className="map-lbl-node">Tezpur</text>
                     
-                    <circle cx="280" cy="74" r="6" fill="#344e68" className="map-node-pulse" />
+                    <circle cx="280" cy="74" r="6" fill="var(--primary)" className="map-node-pulse" />
                     <text x="275" y="92" className="map-lbl-node">Majuli</text>
                     
-                    <circle cx="320" cy="66" r="6" fill="#344e68" className="map-node-pulse" />
+                    <circle cx="320" cy="66" r="6" fill="var(--primary)" className="map-node-pulse" />
                     <text x="315" y="52" className="map-lbl-node">Jorhat</text>
 
                     <circle cx="110" cy="115" r="6" fill="#d95f43" className="map-node-pulse" />
@@ -347,8 +347,8 @@ const Contact = () => {
           width: 60px;
           height: 60px;
           border-radius: 50%;
-          background-color: rgba(52, 78, 104, 0.08);
-          border: 1px solid rgba(52, 78, 104, 0.2);
+          background-color: rgba(51, 65, 85, 0.08);
+          border: 1px solid rgba(51, 65, 85, 0.2);
           margin-bottom: 1rem;
         }
 
@@ -411,7 +411,7 @@ const Contact = () => {
         .map-svg-container {
           background-color: #faf9f6;
           border-radius: var(--radius-sm);
-          border: 1px solid #eaeaea;
+          border: 1px solid rgba(17, 63, 39, 0.08);
           padding: 10px;
         }
 
@@ -445,68 +445,102 @@ const Contact = () => {
         }
 
         /* FAQ ACCORDION */
-        .faq-accordion-container {
+        .faq-accordion-box {
           max-width: 800px;
           margin: 0 auto;
           display: flex;
           flex-direction: column;
           gap: 16px;
+          width: 100%;
         }
 
-        .faq-card-accordion {
-          padding: 1.5rem 1.8rem;
-          background-color: var(--white);
-          cursor: pointer;
+        .faq-item {
+          border: 1px solid rgba(17, 63, 39, 0.08);
+          border-radius: var(--radius-md);
+          overflow: hidden;
+          background: var(--white);
           transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
           border-left: 4px solid transparent;
         }
 
-        .faq-card-accordion:hover {
-          border-color: var(--gold);
-          border-left-color: var(--gold-hover);
+        .faq-item:hover {
+          border-color: rgba(17, 63, 39, 0.15);
+          transform: translateY(-1px);
+          box-shadow: var(--shadow-sm);
         }
 
-        .faq-card-accordion.open {
-          background-color: var(--cream);
-          border-color: var(--border-flat);
+        .faq-item.active {
+          border-color: rgba(17, 63, 39, 0.15);
           border-left: 4px solid var(--gold);
           box-shadow: var(--shadow-md);
+          background: var(--white);
         }
 
-        .faq-header-trigger {
+        .faq-question-btn {
           display: flex;
           justify-content: space-between;
           align-items: center;
-        }
-
-        .faq-header-trigger h4 {
-          margin: 0;
-          font-size: 1.05rem;
+          width: 100%;
+          padding: 1.5rem 1.8rem;
+          background: transparent;
+          border: none;
+          outline: none;
+          cursor: pointer;
+          text-align: left;
+          font-family: var(--font-header) !important;
+          font-size: 1.1rem;
           font-weight: 700;
           color: var(--primary);
+          transition: all 0.2s ease;
+          gap: 16px;
         }
 
-        .faq-arrow {
-          font-size: 1.5rem;
-          font-weight: bold;
+        .faq-question-btn:hover {
+          color: var(--gold);
+        }
+
+        .faq-question-btn span:first-child {
+          line-height: 1.4;
+          flex-grow: 1;
+        }
+
+        .faq-toggle-icon {
+          font-family: var(--font-header) !important;
+          font-size: 1.4rem;
+          font-weight: 600;
           color: var(--muted);
           line-height: 1;
+          transition: transform 0.3s ease, color 0.3s ease;
+          flex-shrink: 0;
         }
 
-        .faq-card-accordion.open .faq-arrow {
-          color: var(--teal);
+        .faq-item.active .faq-toggle-icon {
+          color: var(--gold);
+          transform: rotate(180deg);
         }
 
-        .faq-body-content {
-          border-top: 1px solid #eaeaea;
-          padding-top: 1rem;
-          margin-top: 1rem;
+        .faq-answer-pane {
+          max-height: 0;
+          overflow: hidden;
+          opacity: 0;
+          transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+          padding: 0 1.8rem;
         }
 
-        .faq-body-content p {
+        .faq-item.active .faq-answer-pane {
+          max-height: 500px;
+          opacity: 1;
+          padding: 0 1.8rem 1.6rem 1.8rem;
+          border-top: 1px solid rgba(17, 63, 39, 0.08);
+          padding-top: 1.2rem;
+          margin-top: -0.2rem;
+        }
+
+        .faq-answer-pane p {
+          font-family: var(--font-body);
           font-size: 0.95rem;
           color: var(--muted);
-          line-height: 1.6;
+          line-height: 1.65;
           margin: 0;
         }
       `}</style>

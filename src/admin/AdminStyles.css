@@ -3,13 +3,13 @@
 :root {
   --admin-sidebar-width: 260px;
   --admin-header-height: 64px;
-  --admin-primary: #1a2d42;
-  --admin-primary-light: #2c425c;
-  --admin-gold: #d95f43;
-  --admin-bg: #f5f6f8;
-  --admin-text: #333;
-  --admin-text-muted: #6b7280;
-  --admin-border: #e5e7eb;
+  --admin-primary: #113f27;         /* Deep Forest Emerald secondary brand */
+  --admin-primary-light: #1b4e33;   /* Lighter forest green */
+  --admin-gold: #d95f43;            /* Terracotta Orange primary brand */
+  --admin-bg: #f3f6f4;              /* Sage off-white bg */
+  --admin-text: #0f2218;            /* Legible dark text */
+  --admin-text-muted: #4a5d52;      /* Muted sage-slate text */
+  --admin-border: #d1dad4;          /* Soft green-grey borders */
 }
 
 .admin-body {

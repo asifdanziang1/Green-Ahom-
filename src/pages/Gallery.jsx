@@ -121,7 +121,7 @@ const Gallery = () => {
                   onClick={() => openLightbox(item)}
                   style={{ animationDelay: `${idx * 0.05}s` }}
                 >
-                  <div className="gallery-item-image" style={{ background: `linear-gradient(to bottom, rgba(26, 45, 66, 0.35), rgba(26, 45, 66, 0.75)), url(${item.imageUrl}) center/cover no-repeat` }}>
+                  <div className="gallery-item-image" style={{ background: `linear-gradient(to bottom, rgba(17, 63, 39, 0.35), rgba(17, 63, 39, 0.75)), url(${item.imageUrl}) center/cover no-repeat` }}>
                     <div className="item-symbol-decor">{renderIcon(item.iconName, 56)}</div>
                     <div className="item-hover-metadata">
                       <span className="meta-category">{item.category}</span>
@@ -153,7 +153,7 @@ const Gallery = () => {
             <button className="lightbox-close-btn" onClick={closeLightbox}>×</button>
             
             <div className="lightbox-layout-grid">
-              <div className="lightbox-image-side" style={{ background: `linear-gradient(to bottom, rgba(26, 45, 66, 0.35), rgba(26, 45, 66, 0.75)), url(${activeLightboxItem.imageUrl}) center/cover no-repeat` }}>
+              <div className="lightbox-image-side" style={{ background: `linear-gradient(to bottom, rgba(17, 63, 39, 0.35), rgba(17, 63, 39, 0.75)), url(${activeLightboxItem.imageUrl}) center/cover no-repeat` }}>
                 <span className="lightbox-symbol">{renderIcon(activeLightboxItem.iconName, 100)}</span>
               </div>
               
@@ -272,7 +272,7 @@ const Gallery = () => {
           left: 0;
           width: 100%;
           height: 100%;
-          background: linear-gradient(to top, rgba(26, 45, 66, 0.95) 0%, rgba(26, 45, 66, 0.25) 100%);
+          background: linear-gradient(to top, rgba(17, 63, 39, 0.95) 0%, rgba(17, 63, 39, 0.25) 100%);
           padding: 1.5rem;
           display: flex;
           flex-direction: column;
@@ -314,7 +314,7 @@ const Gallery = () => {
           left: 0;
           width: 100vw;
           height: 100vh;
-          background-color: rgba(26, 45, 66, 0.55);
+          background-color: rgba(17, 63, 39, 0.55);
           backdrop-filter: blur(8px);
           -webkit-backdrop-filter: blur(8px);
           z-index: 10000;
@@ -354,7 +354,7 @@ const Gallery = () => {
           width: 38px;
           height: 38px;
           background-color: var(--sand);
-          border: 1px solid rgba(26, 45, 66, 0.08);
+          border: 1px solid rgba(17, 63, 39, 0.08);
           border-radius: 50%;
           font-size: 22px;
           color: var(--muted);
@@ -391,14 +391,14 @@ const Gallery = () => {
           align-items: center;
           justify-content: center;
           padding: 4rem 2rem;
-          border-right: 1px solid #eaeaea;
+          border-right: 1px solid rgba(17, 63, 39, 0.08);
         }
 
         @media (max-width: 768px) {
           .lightbox-image-side {
             padding: 2.5rem;
             border-right: none;
-            border-bottom: 1px solid #eaeaea;
+            border-bottom: 1px solid rgba(17, 63, 39, 0.08);
           }
         }
 
@@ -429,7 +429,7 @@ const Gallery = () => {
 
         .lightbox-divider {
           height: 1px;
-          background-color: #eaeaea;
+          background-color: rgba(17, 63, 39, 0.08);
           margin: 1.5rem 0;
         }
 
@@ -443,7 +443,7 @@ const Gallery = () => {
         .lightbox-footer-note {
           font-size: 0.72rem;
           font-weight: 700;
-          color: rgba(26, 45, 66, 0.4);
+          color: rgba(17, 63, 39, 0.4);
           text-transform: uppercase;
           letter-spacing: 0.5px;
         }

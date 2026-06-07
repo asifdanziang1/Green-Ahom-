@@ -160,7 +160,7 @@ const OurWork = () => {
                   key={project.id || idx}
                   style={{ animationDelay: `${idx * 0.04}s` }}
                 >
-                  <div className="proj-header-banner" style={{ background: `linear-gradient(to bottom, rgba(26, 45, 66, 0.4) 0%, rgba(26, 45, 66, 0.8) 100%), url(${project.imageUrl}) center/cover no-repeat` }}>
+                  <div className="proj-header-banner" style={{ background: `linear-gradient(to bottom, rgba(17, 63, 39, 0.4) 0%, rgba(17, 63, 39, 0.8) 100%), url(${project.imageUrl}) center/cover no-repeat` }}>
                     <div className="proj-banner-meta">
                       <span className="proj-badge-category">{project.category}</span>
                       <span className="proj-badge-year">{project.year}</span>
@@ -338,7 +338,7 @@ const OurWork = () => {
           justify-content: space-between;
           align-items: flex-end;
           padding: 7rem 1.8rem 1.5rem 1.8rem;
-          border-bottom: 1px solid #eaeaea;
+          border-bottom: 1px solid rgba(17, 63, 39, 0.08);
           position: relative;
         }
 
@@ -355,7 +355,7 @@ const OurWork = () => {
           color: var(--white);
           letter-spacing: 1.5px;
           text-transform: uppercase;
-          background: rgba(26, 45, 66, 0.9);
+          background: rgba(17, 63, 39, 0.9);
           padding: 4px 10px;
           border-radius: var(--radius-sm);
           border: 1px solid rgba(255, 255, 255, 0.2);
@@ -398,7 +398,7 @@ const OurWork = () => {
           font-weight: 700;
           color: var(--primary-light);
           background-color: #faf9f6;
-          border: 1px solid #eaeaea;
+          border: 1px solid rgba(17, 63, 39, 0.08);
           padding: 4px 10px;
           border-radius: var(--radius-sm);
           width: fit-content;
@@ -419,7 +419,7 @@ const OurWork = () => {
 
         .proj-progress-section {
           background-color: #faf9f6;
-          border: 1px solid #eaeaea;
+          border: 1px solid rgba(17, 63, 39, 0.08);
           border-radius: var(--radius-sm);
           padding: 1.2rem;
           margin-top: auto;
@@ -435,7 +435,7 @@ const OurWork = () => {
 
         .proj-progress-section .progress-bar-track {
           height: 4px;
-          background: rgba(26, 45, 66, 0.06);
+          background: rgba(17, 63, 39, 0.06);
           border-radius: 2px;
           overflow: hidden;
           margin-bottom: 8px;

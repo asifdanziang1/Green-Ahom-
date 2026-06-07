@@ -316,7 +316,7 @@ const Volunteer = () => {
         }
 
         .r-footer {
-          border-top: 1px solid #eaeaea;
+          border-top: 1px solid rgba(17, 63, 39, 0.08);
           padding-top: 1rem;
         }
 
@@ -344,7 +344,7 @@ const Volunteer = () => {
 
         .volunteer-induction-box {
           background-color: var(--white);
-          border: 1px dashed rgba(26, 45, 66, 0.15);
+          border: 1px dashed rgba(17, 63, 39, 0.15);
           border-radius: var(--radius-md);
           padding: 1.8rem;
         }
@@ -397,8 +397,8 @@ const Volunteer = () => {
           width: 60px;
           height: 60px;
           border-radius: 50%;
-          background-color: rgba(52, 78, 104, 0.08);
-          border: 1px solid rgba(52, 78, 104, 0.2);
+          background-color: rgba(51, 65, 85, 0.08);
+          border: 1px solid rgba(51, 65, 85, 0.2);
           margin-bottom: 1rem;
         }
 

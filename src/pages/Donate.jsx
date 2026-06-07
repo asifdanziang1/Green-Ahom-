@@ -300,7 +300,7 @@ const Donate = () => {
           -webkit-appearance: none;
           width: 100%;
           height: 6px;
-          background: rgba(26, 45, 66, 0.08);
+          background: rgba(17, 63, 39, 0.08);
           border-radius: 3px;
           outline: none;
           margin-bottom: 6px;
@@ -340,7 +340,7 @@ const Donate = () => {
         .quick-amt-btn {
           padding: 10px;
           background-color: var(--cream);
-          border: 1px solid rgba(26, 45, 66, 0.08);
+          border: 1px solid rgba(17, 63, 39, 0.08);
           font-family: var(--font-body);
           font-weight: 700;
           font-size: 0.85rem;
@@ -362,7 +362,7 @@ const Donate = () => {
         }
 
         .donor-quick-inputs-box {
-          border-top: 1px solid rgba(26, 45, 66, 0.06);
+          border-top: 1px solid rgba(17, 63, 39, 0.08);
           padding-top: 1.5rem;
         }
 
@@ -415,9 +415,9 @@ const Donate = () => {
           background-color: var(--cream);
           border-left: 4px solid var(--gold);
           border-radius: var(--radius-sm);
-          border-top: 1px solid #eaeaea;
-          border-right: 1px solid #eaeaea;
-          border-bottom: 1px solid #eaeaea;
+          border-top: 1px solid rgba(17, 63, 39, 0.08);
+          border-right: 1px solid rgba(17, 63, 39, 0.08);
+          border-bottom: 1px solid rgba(17, 63, 39, 0.08);
         }
 
         .trust-exemption-note h4 {

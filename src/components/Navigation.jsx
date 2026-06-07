@@ -295,20 +295,20 @@ const Navigation = () => {
         .fixed-nav {
           position: sticky;
           top: 0;
-          left: 0;
-          width: 100%;
           z-index: 1000;
           height: 68px;
           display: flex;
           align-items: center;
-          background: var(--white);
-          border-bottom: 1px solid #eaeaea;
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border-bottom: 1px solid rgba(17, 63, 39, 0.05);
           transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .nav-scrolled {
-          background: var(--white);
-          border-bottom: 1px solid #eaeaea;
+          background: rgba(255, 255, 255, 0.98);
+          border-bottom: 1px solid rgba(17, 63, 39, 0.08);
           box-shadow: var(--shadow-sm);
         }
 
@@ -424,7 +424,7 @@ const Navigation = () => {
           left: 0;
           width: 100%;
           background: var(--cream);
-          border-bottom: 1px solid #eaeaea;
+          border-bottom: 1px solid rgba(17, 63, 39, 0.08);
           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
           padding: 3.5rem 0;
           z-index: 99;
@@ -491,7 +491,7 @@ const Navigation = () => {
           letter-spacing: 1.2px;
           text-transform: uppercase;
           margin-bottom: 1.2rem;
-          border-bottom: 1px solid #eaeaea;
+          border-bottom: 1px solid rgba(17, 63, 39, 0.08);
           padding-bottom: 6px;
         }
 
@@ -518,7 +518,7 @@ const Navigation = () => {
 
         /* FEATURED OUTLINE BOX */
         .featured-border-box {
-          border: 1px solid #eaeaea;
+          border: 1px solid rgba(17, 63, 39, 0.08);
           border-radius: 4px;
           padding: 1.5rem;
           background: var(--white);

@@ -89,7 +89,7 @@ const MetricCard = ({ label, target, context, prefix = '', suffix = '', decimals
       <style>{`
         .metric-card {
           background-color: var(--white);
-          border: 1px solid rgba(26, 45, 66, 0.08);
+          border: 1px solid rgba(17, 63, 39, 0.08);
           border-top: 3px solid var(--gold); /* Muted coral accent line */
           border-radius: 6px; /* Clean, crisp border radius */
           padding: 2.2rem 1.6rem;
@@ -105,8 +105,8 @@ const MetricCard = ({ label, target, context, prefix = '', suffix = '', decimals
 
         .metric-card:hover {
           transform: translateY(-4px);
-          border-color: rgba(26, 45, 66, 0.15);
-          box-shadow: 0 12px 30px rgba(26, 45, 66, 0.03);
+          border-color: rgba(17, 63, 39, 0.15);
+          box-shadow: 0 12px 30px rgba(17, 63, 39, 0.03);
         }
 
         .metric-number {

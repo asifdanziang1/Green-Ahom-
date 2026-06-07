@@ -106,7 +106,7 @@ const RichTextEditor = ({ value = '', onChange, placeholder = 'Start writing...'
           width: 100%;
         }
         .rte-container {
-          border: 1px solid rgba(26, 45, 66, 0.12);
+          border: 1px solid rgba(17, 63, 39, 0.12);
           border-radius: 8px;
           overflow: hidden;
           background: var(--white, #fff);
@@ -117,7 +117,7 @@ const RichTextEditor = ({ value = '', onChange, placeholder = 'Start writing...'
           justify-content: space-between;
           padding: 6px 8px;
           background: #f8f9fa;
-          border-bottom: 1px solid rgba(26, 45, 66, 0.08);
+          border-bottom: 1px solid rgba(17, 63, 39, 0.08);
           flex-wrap: wrap;
           gap: 4px;
         }
@@ -142,12 +142,12 @@ const RichTextEditor = ({ value = '', onChange, placeholder = 'Start writing...'
           transition: all 0.15s;
         }
         .rte-btn:hover {
-          background: rgba(26, 45, 66, 0.08);
-          color: var(--primary, #1a2d42);
+          background: rgba(17, 63, 39, 0.08);
+          color: var(--primary, #113f27);
         }
         .rte-preview-toggle {
           padding: 4px 12px;
-          border: 1px solid rgba(26, 45, 66, 0.12);
+          border: 1px solid rgba(17, 63, 39, 0.12);
           background: transparent;
           border-radius: 4px;
           font-size: 12px;
@@ -169,7 +169,7 @@ const RichTextEditor = ({ value = '', onChange, placeholder = 'Start writing...'
           font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
           font-size: 14px;
           line-height: 1.6;
-          color: var(--primary, #1a2d42);
+          color: var(--primary, #113f27);
           resize: vertical;
           box-sizing: border-box;
         }

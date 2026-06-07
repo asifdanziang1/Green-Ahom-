@@ -237,13 +237,13 @@ const Home = () => {
           min-height: 85vh;
           display: flex;
           align-items: center;
-          background: linear-gradient(135deg, rgba(26, 45, 66, 0.97) 0%, rgba(26, 45, 66, 0.88) 40%, rgba(217, 95, 67, 0.15) 100%), 
+          background: linear-gradient(135deg, rgba(17, 63, 39, 0.97) 0%, rgba(17, 63, 39, 0.88) 40%, rgba(217, 95, 67, 0.15) 100%), 
                       url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat !important;
         }
 
         @media (max-width: 991px) {
           .hero-section {
-            background: linear-gradient(to bottom, rgba(26, 45, 66, 0.98) 0%, rgba(26, 45, 66, 0.85) 60%, rgba(26, 45, 66, 0.4) 100%), 
+            background: linear-gradient(to bottom, rgba(17, 63, 39, 0.98) 0%, rgba(17, 63, 39, 0.85) 60%, rgba(17, 63, 39, 0.4) 100%), 
                         url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat !important;
           }
         }
@@ -279,8 +279,8 @@ const Home = () => {
         /* STATS SECTION STYLING */
         .stats-section {
           background-color: var(--sand) !important;
-          border-top: 1px solid rgba(26, 45, 66, 0.05) !important;
-          border-bottom: 1px solid rgba(26, 45, 66, 0.05) !important;
+          border-top: 1px solid rgba(17, 63, 39, 0.05) !important;
+          border-bottom: 1px solid rgba(17, 63, 39, 0.05) !important;
           padding: clamp(3rem, 5vw, 5rem) 0 !important;
         }
 
@@ -341,7 +341,7 @@ const Home = () => {
         /* INITIATIVES STYLING */
         .initiatives-section {
           background-color: var(--cream);
-          border-bottom: 1px solid rgba(26, 45, 66, 0.05);
+          border-bottom: 1px solid rgba(17, 63, 39, 0.05);
         }
 
         .initiatives-grid {
@@ -385,7 +385,7 @@ const Home = () => {
         .card-overlay {
           position: absolute;
           top: 0; left: 0; width: 100%; height: 100%;
-          background: linear-gradient(to top, rgba(26, 45, 66, 0.95) 0%, rgba(26, 45, 66, 0.6) 50%, rgba(26, 45, 66, 0.2) 100%);
+          background: linear-gradient(to top, rgba(17, 63, 39, 0.95) 0%, rgba(17, 63, 39, 0.6) 50%, rgba(17, 63, 39, 0.2) 100%);
           z-index: 2;
         }
 
@@ -521,7 +521,7 @@ const Home = () => {
         /* CTA BANNER */
         .cta-banner-section {
           padding: 100px 0;
-          background: linear-gradient(135deg, rgba(26, 45, 66, 0.9) 0%, rgba(26, 45, 66, 0.95) 100%), 
+          background: linear-gradient(135deg, rgba(17, 63, 39, 0.9) 0%, rgba(17, 63, 39, 0.95) 100%), 
                       url('/extracted_images/ANNUAL_REPORT_2024-2025_p1_img1.jpg') center/cover fixed;
           position: relative;
         }
@@ -529,7 +529,7 @@ const Home = () => {
         .cta-box-inner {
           box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
           border-radius: 16px;
-          border: 1px solid rgba(26, 45, 66, 0.1);
+          border: 1px solid rgba(17, 63, 39, 0.1);
         }
       `}</style>
     </div>

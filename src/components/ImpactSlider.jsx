@@ -148,7 +148,7 @@ const ImpactSlider = () => {
 
         /* VECTORS FOR LUSH CANOPY (AFTER) */
         .green-canopy-visual {
-          background: linear-gradient(135deg, #1a2d42 0%, #253e59 50%, #344e68 100%);
+          background: linear-gradient(135deg, #07150e 0%, #113f27 50%, #1b4e33 100%);
         }
 
         .visual-forest-bg {
@@ -168,8 +168,8 @@ const ImpactSlider = () => {
           z-index: 1;
         }
 
-        .leaf-1 { width: 300px; height: 300px; top: -50px; right: -50px; background: radial-gradient(circle, rgba(52, 78, 104, 0.4) 0%, transparent 70%); }
-        .leaf-2 { width: 250px; height: 250px; bottom: -50px; left: 10%; background: radial-gradient(circle, rgba(26, 45, 66, 0.6) 0%, transparent 80%); }
+        .leaf-1 { width: 300px; height: 300px; top: -50px; right: -50px; background: radial-gradient(circle, rgba(27, 78, 51, 0.4) 0%, transparent 70%); }
+        .leaf-2 { width: 250px; height: 250px; bottom: -50px; left: 10%; background: radial-gradient(circle, rgba(17, 63, 39, 0.6) 0%, transparent 80%); }
         .leaf-3 { width: 150px; height: 150px; top: 15%; left: 30%; background: rgba(212, 175, 55, 0.05); }
 
         .wildlife-rhino-shadow {
@@ -178,7 +178,7 @@ const ImpactSlider = () => {
           right: 80px;
           width: 120px;
           height: 70px;
-          background-color: rgba(26, 45, 66, 0.35);
+          background-color: rgba(17, 63, 39, 0.35);
           clip-path: polygon(10% 80%, 15% 70%, 25% 65%, 40% 63%, 50% 65%, 65% 58%, 70% 50%, 75% 52%, 80% 58%, 85% 56%, 88% 62%, 92% 64%, 90% 75%, 85% 82%, 75% 82%, 72% 95%, 65% 95%, 68% 82%, 40% 82%, 37% 95%, 30% 95%, 32% 82%, 20% 82%);
           filter: blur(1px);
           z-index: 2;
