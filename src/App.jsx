@@ -20,6 +20,13 @@ import SectionsManager from './admin/pages/SectionsManager';
 import SectionEditor from './admin/pages/SectionEditor';
 import ProgramsManager from './admin/pages/ProgramsManager';
 import BlogManager from './admin/pages/BlogManager';
+import ArticlesManager from './admin/pages/ArticlesManager';
+import LegalPagesManager from './admin/pages/LegalPagesManager';
+import MediaLibrary from './admin/pages/MediaLibrary';
+import PaymentsManager from './admin/pages/PaymentsManager';
+import SeoManager from './admin/pages/SeoManager';
+import UsersManager from './admin/pages/UsersManager';
+import SettingsManager from './admin/pages/SettingsManager';
 
 function App() {
   const location = useLocation();
@@ -48,6 +55,13 @@ function App() {
             <Route path="sections/:pageId" element={<SectionEditor />} />
             <Route path="programs" element={<ProgramsManager />} />
             <Route path="blog" element={<BlogManager />} />
+            <Route path="articles" element={<ArticlesManager />} />
+            <Route path="legal" element={<LegalPagesManager />} />
+            <Route path="media" element={<MediaLibrary />} />
+            <Route path="payments" element={<PaymentsManager />} />
+            <Route path="seo" element={<SeoManager />} />
+            <Route path="users" element={<UsersManager />} />
+            <Route path="settings" element={<SettingsManager />} />
           </Route>
         </Routes>
       </main>

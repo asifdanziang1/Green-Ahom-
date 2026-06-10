@@ -430,3 +430,42 @@
   padding-bottom: 1.5rem !important;
 }
 
+/* Form Row Alignment */
+.admin-form-row {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+}
+
+.admin-form-row > .admin-form-group {
+  flex: 1;
+  min-width: 180px;
+}
+
+@media (max-width: 600px) {
+  .admin-form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+/* Media Library Custom styles */
+.media-card-box {
+  transition: all 0.25s ease-in-out;
+}
+
+.media-card-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(17, 63, 39, 0.08);
+  border-color: var(--admin-gold);
+}
+
+.media-preview img {
+  transition: transform 0.4s ease;
+}
+
+.media-card-box:hover .media-preview img {
+  transform: scale(1.03);
+}
+
+
