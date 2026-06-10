@@ -100,7 +100,13 @@ const AnnualReports = () => {
           <div className="grid-responsive governance-grid mt-5">
             <div className="glass-card gov-card">
               <div className="gov-header">
-                <span className="gov-icon">⚖️</span>
+                <span className="gov-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                    <line x1="12" y1="2" x2="12" y2="22" />
+                    <line x1="5" y1="7" x2="19" y2="7" />
+                    <path d="M5 7l2 10h6l2-10" />
+                  </svg>
+                </span>
                 <h3>Corporate Registration</h3>
               </div>
               <div className="gov-body mt-3">
@@ -117,7 +123,14 @@ const AnnualReports = () => {
 
             <div className="glass-card gov-card">
               <div className="gov-header">
-                <span className="gov-icon">👥</span>
+                <span className="gov-icon">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" style={{ display: 'inline-block', verticalAlign: 'middle' }}>
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </span>
                 <h3>Board of Directors &amp; Subscribers</h3>
               </div>
               <div className="gov-body mt-3">

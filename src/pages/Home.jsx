@@ -349,7 +349,7 @@ const Home = () => {
 
         .initiative-card {
           position: relative;
-          border-radius: 12px;
+          border-radius: var(--radius-md);
           overflow: hidden;
           min-height: 420px;
           display: flex;
@@ -411,7 +411,7 @@ const Home = () => {
           background: rgba(217, 95, 67, 0.9);
           color: white;
           padding: 4px 12px;
-          border-radius: 4px;
+          border-radius: var(--radius-sm);
           font-size: 0.75rem;
           font-weight: 700;
           letter-spacing: 1px;
@@ -465,7 +465,7 @@ const Home = () => {
           border-left: 3px solid var(--gold);
           padding: 24px;
           margin: 32px 0;
-          border-radius: 0 8px 8px 0;
+          border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
         }
 
         .highlight-quote p {
@@ -485,7 +485,7 @@ const Home = () => {
 
         .visual-card-premium {
           position: relative;
-          border-radius: 16px;
+          border-radius: var(--radius-lg);
           overflow: hidden;
           background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%);
           border: 1px solid rgba(255,255,255,0.1);
@@ -510,7 +510,7 @@ const Home = () => {
 
         /* CTA BANNER */
         .cta-banner-section {
-          padding: 100px 0;
+          padding: clamp(4.5rem, 7vw, 6rem) 0;
           background: linear-gradient(135deg, rgba(17, 63, 39, 0.9) 0%, rgba(17, 63, 39, 0.95) 100%), 
                       url('/extracted_images/ANNUAL_REPORT_2024-2025_p1_img1.jpg') center/cover fixed;
           position: relative;
@@ -518,7 +518,7 @@ const Home = () => {
 
         .cta-box-inner {
           box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
-          border-radius: 16px;
+          border-radius: var(--radius-lg);
           border: 1px solid rgba(17, 63, 39, 0.1);
         }
 
