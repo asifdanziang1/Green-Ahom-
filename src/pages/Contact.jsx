@@ -257,21 +257,21 @@ const Contact = () => {
                   <path 
                     d="M 50,70 Q 100,50 150,60 T 250,75 T 320,60 T 380,45 Q 385,85 360,95 T 280,85 T 180,95 T 100,80 Z" 
                     fill="none" 
-                    stroke="rgba(26, 45, 66, 0.12)" 
+                    stroke="rgba(15, 29, 25, 0.15)" 
                     strokeWidth="3"
                     strokeDasharray="4 4"
                   />
                   
-                  <circle cx="80" cy="72" r="6" fill="#344e68" className="map-node-pulse" />
+                  <circle cx="80" cy="72" r="6" fill="var(--primary)" className="map-node-pulse" />
                   <text x="75" y="90" className="map-lbl-node">Guwahati</text>
                   
                   <circle cx="180" cy="62" r="6" fill="#d95f43" className="map-node-pulse" />
                   <text x="175" y="50" className="map-lbl-node">Tezpur</text>
                   
-                  <circle cx="280" cy="74" r="6" fill="#344e68" className="map-node-pulse" />
+                  <circle cx="280" cy="74" r="6" fill="var(--primary)" className="map-node-pulse" />
                   <text x="275" y="92" className="map-lbl-node">Majuli</text>
                   
-                  <circle cx="320" cy="66" r="6" fill="#344e68" className="map-node-pulse" />
+                  <circle cx="320" cy="66" r="6" fill="var(--primary)" className="map-node-pulse" />
                   <text x="315" y="52" className="map-lbl-node">Jorhat</text>
 
                   <circle cx="110" cy="115" r="6" fill="#d95f43" className="map-node-pulse" />
@@ -316,213 +316,7 @@ const Contact = () => {
         </div>
       </section>
 
-      <style>{`
-
-        /* GRID LAYOUT */
-        .contact-wrapper-grid {
-          display: grid;
-          grid-template-columns: 1.15fr 0.85fr;
-          gap: 5rem;
-          align-items: center;
-        }
-
-        @media (max-width: 991px) {
-          .contact-wrapper-grid {
-            grid-template-columns: 1fr;
-            gap: 3rem;
-          }
-        }
-
-        .contact-form-card-inner {
-          padding: 2.5rem;
-          background-color: var(--white);
-        }
-
-        .contact-form-card-inner h3 {
-          color: var(--primary);
-        }
-
-        .form-subtext {
-          font-size: 0.9rem;
-          color: var(--muted);
-          margin-bottom: 20px;
-        }
-
-        .form-success-alert {
-          text-align: center;
-          padding: 2.5rem 1rem;
-        }
-
-        .success-alert-badge-visual {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          background-color: rgba(52, 78, 104, 0.08);
-          border: 1px solid rgba(52, 78, 104, 0.2);
-          margin-bottom: 1rem;
-        }
-
-        .form-success-alert h4 {
-          color: var(--teal);
-          margin-bottom: 8px;
-        }
-
-        /* PHYSICAL DETAILS */
-        .office-details-box {
-          display: flex;
-          flex-direction: column;
-          gap: 24px;
-        }
-
-        .detail-item-iconic {
-          display: flex;
-          align-items: flex-start;
-          gap: 16px;
-        }
-
-        .detail-item-iconic .d-icon {
-          width: 44px;
-          height: 44px;
-          background-color: rgba(217, 95, 67, 0.05);
-          border: 1px solid rgba(217, 95, 67, 0.15);
-          border-radius: var(--radius-sm);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-        }
-
-        .detail-item-iconic strong {
-          font-family: var(--font-body);
-          color: var(--primary);
-          font-size: 0.95rem;
-          display: block;
-        }
-
-        .detail-item-iconic p {
-          font-size: 0.9rem;
-          color: var(--muted);
-          margin-top: 4px;
-          line-height: 1.4;
-        }
-
-        /* VECTOR MAP STYLE */
-        .interactive-vector-map-box {
-          padding: 1.8rem;
-          background-color: var(--white);
-        }
-
-        .interactive-vector-map-box h4 {
-          color: var(--primary);
-          font-size: 1.2rem;
-          margin-bottom: 12px;
-        }
-
-        .map-svg-container {
-          background-color: #faf9f6;
-          border-radius: var(--radius-sm);
-          border: 1px solid #eaeaea;
-          padding: 10px;
-        }
-
-        .assam-vector-map {
-          width: 100%;
-          height: auto;
-        }
-
-        .map-lbl-node {
-          font-family: var(--font-body);
-          font-weight: 700;
-          font-size: 8px;
-          fill: var(--primary-light);
-        }
-
-        .map-node-pulse {
-          animation: mapPulse 2s infinite;
-        }
-
-        @keyframes mapPulse {
-          0% { r: 5px; opacity: 1; }
-          50% { r: 9px; opacity: 0.5; }
-          100% { r: 5px; opacity: 1; }
-        }
-
-        .map-caption {
-          font-size: 0.72rem;
-          color: var(--muted);
-          margin-top: 8px;
-          font-weight: 600;
-        }
-
-        /* FAQ ACCORDION */
-        .faq-accordion-container {
-          max-width: 800px;
-          margin: 0 auto;
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
-        }
-
-        .faq-card-accordion {
-          padding: 1.5rem 1.8rem;
-          background-color: var(--white);
-          cursor: pointer;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-          border-left: 4px solid transparent;
-        }
-
-        .faq-card-accordion:hover {
-          border-color: var(--gold);
-          border-left-color: var(--gold-hover);
-        }
-
-        .faq-card-accordion.open {
-          background-color: var(--cream);
-          border-color: var(--border-flat);
-          border-left: 4px solid var(--gold);
-          box-shadow: var(--shadow-md);
-        }
-
-        .faq-header-trigger {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        .faq-header-trigger h4 {
-          margin: 0;
-          font-size: 1.05rem;
-          font-weight: 700;
-          color: var(--primary);
-        }
-
-        .faq-arrow {
-          font-size: 1.5rem;
-          font-weight: bold;
-          color: var(--muted);
-          line-height: 1;
-        }
-
-        .faq-card-accordion.open .faq-arrow {
-          color: var(--teal);
-        }
-
-        .faq-body-content {
-          border-top: 1px solid #eaeaea;
-          padding-top: 1rem;
-          margin-top: 1rem;
-        }
-
-        .faq-body-content p {
-          font-size: 0.95rem;
-          color: var(--muted);
-          line-height: 1.6;
-          margin: 0;
-        }
-      `}</style>
+      {/* STYLES MOVED TO INDEX.CSS */}
     </div>
   );
 };

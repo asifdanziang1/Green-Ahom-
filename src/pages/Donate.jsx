@@ -12,8 +12,19 @@ const Donate = () => {
   const [isPayModalOpen, setIsPayModalOpen] = useState(false);
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const hash = window.location.hash;
+    if (hash) {
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [window.location.hash]);
 
   const handleSliderChange = (e) => {
     setDonateAmount(parseInt(e.target.value));
@@ -194,7 +205,7 @@ const Donate = () => {
           </div>
 
           {/* Right Column: Dynamic Biological Metrics */}
-          <div className="calc-metrics-col">
+          <div className="calc-metrics-col" id="outcomes">
             <div className="section-header text-center">
               <span className="badge">HUMANITARIAN OUTCOMES</span>
               <h2>Your Grassroots Social Outcome</h2>
@@ -263,181 +274,7 @@ const Donate = () => {
         }}
       />
 
-      <style>{`
-
-        /* CALCULATOR LAYOUT */
-        .calc-wrapper-grid {
-          display: grid;
-          grid-template-columns: 1.1fr 0.9fr;
-          gap: 5rem;
-          align-items: center;
-        }
-
-        @media (max-width: 991px) {
-          .calc-wrapper-grid {
-            grid-template-columns: 1fr;
-            gap: 3rem;
-          }
-        }
-
-        .calculator-card {
-          padding: 2.5rem;
-          background-color: var(--white);
-        }
-
-        .calculator-card h3 {
-          color: var(--primary);
-        }
-
-        .calc-sub-desc {
-          font-size: 0.9rem;
-          color: var(--muted);
-          margin-bottom: 20px;
-        }
-
-        /* DYNAMIC RANGE SLIDER */
-        .slider-value-display {
-          font-family: var(--font-header);
-          font-size: 3rem;
-          font-weight: 700;
-          text-align: center;
-          margin-bottom: 10px;
-        }
-
-        .impact-range-slider {
-          -webkit-appearance: none;
-          width: 100%;
-          height: 6px;
-          background: rgba(26, 45, 66, 0.08);
-          border-radius: 3px;
-          outline: none;
-          margin-bottom: 6px;
-        }
-
-        .impact-range-slider::-webkit-slider-thumb {
-          -webkit-appearance: none;
-          width: 20px;
-          height: 20px;
-          border-radius: 50%;
-          background-color: var(--gold);
-          border: 2px solid var(--white);
-          cursor: pointer;
-          box-shadow: var(--shadow-sm);
-          transition: transform 0.1s ease;
-        }
-
-        .impact-range-slider::-webkit-slider-thumb:hover {
-          transform: scale(1.15);
-        }
-
-        .slider-limits {
-          display: flex;
-          justify-content: space-between;
-          font-size: 0.78rem;
-          font-weight: 700;
-          color: var(--muted);
-        }
-
-        /* QUICK SELECT BUTTONS */
-        .quick-select-row {
-          display: grid;
-          grid-template-columns: repeat(4, 1fr);
-          gap: 10px;
-        }
-
-        .quick-amt-btn {
-          padding: 10px;
-          background-color: var(--cream);
-          border: 1px solid rgba(26, 45, 66, 0.08);
-          font-family: var(--font-body);
-          font-weight: 700;
-          font-size: 0.85rem;
-          color: var(--primary-light);
-          cursor: pointer;
-          border-radius: var(--radius-sm);
-          transition: all 0.2s;
-        }
-
-        .quick-amt-btn:hover {
-          border-color: var(--gold);
-          color: var(--gold-hover);
-        }
-
-        .quick-amt-btn.active {
-          background-color: var(--teal);
-          color: var(--white);
-          border-color: var(--teal);
-        }
-
-        .donor-quick-inputs-box {
-          border-top: 1px solid rgba(26, 45, 66, 0.06);
-          padding-top: 1.5rem;
-        }
-
-        /* BIOLOGICAL OUTCOME CARDS */
-        .outcomes-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 15px;
-        }
-
-        .outcome-card {
-          padding: 1.5rem;
-          display: flex;
-          align-items: center;
-          gap: 15px;
-          background-color: var(--white);
-        }
-
-        .o-icon {
-          width: 44px;
-          height: 44px;
-          background-color: rgba(217, 95, 67, 0.05);
-          border: 1px solid rgba(217, 95, 67, 0.1);
-          border-radius: var(--radius-sm);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .o-data {
-          display: flex;
-          flex-direction: column;
-        }
-
-        .o-data strong {
-          font-family: var(--font-header);
-          font-size: 1.15rem;
-          line-height: 1.1;
-        }
-
-        .o-data span {
-          font-size: 0.78rem;
-          color: var(--muted);
-          font-weight: 600;
-          margin-top: 4px;
-        }
-
-        .trust-exemption-note {
-          padding: 1.8rem;
-          background-color: var(--cream);
-          border-left: 4px solid var(--gold);
-          border-radius: var(--radius-sm);
-          border-top: 1px solid #eaeaea;
-          border-right: 1px solid #eaeaea;
-          border-bottom: 1px solid #eaeaea;
-        }
-
-        .trust-exemption-note h4 {
-          color: var(--primary);
-          margin-bottom: 6px;
-        }
-
-        .trust-exemption-note p {
-          font-size: 0.88rem;
-          line-height: 1.5;
-        }
-      `}</style>
+      {/* STYLES MOVED TO INDEX.CSS */}
     </div>
   );
 };

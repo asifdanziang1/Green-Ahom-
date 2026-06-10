@@ -3,8 +3,19 @@ import { Link } from 'react-router-dom';
 
 const Partners = () => {
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const hash = window.location.hash;
+    if (hash) {
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [window.location.hash]);
 
   const institutionalPartners = [
     {
@@ -94,7 +105,7 @@ const Partners = () => {
       </section>
 
       {/* 2. CSR COMPLIANCE STATUTORY */}
-      <section className="compliance-credentials-section section-padding bg-sand">
+      <section className="compliance-credentials-section section-padding bg-sand" id="credentials">
         <div className="container-custom">
           <div className="section-header text-center">
             <span className="badge">TRUST FRAMEWORK</span>
@@ -139,11 +150,11 @@ const Partners = () => {
               <div className="glass-card partner-card-inner" key={idx} style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--white)' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
                   <span className="partner-badge-label" style={{ fontFamily: 'var(--font-body)', fontWeight: '800', fontSize: '0.72rem', color: 'var(--gold)', letterSpacing: '1px' }}>{partner.badge}</span>
-                  <div className="partner-visual-logo" style={{ fontFamily: 'var(--font-header)', fontWeight: '800', fontSize: '1.1rem', color: 'var(--primary)', border: '1px solid #eaeaea', padding: '4px 10px', borderRadius: '4px', backgroundColor: '#faf9f6' }}>{partner.logoText}</div>
+                  <div className="partner-visual-logo" style={{ fontFamily: 'var(--font-header)', fontWeight: '800', fontSize: '1.1rem', color: 'var(--primary)', border: '1px solid var(--border-subtle)', padding: '4px 10px', borderRadius: '4px', backgroundColor: 'var(--surface-default)' }}>{partner.logoText}</div>
                 </div>
                 <h3>{partner.name}</h3>
                 <span className="partner-role" style={{ fontSize: '0.85rem', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '4px', display: 'block' }}>{partner.role}</span>
-                <div style={{ height: '1px', backgroundColor: '#eaeaea', margin: '15px 0' }} />
+                <div style={{ height: '1px', backgroundColor: 'var(--border-subtle)', margin: '15px 0' }} />
                 <p style={{ fontSize: '0.9rem', color: 'var(--muted)', lineHeight: '1.6', flexGrow: '1' }}>{partner.desc}</p>
               </div>
             ))}
@@ -168,52 +179,7 @@ const Partners = () => {
         </div>
       </section>
 
-      <style>{`
-
-        /* CREDENTIALS */
-        .credential-card {
-          padding: 2.2rem;
-          background-color: var(--white);
-        }
-
-        .cred-icon-box {
-          margin-bottom: 1.2rem;
-          width: 48px;
-          height: 48px;
-          background-color: rgba(217, 95, 67, 0.05);
-          border: 1px solid rgba(217, 95, 67, 0.1);
-          border-radius: var(--radius-sm);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .credential-card h3 {
-          font-size: 1.2rem;
-          margin-bottom: 10px;
-          color: var(--primary);
-        }
-
-        .partner-card-inner h3 {
-          font-size: 1.2rem;
-          color: var(--primary);
-          line-height: 1.4;
-        }
-
-        /* IMPACT CTA Banner */
-        .max-width-center {
-          max-width: 600px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-
-        .cta-buttons-row {
-          display: flex;
-          gap: 16px;
-          justify-content: center;
-          flex-wrap: wrap;
-        }
-      `}</style>
+      {/* STYLES MOVED TO INDEX.CSS */}
     </div>
   );
 };

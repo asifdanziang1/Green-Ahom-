@@ -12,8 +12,19 @@ const Volunteer = () => {
   const [status, setStatus] = useState('');
 
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const hash = window.location.hash;
+    if (hash) {
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [window.location.hash]);
 
   const roles = [
     {
@@ -288,142 +299,7 @@ const Volunteer = () => {
         </div>
       </section>
 
-      <style>{`
-
-        /* ROLES */
-        .role-card {
-          padding: 2.5rem;
-          background-color: var(--white);
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .r-icon {
-          margin-bottom: 1.5rem;
-          width: 48px;
-          height: 48px;
-          background-color: rgba(217, 95, 67, 0.05);
-          border: 1px solid rgba(217, 95, 67, 0.15);
-          border-radius: var(--radius-sm);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-          flex-shrink: 0;
-        }
-
-        .role-card:hover .r-icon {
-          background-color: rgba(217, 95, 67, 0.12);
-          border-color: rgba(217, 95, 67, 0.3);
-          transform: scale(1.08) rotate(5deg);
-        }
-
-        .role-card h3 {
-          margin-bottom: 10px;
-          font-size: 1.25rem;
-        }
-
-        .r-desc {
-          font-size: 0.95rem;
-          line-height: 1.5;
-          margin-bottom: 2rem;
-          flex-grow: 1;
-        }
-
-        .r-footer {
-          border-top: 1px solid #eaeaea;
-          padding-top: 1rem;
-        }
-
-        .commitment-lbl {
-          font-size: 0.8rem;
-          font-weight: 700;
-          font-family: var(--font-body);
-          text-transform: uppercase;
-        }
-
-        /* FORM */
-        .form-wrapper {
-          display: grid;
-          grid-template-columns: 1fr 1.1fr;
-          gap: 5rem;
-          align-items: center;
-        }
-
-        @media (max-width: 991px) {
-          .form-wrapper {
-            grid-template-columns: 1fr;
-            gap: 3rem;
-          }
-        }
-
-        .volunteer-induction-box {
-          background-color: var(--white);
-          border: 1px dashed rgba(26, 45, 66, 0.15);
-          border-radius: var(--radius-md);
-          padding: 1.8rem;
-        }
-
-        .volunteer-induction-box h4 {
-          margin-bottom: 12px;
-          color: var(--teal);
-        }
-
-        .induct-list {
-          list-style: none;
-          display: flex;
-          flex-direction: column;
-          gap: 8px;
-        }
-
-        .induct-list li {
-          font-size: 0.92rem;
-          color: var(--muted);
-          position: relative;
-          padding-left: 20px;
-        }
-
-        .induct-list li::before {
-          content: '—';
-          position: absolute;
-          left: 0;
-          color: var(--gold);
-          font-weight: bold;
-        }
-
-        .reg-form-card {
-          padding: 2.5rem;
-          background-color: var(--white);
-        }
-
-        .reg-form-card h3 {
-          color: var(--primary);
-        }
-
-        .form-success-alert {
-          text-align: center;
-          padding: 2.5rem 1rem;
-        }
-
-        .success-alert-badge-visual {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 60px;
-          height: 60px;
-          border-radius: 50%;
-          background-color: rgba(52, 78, 104, 0.08);
-          border: 1px solid rgba(52, 78, 104, 0.2);
-          margin-bottom: 1rem;
-        }
-
-        .form-success-alert h4 {
-          color: var(--teal);
-          margin-bottom: 8px;
-        }
-      `}</style>
+      {/* STYLES MOVED TO INDEX.CSS */}
     </div>
   );
 };

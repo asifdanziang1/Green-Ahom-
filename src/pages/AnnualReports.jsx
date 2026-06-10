@@ -458,13 +458,22 @@ const AnnualReports = () => {
           background-color: var(--white);
           display: flex;
           flex-direction: column;
+          border: 1px solid var(--border-subtle);
+          border-radius: var(--radius-md);
+          box-shadow: var(--shadow-sm);
+          transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+        }
+
+        .gov-card:hover {
+          transform: translateY(-4px);
+          box-shadow: var(--shadow-md);
         }
 
         .gov-header {
           display: flex;
           align-items: center;
           gap: 12px;
-          border-bottom: 1px solid #eaeaea;
+          border-bottom: 1px solid var(--border-subtle);
           padding-bottom: 1rem;
         }
 
@@ -516,7 +525,7 @@ const AnnualReports = () => {
 
         .sub-bar-container {
           height: 6px;
-          background-color: #eaeaea;
+          background-color: var(--border-subtle);
           border-radius: 3px;
           overflow: hidden;
           margin-top: 4px;
@@ -544,7 +553,7 @@ const AnnualReports = () => {
 
         .fiscal-tab-btn {
           background-color: var(--white);
-          border: 1px solid #eaeaea;
+          border: 1px solid var(--border-subtle);
           padding: 1.2rem;
           cursor: pointer;
           font-family: var(--font-header);
@@ -586,6 +595,9 @@ const AnnualReports = () => {
         .active-fiscal-panel {
           padding: 3rem;
           background-color: var(--white);
+          border: 1px solid var(--border-subtle);
+          border-radius: var(--radius-md);
+          box-shadow: var(--shadow-md);
         }
 
         @media (max-width: 576px) {
@@ -595,7 +607,7 @@ const AnnualReports = () => {
         }
 
         .fiscal-panel-header {
-          border-bottom: 1px solid #eaeaea;
+          border-bottom: 1px solid var(--border-subtle);
           padding-bottom: 2rem;
         }
 
@@ -627,23 +639,23 @@ const AnnualReports = () => {
         }
 
         .fiscal-table th {
-          background-color: #fcfbf8;
+          background-color: var(--surface-sand);
           color: var(--primary);
           font-family: var(--font-header);
           font-weight: 700;
           padding: 1rem 1.2rem;
-          border-bottom: 2px solid #eaeaea;
+          border-bottom: 2px solid var(--border-strong);
         }
 
         .fiscal-table td {
           padding: 1rem 1.2rem;
-          border-bottom: 1px solid #eaeaea;
+          border-bottom: 1px solid var(--border-subtle);
           color: var(--muted);
           vertical-align: top;
         }
 
         .fiscal-table tr:hover td {
-          background-color: #faf9f6;
+          background-color: var(--surface-default);
         }
 
         .prog-name-td {
@@ -654,7 +666,7 @@ const AnnualReports = () => {
         .location-tag {
           display: inline-block;
           padding: 2px 8px;
-          background-color: #eaeaea;
+          background-color: var(--border-subtle);
           font-size: 0.76rem;
           font-weight: 600;
           border-radius: var(--radius-sm);
@@ -682,7 +694,7 @@ const AnnualReports = () => {
         .search-input {
           padding: 1rem 1.25rem;
           border-radius: var(--radius-sm);
-          border: 1px solid #eaeaea;
+          border: 1px solid var(--border-strong);
           box-shadow: var(--shadow-sm);
         }
 
@@ -695,6 +707,15 @@ const AnnualReports = () => {
           display: flex;
           background-color: var(--white);
           overflow: hidden;
+          border: 1px solid var(--border-subtle);
+          border-radius: var(--radius-md);
+          box-shadow: var(--shadow-sm);
+          transition: transform var(--transition-normal), box-shadow var(--transition-normal);
+        }
+
+        .report-card-box:hover {
+          transform: translateY(-4px);
+          box-shadow: var(--shadow-md);
         }
 
         @media (max-width: 576px) {
@@ -714,7 +735,7 @@ const AnnualReports = () => {
           padding: 2rem 1rem;
           font-family: var(--font-header);
           font-weight: 700;
-          border-right: 1px solid #eaeaea;
+          border-right: 1px solid var(--border-subtle);
         }
 
         @media (max-width: 576px) {
@@ -774,8 +795,8 @@ const AnnualReports = () => {
           font-family: var(--font-body);
           font-weight: 700;
           font-size: 0.78rem;
-          background-color: #faf9f6;
-          border: 1px solid #eaeaea;
+          background-color: var(--surface-default);
+          border: 1px solid var(--border-subtle);
           padding: 6px 12px;
           border-radius: var(--radius-sm);
           margin-bottom: 20px;
@@ -788,7 +809,7 @@ const AnnualReports = () => {
           align-items: center;
           flex-wrap: wrap;
           gap: 10px;
-          border-top: 1px solid #eaeaea;
+          border-top: 1px solid var(--border-subtle);
           padding-top: 1.2rem;
         }
 
@@ -845,6 +866,9 @@ const AnnualReports = () => {
         .csr-form-card {
           padding: 2.5rem;
           background-color: var(--white);
+          border: 1px solid var(--border-subtle);
+          border-radius: var(--radius-md);
+          box-shadow: var(--shadow-sm);
         }
 
         .csr-form-card h3 {

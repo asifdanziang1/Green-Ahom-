@@ -697,7 +697,7 @@ const Admin = () => {
         .admin-workspace-container {
           display: flex;
           min-height: 100vh;
-          background-color: #f9f9f6;
+          background-color: var(--surface-default);
         }
 
         @media (max-width: 768px) {
@@ -708,11 +708,12 @@ const Admin = () => {
 
         .admin-sidebar {
           width: 280px;
-          border-right: 1px solid var(--border-glass);
+          border-right: 1px solid var(--border-subtle);
           padding: 2.5rem 1.8rem;
           display: flex;
           flex-direction: column;
           flex-shrink: 0;
+          background-color: var(--primary);
         }
 
         @media (max-width: 768px) {
@@ -785,6 +786,7 @@ const Admin = () => {
           flex: 1;
           padding: 3rem clamp(1.5rem, 4vw, 4rem);
           overflow-y: auto;
+          background-color: var(--surface-sand);
         }
 
         .panel-tab-content h2 {
@@ -863,7 +865,7 @@ const Admin = () => {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          border-top: 1px solid #eaeaea;
+          border-top: 1px solid var(--border-subtle);
           padding-top: 10px;
         }
 
@@ -896,7 +898,7 @@ const Admin = () => {
 
         .ledger-table th {
           padding: 12px 16px;
-          border-bottom: 2px solid #eaeaea;
+          border-bottom: 2px solid var(--border-strong);
           color: var(--primary);
           font-family: var(--font-body);
           font-weight: 700;
@@ -904,12 +906,12 @@ const Admin = () => {
 
         .ledger-table td {
           padding: 12px 16px;
-          border-bottom: 1px solid #eaeaea;
+          border-bottom: 1px solid var(--border-subtle);
         }
 
         .pan-code-badge {
-          background-color: #faf9f6;
-          border: 1px solid #eaeaea;
+          background-color: var(--surface-default);
+          border: 1px solid var(--border-subtle);
           padding: 2px 6px;
           border-radius: var(--radius-sm);
           font-size: 11px;
@@ -917,8 +919,8 @@ const Admin = () => {
         }
 
         .method-label-pill {
-          background-color: rgba(26, 45, 66, 0.05);
-          border: 1px solid rgba(26, 45, 66, 0.1);
+          background-color: rgba(15, 29, 25, 0.05);
+          border: 1px solid rgba(15, 29, 25, 0.1);
           color: var(--primary);
           padding: 2px 8px;
           border-radius: var(--radius-sm);
@@ -977,9 +979,9 @@ const Admin = () => {
         }
 
         .status-pill.contacted, .status-pill.read {
-          background-color: rgba(52, 78, 104, 0.05);
-          border: 1px solid rgba(52, 78, 104, 0.1);
-          color: var(--teal);
+          background-color: rgba(15, 29, 25, 0.05);
+          border: 1px solid rgba(15, 29, 25, 0.1);
+          color: var(--text-muted);
         }
 
         .status-pill.inducted {
@@ -998,18 +1000,18 @@ const Admin = () => {
         }
 
         .inbox-item-skills {
-          background-color: #faf9f6;
-          border: 1px solid #eaeaea;
+          background-color: var(--surface-default);
+          border: 1px solid var(--border-subtle);
           padding: 6px 12px;
           border-radius: var(--radius-sm);
           color: var(--muted);
         }
 
         .inbox-item-purpose {
-          background-color: #faf9f6;
+          background-color: var(--surface-default);
           padding: 12px;
           border-radius: var(--radius-sm);
-          border: 1px solid #eaeaea;
+          border: 1px solid var(--border-subtle);
           font-style: italic;
           font-size: 0.88rem;
           color: var(--muted);
@@ -1025,7 +1027,7 @@ const Admin = () => {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          border-top: 1px solid #eaeaea;
+          border-top: 1px solid var(--border-subtle);
           padding-top: 12px;
         }
 

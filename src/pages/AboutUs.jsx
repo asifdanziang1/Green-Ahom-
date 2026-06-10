@@ -2,8 +2,19 @@ import React, { useEffect } from 'react';
 
 const AboutUs = () => {
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const hash = window.location.hash;
+    if (hash) {
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [window.location.hash]);
 
   const workingApproaches = [
     {
@@ -71,7 +82,7 @@ const AboutUs = () => {
       </section>
 
       {/* 2. THE HISTORICAL LEGACY OF AHOM WATER ENGINEERING */}
-      <section className="legacy-section section-padding">
+      <section className="legacy-section section-padding" id="history">
         <div className="container-custom legacy-wrapper">
           <div className="legacy-text-col">
             <span className="badge">PHILOSOPHICAL ANCHOR</span>
@@ -153,7 +164,7 @@ const AboutUs = () => {
       </section>
 
       {/* 4. BOARD OF DIRECTORS & SUBSCRIBERS PROFILE GRID */}
-      <section className="directors-section section-padding bg-cream">
+      <section className="directors-section section-padding bg-cream" id="board">
         <div className="container-custom">
           <div className="section-header text-center">
             <span className="badge">GOVERNANCE</span>
@@ -257,7 +268,7 @@ const AboutUs = () => {
       </section>
 
       {/* 6. OUR WORKING APPROACH */}
-      <section className="team-section section-padding bg-cream">
+      <section className="team-section section-padding bg-cream" id="milestones">
         <div className="container-custom">
           <div className="section-header text-center">
             <span className="badge">OPERATIONS</span>
@@ -280,288 +291,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      <style>{`
-        /* LEGACY STORY */
-        .legacy-wrapper {
-          display: grid;
-          grid-template-columns: 1.2fr 0.8fr;
-          gap: 5rem;
-          align-items: center;
-        }
-
-        @media (max-width: 991px) {
-          .legacy-wrapper {
-            grid-template-columns: 1fr;
-            gap: 3rem;
-          }
-        }
-
-        .legacy-card-visual {
-          padding: 3.5rem 2rem;
-          text-align: center;
-          color: var(--white);
-          border-color: rgba(255, 255, 255, 0.1);
-          border-radius: var(--radius-lg);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          background: linear-gradient(to bottom, rgba(26, 45, 66, 0.85), rgba(26, 45, 66, 0.95)), 
-                      url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80') center/cover no-repeat !important;
-        }
-
-        .legacy-card-visual h3 {
-          margin-bottom: 10px;
-        }
-
-        .legacy-card-visual p {
-          color: rgba(255, 255, 255, 0.7);
-          font-size: 0.95rem;
-        }
-
-        /* COMPLIANCE SECTION */
-        .compliance-card-inner {
-          padding: 3rem;
-          background-color: var(--white);
-        }
-
-        .compliance-grid {
-          display: grid;
-          grid-template-columns: 1.2fr 0.8fr;
-          gap: 4rem;
-          align-items: center;
-        }
-
-        @media (max-width: 991px) {
-          .compliance-grid {
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-          }
-        }
-
-        .comp-col h3 {
-          color: var(--primary);
-        }
-
-        .comp-col p {
-          font-size: 0.95rem;
-          line-height: 1.6;
-          color: var(--muted);
-        }
-
-        .statutory-badge-box {
-          background-color: var(--sand);
-          border: 1px solid #eaeaea;
-          border-radius: var(--radius-md);
-          padding: 2rem;
-          text-align: center;
-        }
-
-        .statutory-seal {
-          display: inline-block;
-          padding: 4px 10px;
-          background-color: rgba(217, 95, 67, 0.12);
-          color: var(--gold);
-          font-weight: 700;
-          font-size: 0.7rem;
-          border-radius: var(--radius-sm);
-          border: 1px solid rgba(217, 95, 67, 0.2);
-          letter-spacing: 1px;
-          margin-bottom: 12px;
-        }
-
-        .statutory-divider {
-          height: 1px;
-          background-color: #eaeaea;
-          margin: 1.5rem 0;
-        }
-
-        .sub-bar-fill {
-          height: 100%;
-          background: linear-gradient(90deg, var(--primary) 0%, var(--gold) 100%);
-          border-radius: 3px;
-          animation: growWidth 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-        }
-
-        .statutory-meta-row {
-          display: flex;
-          justify-content: space-between;
-          font-size: 0.85rem;
-          margin-bottom: 8px;
-        }
-
-        .statutory-meta-row span {
-          color: var(--muted);
-          opacity: 0.8;
-        }
-
-        .statutory-meta-row strong {
-          color: var(--primary);
-        }
-
-        /* DIRECTORS GRID */
-        .director-card {
-          padding: 2.2rem;
-          background-color: var(--white);
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-        }
-
-        .dir-badge {
-          display: inline-block;
-          font-size: 0.72rem;
-          font-weight: 800;
-          letter-spacing: 1px;
-          color: var(--gold);
-          background-color: rgba(217, 95, 67, 0.08);
-          padding: 3px 8px;
-          border-radius: var(--radius-sm);
-          margin-bottom: 8px;
-        }
-
-        .dir-role {
-          font-size: 0.85rem;
-          color: var(--muted);
-          font-weight: 600;
-          opacity: 0.8;
-          display: block;
-        }
-
-        .dir-bg {
-          font-size: 0.9rem;
-          line-height: 1.55;
-          color: var(--muted);
-        }
-
-        .dir-address {
-          font-size: 0.8rem;
-          line-height: 1.4;
-          color: var(--muted);
-          border-top: 1px solid #eaeaea;
-          padding-top: 12px;
-        }
-
-        /* IDEAL ACADEMY GRID */
-        .academy-grid-wrapper {
-          display: grid;
-          grid-template-columns: 0.8fr 1.2fr;
-          gap: 4rem;
-          align-items: center;
-        }
-
-        @media (max-width: 991px) {
-          .academy-grid-wrapper {
-            grid-template-columns: 1fr;
-            gap: 2.5rem;
-          }
-        }
-
-        .school-info-card {
-          padding: 2.5rem;
-          border-radius: var(--radius-lg);
-        }
-
-        .school-details-list {
-          display: flex;
-          flex-direction: column;
-          gap: 15px;
-        }
-
-        .sch-detail-item {
-          display: flex;
-          justify-content: space-between;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-          padding-bottom: 8px;
-          font-size: 0.95rem;
-        }
-
-        .sch-detail-item span {
-          color: rgba(255, 255, 255, 0.7);
-        }
-
-        .sch-detail-item strong {
-          text-align: right;
-        }
-
-        .bullet-checks-list {
-          list-style: none;
-          display: flex;
-          flex-direction: column;
-          gap: 10px;
-        }
-
-        .bullet-checks-list li {
-          position: relative;
-          padding-left: 24px;
-          font-size: 0.95rem;
-          color: var(--muted);
-        }
-
-        .bullet-checks-list li::before {
-          content: '';
-          position: absolute;
-          left: 0;
-          top: 6px;
-          width: 12px;
-          height: 12px;
-          background-color: var(--gold);
-          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E") no-repeat center / contain;
-          -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E") no-repeat center / contain;
-        }
-
-        .academy-contributions-box {
-          padding: 3rem;
-          background-color: var(--white);
-        }
-
-        .contributions-grid-inner {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 2.5rem;
-        }
-
-        @media (max-width: 768px) {
-          .contributions-grid-inner {
-            grid-template-columns: 1fr;
-            gap: 2rem;
-          }
-        }
-
-        .contrib-item-header {
-          font-size: 1.1rem;
-          color: var(--primary) !important;
-          margin-bottom: 8px;
-          display: flex;
-          gap: 6px;
-        }
-
-        .contrib-num {
-          color: var(--gold);
-        }
-
-        .contrib-item p {
-          font-size: 0.9rem;
-          line-height: 1.5;
-        }
-
-        .value-card {
-          padding: 2.5rem 1.8rem;
-          background-color: var(--white);
-        }
-
-        .approach-num-icon {
-          font-family: var(--font-header);
-          font-size: 2rem;
-          color: var(--gold);
-          font-weight: bold;
-          margin-bottom: 1rem;
-        }
-
-        .font-weight-600 {
-          font-weight: 600;
-        }
-      `}</style>
+      {/* STYLES MOVED TO INDEX.CSS */}
     </div>
   );
 };

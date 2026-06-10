@@ -4,8 +4,19 @@ import ImpactSlider from '../components/ImpactSlider';
 
 const Impact = () => {
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
+    const hash = window.location.hash;
+    if (hash) {
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [window.location.hash]);
 
   const metrics = [
     {
@@ -137,7 +148,7 @@ const Impact = () => {
       </section>
 
       {/* 3. VISUAL BEFORE/AFTER TRANSFORM */}
-      <section className="transformation-slider-section section-padding bg-cream">
+      <section className="transformation-slider-section section-padding bg-cream" id="restoration">
         <div className="container-custom">
           <div className="section-header text-center">
             <span className="badge">ENVIRONMENTAL TRANSFORMATION</span>
@@ -199,134 +210,7 @@ const Impact = () => {
         </div>
       </section>
 
-      <style>{`
-
-        /* METRIC CARDS */
-        .metric-impact-card {
-          padding: 2.5rem;
-          background-color: var(--white);
-          height: 100%;
-        }
-
-        .m-icon-box {
-          margin-bottom: 1.2rem;
-          width: 52px;
-          height: 52px;
-          background-color: rgba(52, 78, 104, 0.05);
-          border-radius: var(--radius-sm);
-          border: 1px solid rgba(52, 78, 104, 0.1);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .metric-impact-card h3 {
-          font-size: 1.2rem;
-          margin-bottom: 12px;
-          color: var(--primary);
-        }
-
-        .m-big-stat {
-          margin-bottom: 1.5rem;
-          font-family: var(--font-header);
-        }
-
-        .m-big-stat strong {
-          font-size: 3rem;
-          font-weight: 700;
-          display: block;
-          line-height: 1.1;
-        }
-
-        .m-big-stat span {
-          font-size: 0.85rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-
-        .m-divider-line {
-          height: 1px;
-          background-color: #eaeaea;
-          margin-bottom: 1.5rem;
-        }
-
-        .metric-impact-card p {
-          font-size: 0.95rem;
-          line-height: 1.6;
-        }
-
-        /* STORIES CARDS */
-        .story-card-premium {
-          padding: 2.5rem 2rem;
-          background-color: var(--white);
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-        }
-
-        .story-badge-icon {
-          margin-bottom: 1.5rem;
-          width: 48px;
-          height: 48px;
-          background-color: rgba(217, 95, 67, 0.05);
-          border: 1px solid rgba(217, 95, 67, 0.1);
-          border-radius: var(--radius-sm);
-          display: flex;
-          align-items: center;
-          justify-content: center;
-        }
-
-        .story-card-premium h3 {
-          font-size: 1.25rem;
-          margin-bottom: 15px;
-          color: var(--primary);
-        }
-
-        .story-quote-body {
-          font-style: italic;
-          color: var(--muted);
-          font-size: 1rem;
-          line-height: 1.65;
-          margin-bottom: 2rem;
-          flex-grow: 1;
-        }
-
-        .story-author-details {
-          border-top: 1px solid #eaeaea;
-          padding-top: 1.2rem;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .story-author-details strong {
-          color: var(--primary);
-          font-size: 0.95rem;
-        }
-
-        .story-author-details span {
-          font-size: 0.78rem;
-          color: var(--gold-hover);
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-          margin-top: 3px;
-        }
-
-        /* IMPACT CTA Banner */
-        .max-width-center {
-          max-width: 600px;
-          margin-left: auto;
-          margin-right: auto;
-        }
-
-        .cta-buttons-row {
-          display: flex;
-          gap: 16px;
-          justify-content: center;
-          flex-wrap: wrap;
-        }
-      `}</style>
+      {/* STYLES MOVED TO INDEX.CSS */}
     </div>
   );
 };

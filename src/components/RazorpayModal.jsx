@@ -74,10 +74,10 @@ const RazorpayModal = ({
           <style>
             body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 40px; color: #333; }
             .receipt-box { max-width: 800px; margin: auto; border: 1px solid #eee; padding: 30px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); }
-            .header { display: flex; justify-content: space-between; border-bottom: 2px solid #1a2d42; padding-bottom: 20px; margin-bottom: 30px; }
-            .logo { font-weight: 800; font-size: 24px; color: #1a2d42; }
+            .header { display: flex; justify-content: space-between; border-bottom: 2px solid #0F1D19; padding-bottom: 20px; margin-bottom: 30px; }
+            .logo { font-weight: 800; font-size: 24px; color: #0F1D19; }
             .org-details { text-align: right; font-size: 12px; line-height: 1.5; }
-            .title { text-align: center; text-transform: uppercase; margin-bottom: 30px; color: #1a2d42; }
+            .title { text-align: center; text-transform: uppercase; margin-bottom: 30px; color: #0F1D19; }
             .row { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #f9f9f9; padding-bottom: 8px; }
             .label { font-weight: 600; color: #555; }
             .value { text-align: right; }
@@ -110,8 +110,8 @@ const RazorpayModal = ({
             <div class="row"><span class="label">Donor Email:</span><span class="value">${donorEmail}</span></div>
             ${donorPan ? `<div class="row"><span class="label">Donor PAN:</span><span class="value">${donorPan.toUpperCase()}</span></div>` : ''}
             <div class="row" style="font-size: 18px; border-bottom: 2px solid #eee; padding-bottom: 12px; margin-top: 20px;">
-              <span class="label" style="color: #1a2d42;">Donation Amount:</span>
-              <span class="value" style="font-weight: bold; color: #1a2d42;">₹${parseFloat(amount).toLocaleString('en-IN')}.00</span>
+              <span class="label" style="color: #0F1D19;">Donation Amount:</span>
+              <span class="value" style="font-weight: bold; color: #0F1D19;">₹${parseFloat(amount).toLocaleString('en-IN')}.00</span>
             </div>
             
             <div class="exempt">
@@ -195,8 +195,8 @@ const RazorpayModal = ({
           pan: donorPan || 'N/A',
         },
         theme: {
-          color: '#1a2d42',
-          backdrop_color: 'rgba(26, 45, 66, 0.5)',
+          color: '#d95f43',
+          backdrop_color: 'rgba(15, 29, 25, 0.5)',
         },
         modal: {
           ondismiss: () => {
@@ -452,7 +452,7 @@ const RazorpayModal = ({
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(26, 45, 66, 0.45);
+            background: rgba(15, 29, 25, 0.5);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             z-index: 10000;
@@ -547,7 +547,7 @@ const RazorpayModal = ({
 
           .razorpay-modal-body {
             padding: 24px;
-            background-color: #faf9f6;
+            background-color: var(--surface-default);
             min-height: 280px;
             max-height: 480px;
             overflow-y: auto;
@@ -578,7 +578,7 @@ const RazorpayModal = ({
           .rp-spinner {
             width: 50px;
             height: 50px;
-            border: 4px solid rgba(26, 45, 66, 0.06);
+            border: 4px solid rgba(15, 29, 25, 0.06);
             border-left-color: var(--primary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
@@ -656,7 +656,7 @@ const RazorpayModal = ({
 
           .tx-details-box {
             background-color: var(--white);
-            border: 1px solid rgba(26, 45, 66, 0.06);
+            border: 1px solid var(--border-subtle);
             border-radius: var(--radius-md);
             padding: 14px;
             width: 100%;

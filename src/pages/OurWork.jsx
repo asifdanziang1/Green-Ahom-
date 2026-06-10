@@ -282,8 +282,24 @@ const OurWork = () => {
   useEffect(() => {
     localStorage.setItem('gaf_projects', JSON.stringify(defaultProjects));
     setProjects(defaultProjects);
-    window.scrollTo(0, 0);
-  }, []);
+
+    const hash = window.location.hash;
+    if (hash === '#education') {
+      setActiveCategory('EDUCATION');
+      setTimeout(() => {
+        const el = document.getElementById('project-grid-anchor');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else if (hash === '#livelihoods') {
+      setActiveCategory('LIVELIHOODS');
+      setTimeout(() => {
+        const el = document.getElementById('project-grid-anchor');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 100);
+    } else {
+      window.scrollTo(0, 0);
+    }
+  }, [window.location.hash]);
 
   const handleDonateTrigger = (projectName) => {
     setSelectedProjectName(projectName);
@@ -385,7 +401,7 @@ const OurWork = () => {
       </section>
 
       {/* 2. FILTER BAR & LISTINGS */}
-      <section className="listings-section section-padding">
+      <section className="listings-section section-padding" id="project-grid-anchor">
         <div className="container-custom">
           
           {/* YEAR FILTERS */}
@@ -429,7 +445,7 @@ const OurWork = () => {
                   key={project.id || idx}
                   style={{ animationDelay: `${idx * 0.04}s` }}
                 >
-                  <div className="proj-header-banner" style={{ background: `linear-gradient(to bottom, rgba(26, 45, 66, 0.4) 0%, rgba(26, 45, 66, 0.8) 100%), url(${project.imageUrl}) center/cover no-repeat` }}>
+                  <div className="proj-header-banner" style={{ background: `linear-gradient(to bottom, rgba(var(--primary-rgb), 0.4) 0%, rgba(var(--primary-rgb), 0.8) 100%), url(${project.imageUrl}) center/cover no-repeat` }}>
                     <div className="proj-banner-meta">
                       <span className="proj-badge-category">{project.category}</span>
                       <span className="proj-badge-year">{project.year}</span>
@@ -501,248 +517,7 @@ const OurWork = () => {
         }}
       />
 
-      <style>{`
-        .work-project-card:hover .proj-badge-icon-wrapper {
-          transform: scale(1.1) rotate(6deg);
-          border-color: var(--gold);
-        }
-
-        /* FILTERS LAYOUT */
-        .year-filters-container, .category-filters-container {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 10px;
-        }
-
-        .filter-label {
-          font-family: var(--font-body);
-          font-weight: 700;
-          font-size: 0.8rem;
-          color: var(--primary);
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-
-        .year-filters-row {
-          display: flex;
-          gap: 8px;
-          flex-wrap: wrap;
-          justify-content: center;
-        }
-
-        .year-filter-btn {
-          font-family: var(--font-body);
-          font-weight: 600;
-          font-size: 0.8rem;
-          padding: 0.5rem 1.2rem;
-          border: 1px solid var(--border-glass);
-          background-color: var(--white);
-          border-radius: var(--radius-sm);
-          color: var(--muted);
-          cursor: pointer;
-          transition: all 0.2s ease;
-        }
-
-        .year-filter-btn:hover {
-          border-color: var(--gold);
-          color: var(--gold);
-          transform: translateY(-1px);
-          box-shadow: var(--shadow-sm);
-        }
-
-        .year-filter-btn.active {
-          background-color: var(--primary);
-          border-color: var(--primary);
-          color: var(--white);
-        }
-
-        /* FILTER CONTROLS */
-        .filter-controls-row {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          gap: 10px;
-          flex-wrap: wrap;
-        }
-
-        .filter-btn {
-          font-family: var(--font-body);
-          font-weight: 700;
-          font-size: 0.75rem;
-          letter-spacing: 1px;
-          padding: 0.6rem 1.2rem;
-          border-radius: var(--radius-sm);
-          background-color: var(--white);
-          border: 1px solid var(--border-glass);
-          color: var(--primary-light);
-          cursor: pointer;
-          transition: all 0.2s ease;
-          text-transform: uppercase;
-        }
-
-        .filter-btn:hover {
-          border-color: var(--gold);
-          color: var(--gold);
-          transform: translateY(-1px);
-          box-shadow: var(--shadow-sm);
-        }
-
-        .filter-btn.active {
-          background-color: var(--primary);
-          border-color: var(--primary);
-          color: var(--white);
-        }
-
-        /* PROJECT CARDS */
-        .work-project-card {
-          display: flex;
-          flex-direction: column;
-          height: 100%;
-          background-color: var(--white);
-        }
-
-        .proj-header-banner {
-          display: flex;
-          justify-content: space-between;
-          align-items: flex-end;
-          padding: 7rem 1.8rem 1.5rem 1.8rem;
-          border-bottom: 1px solid #eaeaea;
-          position: relative;
-        }
-
-        .proj-banner-meta {
-          display: flex;
-          flex-direction: column;
-          gap: 6px;
-        }
-
-        .proj-badge-category {
-          font-family: var(--font-body);
-          font-weight: 800;
-          font-size: 0.68rem;
-          color: var(--white);
-          letter-spacing: 1.5px;
-          text-transform: uppercase;
-          background: rgba(26, 45, 66, 0.9);
-          padding: 4px 10px;
-          border-radius: var(--radius-sm);
-          border: 1px solid rgba(255, 255, 255, 0.2);
-          width: fit-content;
-        }
-
-        .proj-badge-year {
-          font-family: var(--font-body);
-          font-weight: 700;
-          font-size: 0.68rem;
-          color: var(--white);
-          background-color: var(--gold);
-          padding: 2px 8px;
-          border-radius: var(--radius-sm);
-          width: fit-content;
-        }
-
-        .proj-badge-icon-wrapper {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          width: 38px;
-          height: 38px;
-          border-radius: var(--radius-sm);
-          background-color: var(--white);
-          border: 1px solid rgba(255, 255, 255, 0.3);
-          box-shadow: var(--shadow-sm);
-          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .proj-body-inner {
-          padding: 2rem 1.8rem;
-          flex-grow: 1;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .proj-location-badge {
-          font-size: 0.78rem;
-          font-weight: 700;
-          color: var(--primary-light);
-          background-color: #faf9f6;
-          border: 1px solid #eaeaea;
-          padding: 4px 10px;
-          border-radius: var(--radius-sm);
-          width: fit-content;
-        }
-
-        .proj-body-inner h3 {
-          margin-bottom: 8px;
-          font-size: 1.2rem;
-          line-height: 1.35;
-          color: var(--primary);
-        }
-
-        .proj-body-inner p {
-          font-size: 0.88rem;
-          line-height: 1.6;
-          margin-bottom: 0;
-        }
-
-        .proj-progress-section {
-          background-color: #faf9f6;
-          border: 1px solid #eaeaea;
-          border-radius: var(--radius-sm);
-          padding: 1.2rem;
-          margin-top: auto;
-        }
-
-        .proj-progress-section .progress-labels {
-          display: flex;
-          justify-content: space-between;
-          font-size: 0.78rem;
-          color: var(--primary);
-          margin-bottom: 6px;
-        }
-
-        .proj-progress-section .progress-bar-track {
-          height: 4px;
-          background: rgba(26, 45, 66, 0.06);
-          border-radius: 2px;
-          overflow: hidden;
-          margin-bottom: 8px;
-        }
-
-        .proj-progress-section .progress-bar-fill {
-          height: 100%;
-          background: var(--gold);
-          border-radius: 2px;
-        }
-
-        .progress-goal-tag {
-          font-size: 0.72rem;
-          font-weight: 700;
-          color: var(--muted);
-          text-transform: uppercase;
-          letter-spacing: 0.5px;
-        }
-
-        .proj-actions-footer {
-          padding: 0 1.8rem 2rem 1.8rem;
-        }
-
-        .w-100 {
-          width: 100%;
-        }
-
-        /* EMPTY STATE */
-        .empty-work-state {
-          padding: 4rem 2rem;
-          max-width: 500px;
-          margin: 0 auto;
-        }
-
-        .empty-work-state h3 {
-          margin-bottom: 8px;
-        }
-      `}</style>
+      {/* STYLES MOVED TO INDEX.CSS */}
     </div>
   );
 };
