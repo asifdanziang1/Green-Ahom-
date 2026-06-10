@@ -28,7 +28,7 @@ const AboutUs = () => {
             {heroSection.badge && <span className="badge badge-gold">{heroSection.badge}</span>}
             <h1 className="text-white mt-3">{heroSection.heading}</h1>
             {heroSection.subtitle && (
-              <p className="about-hero-subtitle text-white-muted" style={{ maxWidth: '680px', margin: '1.5rem auto 0 auto', fontSize: '1.2rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
+              <p className="hero-subtitle-premium">
                 {heroSection.subtitle}
               </p>
             )}
@@ -46,8 +46,8 @@ const AboutUs = () => {
               <div className="gold-line" />
               {legacySection.content && (
                 <div 
-                  className="mt-4 font-weight-600 text-dark" 
-                  style={{ fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--muted)' }}
+                  className="mt-4 font-weight-600" 
+                  style={{ color: 'var(--muted)' }}
                   dangerouslySetInnerHTML={{ __html: legacySection.content }}
                 />
               )}
@@ -222,7 +222,7 @@ const AboutUs = () => {
                 <div className="glass-card value-card text-center" key={approach.id || idx}>
                   <div className="approach-num-icon">0{idx + 1}</div>
                   <h3>{approach.title}</h3>
-                  <p className="mt-2" style={{ fontSize: '0.92rem', lineHeight: '1.6' }}>{approach.desc}</p>
+                  <p className="mt-2">{approach.desc}</p>
                 </div>
               ))}
             </div>
@@ -378,13 +378,13 @@ const AboutUs = () => {
 
         .dir-bg {
           font-size: 0.9rem;
-          line-height: 1.55;
+          line-height: 1.65;
           color: var(--muted);
         }
 
         .dir-address {
           font-size: 0.8rem;
-          line-height: 1.4;
+          line-height: 1.5;
           color: var(--muted);
           border-top: 1px solid rgba(17, 63, 39, 0.08);
           padding-top: 12px;

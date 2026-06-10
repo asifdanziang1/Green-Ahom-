@@ -109,7 +109,7 @@ const OurWork = () => {
         <div className="container-custom">
           <span className="badge badge-gold">STATUTORY CAMPAIGNS DIRECTORY</span>
           <h1 className="text-white mt-3">Verified Operational Portfolio</h1>
-          <p className="work-hero-subtitle text-white-muted" style={{ maxWidth: '650px', margin: '1.5rem auto 0 auto', fontSize: '1.15rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
+          <p className="hero-subtitle-premium">
             Explore Green Ahom Federation's complete 3-year programmatic achievements. Filter by specific financial year or target category to trace audited grassroots disbursements.
           </p>
         </div>
@@ -171,7 +171,7 @@ const OurWork = () => {
                   <div className="proj-body-inner">
                     <h3>{project.title}</h3>
                     <p className="proj-location-badge">📍 {project.location}</p>
-                    <p style={{ fontSize: '0.88rem', color: 'var(--muted)', lineHeight: '1.6', marginTop: '10px' }}>{project.desc}</p>
+                    <p style={{ marginTop: '10px' }}>{project.desc}</p>
                     
                     <div className="proj-progress-section mt-3">
                       <div className="progress-labels">

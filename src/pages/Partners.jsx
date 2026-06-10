@@ -66,7 +66,7 @@ const Partners = () => {
           <div className="container-custom">
             <span className="badge badge-gold">{heroSection.badge}</span>
             <h1 className="text-white mt-3">{heroSection.heading}</h1>
-            <p className="partners-hero-subtitle text-white-muted" style={{ maxWidth: '680px', margin: '1.5rem auto 0 auto', fontSize: '1.15rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
+            <p className="hero-subtitle-premium">
               {heroSection.subtitle}
             </p>
           </div>
@@ -91,7 +91,7 @@ const Partners = () => {
                 <div className="glass-card credential-card" key={cred.id}>
                   <div className="cred-icon-box">{renderCredIcon(cred.id)}</div>
                   <h3>{cred.title}</h3>
-                  <p style={{ fontSize: '0.9rem', color: 'var(--muted)', lineHeight: '1.5', marginTop: '10px' }}>{cred.desc}</p>
+                  <p style={{ marginTop: '10px' }}>{cred.desc}</p>
                 </div>
               ))}
             </div>
@@ -122,7 +122,7 @@ const Partners = () => {
                   <h3>{partner.name}</h3>
                   <span className="partner-role" style={{ fontSize: '0.85rem', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '4px', display: 'block' }}>{partner.role}</span>
                   <div style={{ height: '1px', backgroundColor: 'rgba(17, 63, 39, 0.08)', margin: '15px 0' }} />
-                  <p style={{ fontSize: '0.9rem', color: 'var(--muted)', lineHeight: '1.6', flexGrow: '1' }}>{partner.desc}</p>
+                  <p style={{ flexGrow: '1' }}>{partner.desc}</p>
                 </div>
               ))}
             </div>
@@ -136,8 +136,8 @@ const Partners = () => {
           <div className="container-custom">
             <div className="cta-box-wrapper-inner">
               <span className="badge badge-gold">{ctaSection.badge}</span>
-              <h2 className="text-white mt-3" style={{ color: 'var(--white)' }}>{ctaSection.heading}</h2>
-              <p className="text-white-muted max-width-center mt-3" style={{ maxWidth: '600px', margin: '0 auto', color: 'rgba(255, 255, 255, 0.75)', fontSize: '1rem', lineHeight: '1.6' }}>
+              <h2 className="cta-heading text-white mt-3">{ctaSection.heading}</h2>
+              <p className="cta-subtitle mt-3">
                 {ctaSection.subtitle}
               </p>
               <div className="cta-buttons-row mt-4" style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>

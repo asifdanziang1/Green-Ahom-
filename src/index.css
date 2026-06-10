@@ -512,4 +512,91 @@ section:last-of-type {
   animation: growWidth 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
 }
 
+/* Global Section Subtitle and Form Row layout helpers */
+.section-subtitle {
+  font-family: var(--font-body) !important;
+  font-size: clamp(0.95rem, 1.5vw, 1.08rem) !important;
+  font-weight: 400 !important;
+  color: var(--muted) !important;
+  opacity: 0.85;
+  max-width: 65ch !important;
+  margin: 14px auto 0 auto !important;
+  line-height: 1.65 !important;
+  text-align: center;
+}
+
+.form-group-row {
+  display: flex;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.form-group-row > .form-group {
+  flex: 1;
+  min-width: 200px;
+}
+
+@media (max-width: 576px) {
+  .form-group-row {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+/* Global Premium Hero Subtitle (Standardized for secondary pages) */
+.hero-subtitle-premium {
+  font-family: var(--font-body) !important;
+  font-size: clamp(1.05rem, 2vw, 1.18rem) !important;
+  line-height: 1.65 !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  max-width: 680px !important;
+  margin: 1.5rem auto 0 auto !important;
+  text-align: center !important;
+}
+
+/* Fallback standardization for elements inside glass-cards */
+.glass-card h3 {
+  font-size: clamp(1.15rem, 2vw, 1.35rem);
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--primary);
+}
+
+.glass-card p {
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* Story quotes override to preserve blockquote paragraph sizing */
+.story-quote-body p {
+  font-size: 1rem !important;
+  line-height: 1.65 !important;
+}
+
+/* Standardized CTA Banner Sizing and Spacing */
+.cta-heading {
+  font-size: clamp(1.5rem, 3.2vw, 2.2rem) !important;
+  line-height: 1.3 !important;
+  font-weight: 700 !important;
+}
+
+.cta-subtitle {
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem) !important;
+  line-height: 1.65 !important;
+  max-width: 600px !important;
+  margin: 16px auto 0 auto !important;
+}
+
+.bg-primary .cta-subtitle,
+.bg-dark .cta-subtitle {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+.cta-box-inner .cta-subtitle {
+  color: var(--muted) !important;
+}
+
+
+
 

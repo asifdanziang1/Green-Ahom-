@@ -397,8 +397,8 @@ const Volunteer = () => {
           width: 60px;
           height: 60px;
           border-radius: 50%;
-          background-color: rgba(51, 65, 85, 0.08);
-          border: 1px solid rgba(51, 65, 85, 0.2);
+          background-color: rgba(17, 63, 39, 0.08);
+          border: 1px solid rgba(17, 63, 39, 0.2);
           margin-bottom: 1rem;
         }
 

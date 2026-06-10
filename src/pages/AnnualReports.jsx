@@ -77,7 +77,7 @@ const AnnualReports = () => {
           <div className="container-custom">
             <span className="badge badge-gold">{heroSection.badge}</span>
             <h1 className="text-white mt-3">{heroSection.heading}</h1>
-            <p className="reports-hero-subtitle text-white-muted" style={{ maxWidth: '780px', margin: '1.5rem auto 0 auto', fontSize: '1.15rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
+            <p className="hero-subtitle-premium">
               {heroSection.subtitle}
             </p>
           </div>
@@ -257,7 +257,7 @@ const AnnualReports = () => {
                   <div className="report-details-inner">
                     <span className="report-badge-type">{report.type}</span>
                     <h3>{report.title}</h3>
-                    <p style={{ fontSize: '0.9rem', lineHeight: '1.5', color: 'var(--muted)' }}>{report.summary}</p>
+                    <p>{report.summary}</p>
                     <div className="report-meta-metrics text-teal">
                       ♦ {report.metrics}
                     </div>
@@ -405,7 +405,11 @@ const AnnualReports = () => {
         .gov-details-list li {
           font-size: 0.92rem;
           color: var(--muted);
-          line-height: 1.5;
+          line-height: 1.65;
+          margin-bottom: 8px;
+        }
+        .gov-details-list li:last-child {
+          margin-bottom: 0;
         }
 
         .subscriber-bars {
@@ -423,7 +427,7 @@ const AnnualReports = () => {
         .sub-info {
           display: flex;
           justify-content: space-between;
-          font-size: 0.92rem;
+          font-size: 0.95rem;
         }
 
         .sub-share {
@@ -432,9 +436,10 @@ const AnnualReports = () => {
         }
 
         .sub-meta {
-          font-size: 0.76rem;
+          font-size: 0.82rem;
           color: var(--muted);
-          opacity: 0.8;
+          opacity: 0.9;
+          line-height: 1.4;
         }
 
         .sub-bar-container {
@@ -522,6 +527,14 @@ const AnnualReports = () => {
           padding-bottom: 2rem;
         }
 
+        .fiscal-tot-col h2 {
+          font-size: clamp(1.4rem, 2.8vw, 1.8rem) !important;
+          font-weight: 700 !important;
+          line-height: 1.3 !important;
+          color: var(--primary) !important;
+          margin-top: 6px;
+        }
+
         .fiscal-panel-badge {
           display: inline-block;
           font-size: 0.72rem;
@@ -592,8 +605,8 @@ const AnnualReports = () => {
         }
 
         .impact-td {
-          font-size: 0.88rem;
-          line-height: 1.4;
+          font-size: 0.9rem;
+          line-height: 1.55;
         }
 
         /* SEARCH BAR */

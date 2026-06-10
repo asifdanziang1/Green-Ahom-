@@ -92,7 +92,7 @@ const Donate = () => {
           <div className="container-custom">
             <span className="badge badge-gold">{heroSection.badge}</span>
             <h1 className="text-white mt-3">{heroSection.heading}</h1>
-            <p className="donate-hero-subtitle text-white-muted" style={{ maxWidth: '650px', margin: '1.5rem auto 0 auto', fontSize: '1.15rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
+            <p className="hero-subtitle-premium">
               {heroSection.subtitle}
             </p>
           </div>
@@ -208,13 +208,15 @@ const Donate = () => {
 
           {/* Right Column: Dynamic Biological Metrics */}
           <div className="calc-metrics-col">
-            <div className="section-header text-center">
+            <div className="calc-metrics-header">
               <span className="badge">{calcSection.outcomesBadge}</span>
               <h2>{calcSection.outcomesHeading}</h2>
-              <div className="gold-line margin-center" />
-              <p className="section-subtitle mt-2">
-                {calcSection.outcomesSubtitle}
-              </p>
+              <div className="gold-line" />
+              {calcSection.outcomesSubtitle && (
+                <p className="calc-metrics-subtitle mt-2">
+                  {calcSection.outcomesSubtitle}
+                </p>
+              )}
             </div>
 
             <div className="grid-responsive outcomes-grid mt-4">
@@ -231,7 +233,7 @@ const Donate = () => {
 
             <div className="trust-exemption-note glass-card mt-4">
               <h4>{calcSection.trustHeading}</h4>
-              <p style={{ fontSize: '0.88rem', color: 'var(--muted)', lineHeight: '1.5' }}>
+              <p>
                 {calcSection.trustText}
               </p>
             </div>
@@ -285,6 +287,24 @@ const Donate = () => {
           font-size: 0.9rem;
           color: var(--muted);
           margin-bottom: 20px;
+        }
+
+        .calc-metrics-header {
+          margin-bottom: 24px;
+        }
+        .calc-metrics-header h2 {
+          color: var(--primary);
+        }
+        .calc-metrics-header .gold-line {
+          margin-left: 0 !important;
+          margin-right: auto !important;
+        }
+        .calc-metrics-subtitle {
+          font-family: var(--font-body);
+          font-size: 0.95rem;
+          color: var(--muted);
+          line-height: 1.6;
+          margin-top: 10px;
         }
 
         /* DYNAMIC RANGE SLIDER */

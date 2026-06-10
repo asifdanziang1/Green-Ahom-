@@ -104,7 +104,7 @@ const Contact = () => {
           <div className="container-custom">
             <span className="badge badge-gold">{heroSection.badge}</span>
             <h1 className="text-white mt-3">{heroSection.heading}</h1>
-            <p className="contact-hero-subtitle text-white-muted" style={{ maxWidth: '650px', margin: '1.5rem auto 0 auto', fontSize: '1.15rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
+            <p className="hero-subtitle-premium">
               {heroSection.subtitle}
             </p>
           </div>
@@ -210,10 +210,10 @@ const Contact = () => {
 
             {/* Right Column: Physical Details & Map */}
             <div className="contact-details-col">
-              <div className="section-header text-center">
+              <div className="contact-details-header">
                 <span className="badge">{infoSection.officeBadge}</span>
                 <h2>{infoSection.officeHeading}</h2>
-                <div className="gold-line margin-center" />
+                <div className="gold-line" />
               </div>
 
               <div className="office-details-box mt-4">
@@ -347,14 +347,25 @@ const Contact = () => {
           width: 60px;
           height: 60px;
           border-radius: 50%;
-          background-color: rgba(51, 65, 85, 0.08);
-          border: 1px solid rgba(51, 65, 85, 0.2);
+          background-color: rgba(17, 63, 39, 0.08);
+          border: 1px solid rgba(17, 63, 39, 0.2);
           margin-bottom: 1rem;
         }
 
         .form-success-alert h4 {
           color: var(--teal);
           margin-bottom: 8px;
+        }
+
+        .contact-details-header {
+          margin-bottom: 30px;
+        }
+        .contact-details-header h2 {
+          color: var(--primary);
+        }
+        .contact-details-header .gold-line {
+          margin-left: 0 !important;
+          margin-right: auto !important;
         }
 
         /* PHYSICAL DETAILS */
@@ -393,7 +404,7 @@ const Contact = () => {
           font-size: 0.9rem;
           color: var(--muted);
           margin-top: 4px;
-          line-height: 1.4;
+          line-height: 1.6;
         }
 
         /* VECTOR MAP STYLE */

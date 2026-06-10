@@ -69,7 +69,7 @@ const Home = () => {
               {statsSection.badge && <span className="badge">{statsSection.badge}</span>}
               <h2 className="stats-title">{statsSection.heading}</h2>
               {statsSection.subtitle && (
-                <p className="stats-subtitle">
+                <p className="section-subtitle">
                   {statsSection.subtitle}
                 </p>
               )}
@@ -192,8 +192,8 @@ const Home = () => {
           <div className="container-custom text-center">
             <div className="glass-card cta-box-inner" style={{ padding: '48px', maxWidth: '900px', margin: '0 auto', backgroundColor: 'var(--white)' }}>
               {ctaSection.badge && <span className="badge">{ctaSection.badge}</span>}
-              <h2 style={{ maxWidth: '520px', margin: '0 auto' }}>{ctaSection.heading}</h2>
-              <p className="cta-paragraph" style={{ maxWidth: '520px', margin: '14px auto 0 auto' }} dangerouslySetInnerHTML={{ __html: ctaSection.content }} />
+              <h2 className="cta-heading" style={{ maxWidth: '520px', margin: '0 auto' }}>{ctaSection.heading}</h2>
+              <p className="cta-subtitle" style={{ maxWidth: '520px', margin: '14px auto 0 auto' }} dangerouslySetInnerHTML={{ __html: ctaSection.content }} />
               
               <div className="cta-inner-actions" style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap', marginTop: '32px' }}>
                 {ctaSection.cta_primary?.text && (
@@ -304,17 +304,7 @@ const Home = () => {
           letter-spacing: 0.2px !important;
         }
 
-        .stats-subtitle {
-          font-family: var(--font-body) !important;
-          font-size: clamp(0.95rem, 1.5vw, 1.05rem) !important;
-          font-weight: 400 !important;
-          color: var(--muted) !important;
-          opacity: 0.8;
-          max-width: 65ch;
-          margin: 14px auto 0 auto !important;
-          line-height: 1.6 !important;
-          text-align: center;
-        }
+
 
         /* STATS GRID OVERRIDES */
         .stats-grid {
@@ -531,6 +521,8 @@ const Home = () => {
           border-radius: 16px;
           border: 1px solid rgba(17, 63, 39, 0.1);
         }
+
+
       `}</style>
     </div>
   );

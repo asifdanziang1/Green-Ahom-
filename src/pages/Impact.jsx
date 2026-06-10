@@ -61,7 +61,7 @@ const Impact = () => {
           <div className="container-custom">
             <span className="badge badge-gold">{heroSection.badge}</span>
             <h1 className="text-white mt-3">{heroSection.heading}</h1>
-            <p className="impact-hero-subtitle text-white-muted" style={{ maxWidth: '650px', margin: '1.5rem auto 0 auto', fontSize: '1.15rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
+            <p className="hero-subtitle-premium">
               {heroSection.subtitle}
             </p>
           </div>
@@ -88,7 +88,7 @@ const Impact = () => {
                     <span style={{ fontSize: '0.85rem' }}>{metric.suffix}</span>
                   </div>
                   <div className="m-divider-line" />
-                  <p style={{ fontSize: '0.92rem', color: 'var(--muted)', lineHeight: '1.5' }}>{metric.desc}</p>
+                  <p>{metric.desc}</p>
                 </div>
               ))}
             </div>
@@ -152,8 +152,8 @@ const Impact = () => {
           <div className="container-custom">
             <div className="cta-box-wrapper-inner">
               <span className="badge badge-gold">{ctaSection.badge}</span>
-              <h2 className="text-white mt-3" style={{ color: 'var(--white)' }}>{ctaSection.heading}</h2>
-              <p className="text-white-muted max-width-center mt-3" style={{ maxWidth: '600px', margin: '0 auto', color: 'rgba(255, 255, 255, 0.75)' }}>
+              <h2 className="cta-heading text-white mt-3">{ctaSection.heading}</h2>
+              <p className="cta-subtitle mt-3">
                 {ctaSection.subtitle}
               </p>
               <div className="cta-buttons-row mt-4">
