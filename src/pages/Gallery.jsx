@@ -88,7 +88,7 @@ const Gallery = () => {
           <div className="container-custom">
             <span className="badge badge-gold">{heroSection.badge}</span>
             <h1 className="text-white mt-3">{heroSection.heading}</h1>
-            <p className="gallery-hero-subtitle text-white-muted" style={{ maxWidth: '650px', margin: '1.5rem auto 0 auto', fontSize: '1.15rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
+            <p className="hero-subtitle-premium">
               {heroSection.subtitle}
             </p>
           </div>

@@ -200,7 +200,7 @@ const AnnualReports = () => {
           </div>
 
           {/* Tab Content Box */}
-          <div className="glass-card active-fiscal-panel mt-4">
+          <div className="glass-card active-fiscal-panel animate-reveal mt-4" key={activeFiscalYear}>
             <div className="fiscal-panel-header">
               <div className="fiscal-tot-col">
                 <span className="fiscal-panel-badge">AUDITED TOTAL DISCLOSURE</span>

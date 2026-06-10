@@ -1,15 +1,20 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import * as store from '../contentStore';
 import '../AdminStyles.css';
 
 const BlogManager = () => {
+  const location = useLocation();
   const [posts, setPosts] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [currentPost, setCurrentPost] = useState(null);
 
   useEffect(() => {
     loadPosts();
-  }, []);
+    if (location.search.includes('action=new')) {
+      handleAddNew();
+    }
+  }, [location.search]);
 
   const loadPosts = () => {
     setPosts(store.getBlogPosts() || []);

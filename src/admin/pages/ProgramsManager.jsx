@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import * as store from '../contentStore';
 import '../AdminStyles.css';
 
 const ProgramsManager = () => {
+  const location = useLocation();
   const [programs, setPrograms] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const [currentProgram, setCurrentProgram] = useState(null);
@@ -10,7 +12,10 @@ const ProgramsManager = () => {
   // Load programs on mount
   useEffect(() => {
     loadPrograms();
-  }, []);
+    if (location.search.includes('action=new')) {
+      handleAddNew();
+    }
+  }, [location.search]);
 
   const loadPrograms = () => {
     // If empty in store, try to initialize from schema if needed? 
