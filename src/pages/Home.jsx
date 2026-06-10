@@ -1,232 +1,201 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MetricCard from '../components/MetricCard';
 import ImpactSlider from '../components/ImpactSlider';
-import { useContent } from '../admin/hooks/useContent';
 
 const Home = () => {
-  const { sections, getSectionByType, isLoading } = useContent('home');
+  const [stats, setStats] = useState({
+    beneficiaries: 2635,
+    funds: 23870590,
+    students: 364,
+    strayBud: 3541090
+  });
 
   useEffect(() => {
+    localStorage.setItem('gaf_stats', JSON.stringify(stats));
     window.scrollTo(0, 0);
   }, []);
 
-  if (isLoading) {
-    return <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--primary)' }}><div className="loader" style={{ color: 'white' }}>Loading...</div></div>;
-  }
-
-  // Get specific sections
-  const heroSection = getSectionByType('hero');
-  const statsSection = getSectionByType('stats');
-  const initiativesSection = getSectionByType('initiatives');
-  const sliderSection = getSectionByType('slider');
-  const highlightsSection = getSectionByType('highlights');
-  const ctaSection = getSectionByType('cta_banner');
+  const signatureProjects = [
+    {
+      id: 'education',
+      title: 'Ideal Academy, Hailakandi',
+      category: 'INCLUSIVE EDUCATION',
+      desc: 'GAF acquired Ideal Academy (UDISE: 18230124113) in FY 2025-26 to provide quality, affordable conceptual learning (Nursery to Class X) and hostel support for 364 underprivileged rural children.',
+      bgImage: '/extracted_images/ANNUAL_REPORT_2024-2025_p13_img24.jpg'
+    },
+    {
+      id: 'health',
+      title: 'Tuberculosis & Eye Care Camps',
+      category: 'HEALTH & NUTRITION',
+      desc: 'Partnered with ONGC Silchar CSR to distribute dense nutritional supplements to registered TB patients and fully sponsor refractive spectacles and cataract surgeries inside Hailakandi Blocks.',
+      bgImage: '/extracted_images/ANNUAL_REPORT_2024-2025_p5_img1.jpg'
+    },
+    {
+      id: 'livelihoods',
+      title: 'Tailoring & Stitching for Women',
+      category: 'WOMEN EMPOWERMENT',
+      desc: 'Active vocational training campuses across Cachar, Hailakandi, Nagaon, and NC Hills, giving thousands of rural women stitching skills and equipped sewing machines to earn independent livelihoods.',
+      bgImage: '/extracted_images/ANNUAL_REPORT_2024-2025_p9_img13.jpg'
+    },
+    {
+      id: 'relief',
+      title: 'Eliminating Hunger & Food Security',
+      category: 'HUMANITARIAN AID',
+      desc: 'Large-scale dry ration packets distribution drives (budgeting ₹46.06L in FY 2024-25 alone) to ежеднев daily wage earners, widows, and flood survivors in Assam.',
+      bgImage: '/extracted_images/ANNUAL_REPORT_2024-2025_p11_img19.jpg'
+    }
+  ];
 
   return (
     <div className="home-page animate-fade-scale">
       {/* 1. HERO CANOPY HERO SECTION */}
-      {heroSection && (
-        <section className="hero-section bg-primary" id={heroSection.id}>
-          <div className="hero-background-graphics">
-            <div className="pattern-dots" />
-          </div>
+      <section className="hero-section bg-primary">
+        <div className="hero-background-graphics">
+          <div className="pattern-dots" />
+        </div>
 
-          <div className="container-custom">
-            <div className="hero-content">
-              {heroSection.badge && <span className="badge hero-badge">{heroSection.badge}</span>}
-              <h1 className="hero-heading" dangerouslySetInnerHTML={{ __html: heroSection.heading || "Green Ahom Federation" }} />
-              {heroSection.subtitle && (
-                <p className="hero-subtitle">
-                  {heroSection.subtitle}
-                </p>
-              )}
-              <div className="hero-cta-group">
-                {heroSection.cta_primary?.text && (
-                  <Link to={heroSection.cta_primary.link} className="btn btn-gold">
-                    {heroSection.cta_primary.text}
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                    </svg>
-                  </Link>
-                )}
-                {heroSection.cta_secondary?.text && (
-                  <Link to={heroSection.cta_secondary.link} className="btn btn-outline-gold">
-                    {heroSection.cta_secondary.text}
-                  </Link>
-                )}
-              </div>
+        <div className="container-custom">
+          <div className="hero-content">
+            <span className="badge hero-badge">Grassroots Section 8 NPO</span>
+            <h1 className="hero-heading">Nurturing Assam's Ecological Legacy &amp; Community Dignity</h1>
+            <p className="hero-subtitle">
+              From water engineering legacies inspired by the Ahom Kingdom to taming food insecurity, providing conceptual education at Ideal Academy, and empowering rural women—we build sustainable futures.
+            </p>
+            <div className="hero-cta-group">
+              <Link to="/donate" className="btn btn-gold">
+                Support a Campaign
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                </svg>
+              </Link>
+              <Link to="/work" className="btn btn-outline-gold">
+                Explore Our 20 Programs
+              </Link>
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* 2. DYNAMIC STATS DASHBOARD */}
-      {statsSection && (
-        <section className="stats-section section-padding" id={statsSection.id}>
-          <div className="container-custom">
-            <div className="stats-header">
-              {statsSection.badge && <span className="badge">{statsSection.badge}</span>}
-              <h2 className="stats-title">{statsSection.heading}</h2>
-              {statsSection.subtitle && (
-                <p className="section-subtitle">
-                  {statsSection.subtitle}
-                </p>
-              )}
-            </div>
-
-            <div className="stats-grid">
-              {statsSection.metrics?.map(metric => (
-                <MetricCard 
-                  key={metric.id}
-                  label={metric.label} 
-                  target={metric.transform === 'divide_10000000' ? metric.value / 10000000 : metric.transform === 'divide_100000' ? metric.value / 100000 : metric.value} 
-                  context={metric.context}
-                  prefix={metric.prefix}
-                  suffix={metric.suffix}
-                  decimals={metric.decimals || 0} 
-                />
-              ))}
-            </div>
+      <section className="stats-section section-padding">
+        <div className="container-custom">
+          <div className="section-header text-center">
+            <span className="badge">LIVE TRACKER</span>
+            <h2>Grassroots Operations Dashboard</h2>
+            <div className="gold-line margin-center" />
+            <p className="section-subtitle mt-2">
+              Our verified biological and social outcomes. Mapped, CA-audited, and publicly transparent.
+            </p>
           </div>
-        </section>
-      )}
+
+          <div className="grid-responsive stats-grid">
+            <MetricCard label="Ideal Academy Students" target={stats.students} suffix="" />
+            <MetricCard label="CSR &amp; Exempt Funds Mobilized" target={stats.funds} prefix="₹" suffix="" />
+            <MetricCard label="Health &amp; Nutrition Beneficiaries" target={stats.beneficiaries} suffix="+" />
+            <MetricCard label="Stray Animals Care Budget (₹)" target={stats.strayBud} suffix="" />
+          </div>
+        </div>
+      </section>
 
       {/* 3. SIGNATURE INITIATIVES */}
-      {initiativesSection && (
-        <section className="initiatives-section section-padding bg-cream" id={initiativesSection.id}>
-          <div className="container-custom">
-            <div className="section-header text-center">
-              {initiativesSection.badge && <span className="badge">{initiativesSection.badge}</span>}
-              <h2>{initiativesSection.heading}</h2>
-              <div className="gold-line margin-center" />
-              {initiativesSection.subtitle && (
-                <p className="section-subtitle mt-2">
-                  {initiativesSection.subtitle}
-                </p>
-              )}
-            </div>
+      <section className="initiatives-section section-padding bg-cream">
+        <div className="container-custom">
+          <div className="section-header text-center">
+            <span className="badge">OUR INTERVENTIONS</span>
+            <h2>Featured Grassroots Programmes</h2>
+            <div className="gold-line margin-center" />
+            <p className="section-subtitle mt-2">
+              GAF combines immediate humanitarian disaster relief with long-term conceptual capacity building using actual cover assets.
+            </p>
+          </div>
 
-            <div className="initiatives-grid">
-              {initiativesSection.items?.map((project, idx) => (
-                <div className="initiative-card animate-reveal" key={project.id || idx} style={{ animationDelay: `${idx * 0.1}s` }}>
-                  <div className="card-bg-image" style={{ backgroundImage: `url(${project.bgImage || ''})` }} />
-                  <div className="card-overlay" />
-                  <div className="initiative-card-content">
-                    <div className="initiative-card-top">
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
-                        <span className="init-category">{project.category}</span>
-                        <span className="card-number">0{idx + 1}</span>
-                      </div>
-                      <h3>{project.title}</h3>
-                      <p>{project.desc}</p>
+          <div className="initiatives-grid">
+            {signatureProjects.map((project, idx) => (
+              <div className="initiative-card animate-reveal" key={project.id} style={{ animationDelay: `${idx * 0.1}s` }}>
+                <div className="card-bg-image" style={{ backgroundImage: `url(${project.bgImage})` }} />
+                <div className="card-overlay" />
+                <div className="initiative-card-content">
+                  <div className="initiative-card-top">
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%' }}>
+                      <span className="init-category">{project.category}</span>
+                      <span className="card-number">0{idx + 1}</span>
                     </div>
-                    <div className="init-footer">
-                      <Link to="/work" className="init-link">Read More ➔</Link>
-                    </div>
+                    <h3>{project.title}</h3>
+                    <p>{project.desc}</p>
+                  </div>
+                  <div className="init-footer">
+                    <Link to="/work" className="init-link">Read More ➔</Link>
                   </div>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* 4. BEFORE/AFTER RESTORATION SHOWCASE */}
-      {sliderSection && (
-        <section className="slider-section section-padding" id={sliderSection.id}>
-          <div className="container-custom">
-            <div className="section-header text-center">
-              {sliderSection.badge && <span className="badge">{sliderSection.badge}</span>}
-              <h2>{sliderSection.heading}</h2>
-              <div className="gold-line margin-center" />
-              {sliderSection.subtitle && (
-                <p className="section-subtitle mt-2">
-                  {sliderSection.subtitle}
-                </p>
-              )}
-            </div>
-
-            <ImpactSlider />
+      <section className="slider-section section-padding">
+        <div className="container-custom">
+          <div className="section-header text-center">
+            <span className="badge">ENVIRONMENTAL ACTION</span>
+            <h2>Witness Ecological Restoration</h2>
+            <div className="gold-line margin-center" />
+            <p className="section-subtitle mt-2">
+              Our community plantation and cleanout drives transform barren eroded soil into secure biological sanctuaries.
+            </p>
           </div>
-        </section>
-      )}
+
+          <ImpactSlider />
+        </div>
+      </section>
 
       {/* 5. INDUCTIVE WORKING APPROACH DETAIL */}
-      {highlightsSection && (
-        <section className="highlights-section section-padding bg-primary" id={highlightsSection.id}>
-          <div className="container-custom">
-            <div className="highlights-wrapper">
-              <div className="highlights-text-col">
-                {highlightsSection.badge && <span className="badge badge-gold">{highlightsSection.badge}</span>}
-                <h2 className="text-white">{highlightsSection.heading}</h2>
-                <div className="gold-line" />
-                <p className="text-white-muted" dangerouslySetInnerHTML={{ __html: highlightsSection.content }} />
-                
-                {highlightsSection.quote && (
-                  <blockquote className="highlight-quote">
-                    <p>{highlightsSection.quote}</p>
-                    {highlightsSection.quote_cite && <cite>{highlightsSection.quote_cite}</cite>}
-                  </blockquote>
-                )}
-                
-                {highlightsSection.cta?.text && (
-                  <Link to={highlightsSection.cta.link} className="btn btn-gold">{highlightsSection.cta.text}</Link>
-                )}
-              </div>
-              <div className="highlights-visual-col">
-                <div className="visual-card-premium">
-                  <div className="visual-logo-container">
-                    <img src="/logo.png" alt="Green Ahom Federation Logo" style={{ height: '64px', width: 'auto', objectFit: 'contain' }} />
-                  </div>
+      <section className="highlights-section section-padding bg-primary">
+        <div className="container-custom">
+          <div className="highlights-wrapper">
+            <div className="highlights-text-col">
+              <span className="badge badge-gold">WORKING APPROACH</span>
+              <h2 className="text-white">Integrated Grassroots Development</h2>
+              <div className="gold-line" />
+              <p className="text-white-muted">
+                Through community-led initiatives and local partnerships, we work to create sustainable and inclusive social development. Our programs are designed to combine urgent relief packages with capacity building, ensuring high community ownership.
+              </p>
+              <blockquote className="highlight-quote">
+                <p>
+                  "Our programs combine health, nutrition, livelihood, awareness, environmental sustainability, and humanitarian support to create long-term impact rather than short-term relief alone."
+                </p>
+                <cite>— Green Ahom Federation operational statement</cite>
+              </blockquote>
+              <Link to="/about" className="btn btn-gold">About Our Approach</Link>
+            </div>
+            <div className="highlights-visual-col">
+              <div className="visual-card-premium">
+                <div className="visual-logo-container">
+                  <img src="/logo.png" alt="Green Ahom Federation Logo" style={{ height: '64px', width: 'auto', objectFit: 'contain' }} />
                 </div>
               </div>
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* 6. CALL TO ACTION SECTION */}
-      {ctaSection && (
-        <section className="cta-banner-section" id={ctaSection.id}>
-          <div className="container-custom text-center">
-            <div className="glass-card cta-box-inner" style={{ padding: '48px', maxWidth: '900px', margin: '0 auto', backgroundColor: 'var(--white)' }}>
-              {ctaSection.badge && <span className="badge">{ctaSection.badge}</span>}
-              <h2 className="cta-heading" style={{ maxWidth: '520px', margin: '0 auto' }}>{ctaSection.heading}</h2>
-              <p className="cta-subtitle" style={{ maxWidth: '520px', margin: '14px auto 0 auto' }} dangerouslySetInnerHTML={{ __html: ctaSection.content }} />
-              
-              <div className="cta-inner-actions" style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap', marginTop: '32px' }}>
-                {ctaSection.cta_primary?.text && (
-                  <Link to={ctaSection.cta_primary.link} className="btn btn-primary" style={{ height: '48px', boxSizing: 'border-box' }}>
-                    {ctaSection.cta_primary.text}
-                  </Link>
-                )}
-                {ctaSection.cta_secondary?.text && (
-                  <Link to={ctaSection.cta_secondary.link} className="btn btn-outline" style={{ height: '48px', boxSizing: 'border-box' }}>
-                    {ctaSection.cta_secondary.text}
-                  </Link>
-                )}
-              </div>
+      <section className="cta-banner-section section-padding">
+        <div className="container-custom text-center">
+          <div className="glass-card cta-box-inner" style={{ padding: '3.5rem', maxWidth: '900px', margin: '0 auto', backgroundColor: 'var(--white)' }}>
+            <span className="badge">GET INVOLVED</span>
+            <h2>Support Grassroots Social Development</h2>
+            <p className="mt-2" style={{ maxWidth: '580px', margin: '0 auto 2.5rem auto' }}>
+              Sponsor education for children in Hailakandi District, support nutritional programs for TB patients, provide emergency flood dry rations, or rescue strays.
+            </p>
+            <div className="cta-inner-actions mt-4" style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+              <Link to="/donate" className="btn btn-primary">Donate to GAF</Link>
+              <Link to="/volunteer" className="btn btn-outline">Apply to Volunteer</Link>
             </div>
           </div>
-        </section>
-      )}
-
-      {/* Render any additional dynamically added sections at the bottom */}
-      {sections.filter(s => !['hero', 'stats', 'initiatives', 'slider', 'highlights', 'cta_banner'].includes(s.type)).map(section => (
-        <section key={section.id} className="section-padding" id={section.id}>
-          <div className="container-custom">
-            <div className="section-header text-center">
-              {section.badge && <span className="badge">{section.badge}</span>}
-              <h2>{section.heading || section.name}</h2>
-              <div className="gold-line margin-center" />
-            </div>
-            {section.content && (
-              <div dangerouslySetInnerHTML={{ __html: section.content }} />
-            )}
-          </div>
-        </section>
-      ))}
+        </div>
+      </section>
 
       <style>{`
         /* HERO SECTION STYLING */
@@ -237,13 +206,13 @@ const Home = () => {
           min-height: 85vh;
           display: flex;
           align-items: center;
-          background: linear-gradient(135deg, rgba(17, 63, 39, 0.97) 0%, rgba(17, 63, 39, 0.88) 40%, rgba(217, 95, 67, 0.15) 100%), 
+          background: linear-gradient(135deg, rgba(26, 45, 66, 0.97) 0%, rgba(26, 45, 66, 0.88) 40%, rgba(217, 95, 67, 0.15) 100%), 
                       url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat !important;
         }
 
         @media (max-width: 991px) {
           .hero-section {
-            background: linear-gradient(to bottom, rgba(17, 63, 39, 0.98) 0%, rgba(17, 63, 39, 0.85) 60%, rgba(17, 63, 39, 0.4) 100%), 
+            background: linear-gradient(to bottom, rgba(26, 45, 66, 0.98) 0%, rgba(26, 45, 66, 0.85) 60%, rgba(26, 45, 66, 0.4) 100%), 
                         url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat !important;
           }
         }
@@ -265,7 +234,6 @@ const Home = () => {
           font-size: 1.15rem !important;
           line-height: 1.7;
           max-width: 680px;
-          margin-top: 20px !important;
           margin-bottom: 2.5rem !important;
         }
 
@@ -273,256 +241,331 @@ const Home = () => {
           display: flex;
           gap: 16px;
           flex-wrap: wrap;
-          margin-top: 32px;
         }
 
-        /* STATS SECTION STYLING */
+        /* Stats section visual separator backdrop */
         .stats-section {
-          background-color: var(--sand) !important;
-          border-top: 1px solid rgba(17, 63, 39, 0.05) !important;
-          border-bottom: 1px solid rgba(17, 63, 39, 0.05) !important;
-          padding: clamp(3rem, 5vw, 5rem) 0 !important;
+          background-color: #f4f3ef !important;
+          border-top: 1px solid #e2dfd5 !important;
+          border-bottom: 1px solid #e2dfd5 !important;
+          padding: 5rem 0 !important;
         }
-
-        .stats-header {
-          text-align: center;
-          margin-bottom: 40px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-        }
-
-        .stats-title {
-          font-family: var(--font-header) !important;
-          font-size: clamp(1.8rem, 3.5vw, 2.6rem) !important;
-          font-weight: 700 !important;
-          color: var(--primary) !important;
-          line-height: 1.25 !important;
-          max-width: 800px;
-          margin: var(--space-sm) auto 0 auto !important;
-          text-align: center;
-          letter-spacing: 0.2px !important;
-        }
-
-
 
         /* STATS GRID OVERRIDES */
         .stats-grid {
           display: grid !important;
-          grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-          gap: 24px !important;
+          grid-template-columns: repeat(4, 1fr) !important;
+          gap: 2rem !important;
           width: 100% !important;
           justify-content: center !important;
         }
 
         @media (max-width: 1024px) {
           .stats-grid {
-            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            grid-template-columns: repeat(2, 1fr) !important;
           }
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 576px) {
           .stats-grid {
             grid-template-columns: 1fr !important;
-            gap: 16px !important;
+            max-width: 320px !important;
+            margin: 0 auto !important;
           }
         }
 
-        /* INITIATIVES STYLING */
-        .initiatives-section {
-          background-color: var(--cream);
-          border-bottom: 1px solid rgba(17, 63, 39, 0.05);
-        }
-
+        /* INITIATIVES GRID OVERRIDES */
         .initiatives-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
-          gap: 24px;
-          margin-top: 48px;
-        }
-
-        @media (max-width: 991px) {
-          .initiatives-grid {
-            grid-template-columns: 1fr;
-          }
+          display: grid !important;
+          grid-template-columns: repeat(4, 1fr) !important;
+          gap: 1.5rem !important;
+          width: 100% !important;
+          max-width: 1240px !important;
+          margin: 0 auto !important;
         }
 
         .initiative-card {
           position: relative;
-          border-radius: var(--radius-md);
-          overflow: hidden;
-          min-height: 420px;
           display: flex;
-          align-items: flex-end;
-          padding: 32px;
-          color: white;
-          group: inherit;
+          flex-direction: column;
+          height: 100%;
+          aspect-ratio: 1 / 1 !important; /* Perfect square proportions */
+          border: 1px solid rgba(255, 255, 255, 0.1) !important;
+          border-radius: var(--radius-md) !important; /* Softened organic corners matching system */
+          overflow: hidden;
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+          background-color: var(--primary);
         }
 
         .card-bg-image {
           position: absolute;
-          top: 0; left: 0; width: 100%; height: 100%;
-          background-size: cover;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
           background-position: center;
-          transition: transform 0.6s ease;
+          background-size: cover;
+          background-repeat: no-repeat;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
           z-index: 1;
-        }
-
-        .initiative-card:hover .card-bg-image {
-          transform: scale(1.05);
+          opacity: 0.25; /* Highly transparent background image */
         }
 
         .card-overlay {
           position: absolute;
-          top: 0; left: 0; width: 100%; height: 100%;
-          background: linear-gradient(to top, rgba(17, 63, 39, 0.95) 0%, rgba(17, 63, 39, 0.6) 50%, rgba(17, 63, 39, 0.2) 100%);
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(to bottom, rgba(26, 45, 66, 0.85) 0%, rgba(26, 45, 66, 0.6) 50%, rgba(26, 45, 66, 0.9) 100%);
+          transition: background 0.4s ease;
           z-index: 2;
         }
 
         .initiative-card-content {
           position: relative;
           z-index: 3;
+          padding: 2.2rem !important; /* Elegant generous padding */
           display: flex;
           flex-direction: column;
-          height: 100%;
           justify-content: space-between;
+          height: 100%;
           width: 100%;
         }
 
-        .initiative-card-top h3 {
-          font-family: var(--font-header);
-          font-size: 1.7rem;
-          margin: 16px 0;
-          color: white;
+        .initiative-card:hover {
+          border-color: var(--gold) !important;
+          transform: translateY(-6px) !important;
+          box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25) !important;
         }
 
-        .initiative-card-top p {
-          color: rgba(255,255,255,0.85);
-          font-size: 1rem;
-          line-height: 1.6;
-          margin: 0;
+        .initiative-card:hover .card-bg-image {
+          transform: scale(1.1); /* Elegant background scale */
+          opacity: 0.38; /* Make background image slightly clearer on hover */
+        }
+
+        .initiative-card:hover .card-overlay {
+          background: linear-gradient(to bottom, rgba(26, 45, 66, 0.75) 0%, rgba(17, 24, 22, 0.5) 50%, rgba(26, 45, 66, 0.95) 100%);
+        }
+
+        .init-category {
+          font-family: var(--font-body);
+          font-weight: 700;
+          font-size: 0.7rem;
+          color: var(--gold);
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+        }
+
+        .card-number {
+          font-family: var(--font-body);
+          font-size: 0.8rem;
+          font-weight: 700;
+          color: var(--white);
+          opacity: 0.4;
+          transition: opacity 0.3s ease;
+        }
+
+        .initiative-card:hover .card-number {
+          opacity: 0.9;
+          color: var(--gold);
+        }
+
+        .initiative-card h3 {
+          margin: 0.8rem 0 0.5rem 0 !important;
+          font-size: 1.2rem !important;
+          font-family: var(--font-header) !important;
+          font-weight: 700 !important;
+          color: var(--white) !important; /* Crisp high-contrast white */
+          line-height: 1.35 !important;
+        }
+
+        .initiative-card p {
+          font-size: 0.86rem !important;
+          color: rgba(255, 255, 255, 0.75) !important; /* Crisp sand/white paragraphs */
+          line-height: 1.55 !important;
+          margin: 0 !important;
           display: -webkit-box;
-          -webkit-line-clamp: 3;
+          -webkit-line-clamp: 3; /* Clamp to exactly 3 lines */
           -webkit-box-orient: vertical;
           overflow: hidden;
         }
 
-        .init-category {
-          background: rgba(217, 95, 67, 0.9);
-          color: white;
-          padding: 4px 12px;
-          border-radius: var(--radius-sm);
-          font-size: 0.75rem;
-          font-weight: 700;
-          letter-spacing: 1px;
-        }
-
-        .card-number {
-          font-family: var(--font-header);
-          font-size: 1.2rem;
-          color: rgba(255,255,255,0.4);
-          font-weight: 700;
-        }
-
         .init-footer {
-          margin-top: 24px;
-          padding-top: 20px;
-          border-top: 1px solid rgba(255,255,255,0.2);
+          display: flex;
+          justify-content: flex-start !important; /* Left-aligned footer */
+          align-items: center;
+          border-top: 1px solid rgba(255, 255, 255, 0.12) !important;
+          padding-top: 1rem !important;
+          margin-top: 1rem;
+          width: 100%;
         }
 
         .init-link {
-          color: var(--gold);
-          text-decoration: none;
+          font-family: var(--font-body);
+          font-size: 0.78rem;
           font-weight: 700;
-          font-size: 0.95rem;
+          color: var(--white);
+          transition: all 0.3s ease;
           display: inline-flex;
           align-items: center;
-          transition: all 0.3s ease;
+          gap: 6px;
         }
 
-        .init-link:hover {
-          color: white;
-          transform: translateX(4px);
+        .initiative-card:hover .init-link {
+          color: var(--gold);
+          transform: translateX(4px); /* Shift link slightly on hover */
+        }
+
+        @media (max-width: 1200px) {
+          .initiatives-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
+          .initiative-card {
+            aspect-ratio: auto !important;
+            min-height: 300px !important;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .initiatives-grid {
+            grid-template-columns: 1fr !important;
+            max-width: 340px !important;
+            margin: 0 auto !important;
+          }
+          .initiative-card {
+            aspect-ratio: auto !important;
+            min-height: 280px !important;
+          }
         }
 
         /* HIGHLIGHTS SECTION */
         .highlights-wrapper {
           display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 64px;
+          grid-template-columns: 1.15fr 0.85fr;
+          gap: 5rem;
           align-items: center;
         }
 
         @media (max-width: 991px) {
           .highlights-wrapper {
             grid-template-columns: 1fr;
-            gap: 40px;
+            gap: 3rem;
           }
         }
 
+        .text-white {
+          color: var(--white);
+        }
+
+        .text-white-muted {
+          color: rgba(250, 248, 244, 0.7);
+          font-size: 1.05rem;
+          margin: 1.5rem 0;
+        }
+
         .highlight-quote {
-          background: rgba(255,255,255,0.05);
-          border-left: 3px solid var(--gold);
-          padding: 24px;
-          margin: 32px 0;
-          border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+          border-left: 4px solid var(--gold);
+          padding: 1.5rem 2rem;
+          margin: 2rem 0;
+          background-color: rgba(255, 255, 255, 0.03);
+          border-radius: 0 var(--radius-md) var(--radius-md) 0;
         }
 
         .highlight-quote p {
-          font-size: 1.15rem;
+          font-family: var(--font-header);
           font-style: italic;
-          color: white;
-          margin-bottom: 12px;
+          color: var(--white);
+          font-size: 1.15rem;
           line-height: 1.6;
         }
 
         .highlight-quote cite {
-          font-size: 0.9rem;
-          color: var(--gold);
-          font-style: normal;
+          display: block;
+          font-family: var(--font-body);
+          font-size: 0.82rem;
           font-weight: 600;
+          color: var(--gold);
+          margin-top: 8px;
+          font-style: normal;
+        }
+
+        /* HERO BACKGROUND PATTERNS */
+        .hero-background-graphics {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          pointer-events: none;
+          z-index: 1;
+        }
+
+        .pattern-dots {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-image: radial-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+          background-size: 24px 24px;
+        }
+
+        .hero-content {
+          position: relative;
+          z-index: 2;
+          max-width: 800px;
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          text-align: left;
+        }
+
+        .hero-cta-group .btn {
+          font-family: var(--font-body) !important;
+          font-weight: 600 !important;
+          border-radius: var(--radius-sm) !important;
+          text-transform: uppercase !important;
+        }
+
+        .hero-badge {
+          background-color: rgba(217, 95, 67, 0.12);
+          color: var(--gold);
+          border: 1px solid rgba(217, 95, 67, 0.2);
         }
 
         .visual-card-premium {
-          position: relative;
-          border-radius: var(--radius-lg);
-          overflow: hidden;
-          background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%);
-          border: 1px solid rgba(255,255,255,0.1);
-          aspect-ratio: 4/3;
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+          height: 280px;
+          background: rgba(255, 255, 255, 0.03);
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          border-radius: var(--radius-md);
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .visual-card-premium:hover {
+          background: rgba(255, 255, 255, 0.05);
+          border-color: rgba(217, 95, 67, 0.3);
+          transform: scale(1.02);
         }
 
         .visual-logo-container {
-          background: white;
-          width: 140px;
-          height: 140px;
-          border-radius: 50%;
-          display: flex;
+          padding: 2rem 3rem;
+          background: var(--white);
+          border-radius: var(--radius-sm);
+          box-shadow: var(--shadow-md);
+          display: inline-flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-          padding: 20px;
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* CTA BANNER */
-        .cta-banner-section {
-          padding: clamp(4.5rem, 7vw, 6rem) 0;
-          background: linear-gradient(135deg, rgba(17, 63, 39, 0.9) 0%, rgba(17, 63, 39, 0.95) 100%), 
-                      url('/extracted_images/ANNUAL_REPORT_2024-2025_p1_img1.jpg') center/cover fixed;
-          position: relative;
+        .visual-card-premium:hover .visual-logo-container {
+          transform: translateY(-4px);
+          box-shadow: var(--shadow-lg);
         }
-
-        .cta-box-inner {
-          box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
-          border-radius: var(--radius-lg);
-          border: 1px solid rgba(17, 63, 39, 0.1);
-        }
-
-
       `}</style>
     </div>
   );

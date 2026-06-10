@@ -1,234 +1,284 @@
 import React, { useEffect } from 'react';
-import { useContent } from '../admin/hooks/useContent';
 
 const AboutUs = () => {
-  const { getSectionByType, isLoading } = useContent('about');
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
-  if (isLoading) {
-    return <div style={{ height: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', backgroundColor: 'var(--primary)' }}><div className="loader" style={{ color: 'white' }}>Loading...</div></div>;
-  }
+  const workingApproaches = [
+    {
+      num: '01',
+      title: 'Community-Based Interventions',
+      desc: 'We work closely with local communities, volunteers, schools, healthcare workers, and grassroots leaders to understand real needs and ensure inclusive participation.'
+    },
+    {
+      num: '02',
+      title: 'Integrated Development Model',
+      desc: 'Our programmes combine health, nutrition, livelihood, awareness, environmental sustainability, and humanitarian support to create long-term impact rather than short-term relief alone.'
+    },
+    {
+      num: '03',
+      title: 'Grassroots Outreach',
+      desc: 'We implement field-based programmes in rural and underserved regions across Assam, especially in areas with limited access to services and opportunities.'
+    },
+    {
+      num: '04',
+      title: 'Sustainable Empowerment',
+      desc: 'We focus on building local capacity through skill development, awareness, infrastructure support, and community ownership.'
+    },
+    {
+      num: '05',
+      title: 'Rapid Humanitarian Response',
+      desc: 'During emergencies such as floods, food insecurity, or health crises, our teams mobilize quickly to support vulnerable populations with essential aid and relief services.'
+    }
+  ];
 
-  const heroSection = getSectionByType('hero');
-  const legacySection = getSectionByType('legacy');
-  const complianceSection = getSectionByType('compliance');
-  const directorsSection = getSectionByType('directors');
-  const academySection = getSectionByType('academy');
-  const workingApproachSection = getSectionByType('working_approach');
+  const boardSubscribers = [
+    {
+      name: 'Shamil Emonar Rahman Laskar',
+      role: 'Founder Director & Subscriber',
+      shares: '360 Shares (36% Ratio)',
+      address: '56/38(C), Silchar Road, Ward No.1, via Gudam Ghat Road, Hailakandi, Assam - 788151',
+      background: 'A dedicated social activist and grassroots leader in the Barak Valley. Instrumental in coordinating GAF’s massive flood response and primary health campaigns.'
+    },
+    {
+      name: 'Rofik Ahmed Barbhuiya',
+      role: 'Director & Subscriber',
+      shares: '340 Shares (34% Ratio)',
+      address: 'Sahabad Pt 2, Hailakandi, Assam - 788163',
+      background: 'Experienced community organizer focusing on youth mobilization, athletic programs, and municipal light logistics across Cachar and Hailakandi districts.'
+    },
+    {
+      name: 'Habiba Khanam Barbhuiya',
+      role: 'Director & Subscriber',
+      shares: '300 Shares (30% Ratio)',
+      address: 'H/No-53, Vill Nun Nagar, PO Katirail, Cachar, Assam - 788804',
+      background: 'Passionate advocate for maternal nutrition and women empowerment. Spearheads GAF’s multi-district tailoring skill training and village handicraft programs.'
+    }
+  ];
 
   return (
     <div className="about-page animate-fade-scale">
       {/* 1. HEADER SECTION */}
-      {heroSection && (
-        <section className="hero-section-premium" id={heroSection.id}>
-          <div className="container-custom">
-            {heroSection.badge && <span className="badge badge-gold">{heroSection.badge}</span>}
-            <h1 className="text-white mt-3">{heroSection.heading}</h1>
-            {heroSection.subtitle && (
-              <p className="hero-subtitle-premium">
-                {heroSection.subtitle}
-              </p>
-            )}
-          </div>
-        </section>
-      )}
+      <section className="hero-section-premium">
+        <div className="container-custom">
+          <span className="badge badge-gold">ABOUT US</span>
+          <h1 className="text-white mt-3">Green Ahom Federation</h1>
+          <p className="about-hero-subtitle text-white-muted" style={{ maxWidth: '680px', margin: '1.5rem auto 0 auto', fontSize: '1.2rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
+            Rooted in the ecological heritage of Assam. Working towards statutory compliance, human dignity, and sustainable grassroots empowerment.
+          </p>
+        </div>
+      </section>
 
-      {/* 2. THE HISTORICAL LEGACY */}
-      {legacySection && (
-        <section className="legacy-section section-padding" id={legacySection.id}>
-          <div className="container-custom legacy-wrapper">
-            <div className="legacy-text-col">
-              {legacySection.badge && <span className="badge">{legacySection.badge}</span>}
-              <h2>{legacySection.heading}</h2>
-              <div className="gold-line" />
-              {legacySection.content && (
-                <div 
-                  className="mt-4 font-weight-600" 
-                  style={{ color: 'var(--muted)' }}
-                  dangerouslySetInnerHTML={{ __html: legacySection.content }}
-                />
-              )}
-            </div>
-            
-            <div className="legacy-visual-col">
-              <div className="glass-card legacy-card-visual">
-                <div className="visual-logo-container-about" style={{ marginBottom: '1.5rem', background: '#ffffff', padding: '10px 20px', borderRadius: '4px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'var(--shadow-sm)' }}>
-                  <img src="/logo.png" alt="Green Ahom Federation Logo" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />
-                </div>
-                <h3 style={{ color: 'var(--white)', fontFamily: 'var(--font-header)', fontWeight: '700' }}>{legacySection.visual_title || "Ahom Ecological Legacy"}</h3>
-                <p style={{ color: 'rgba(255, 255, 255, 0.85)' }}>{legacySection.visual_desc}</p>
+      {/* 2. THE HISTORICAL LEGACY OF AHOM WATER ENGINEERING */}
+      <section className="legacy-section section-padding">
+        <div className="container-custom legacy-wrapper">
+          <div className="legacy-text-col">
+            <span className="badge">PHILOSOPHICAL ANCHOR</span>
+            <h2>The Legacy of Ahom Water Engineering</h2>
+            <div className="gold-line" />
+            <p className="mt-4 font-weight-600 text-dark" style={{ fontSize: '1.1rem', lineHeight: '1.7', color: 'var(--muted)' }}>
+              Green Ahom Federation draws its profound philosophical and operational inspiration from the sophisticated water engineering, environmental resource management, and ecological heritage of the historic Ahom Kingdom.
+            </p>
+            <p className="mt-3" style={{ color: 'var(--muted)', fontSize: '0.96rem', lineHeight: '1.6' }}>
+              For over six hundred years, the Ahom rulers demonstrated a flawless grasp of hydrology and ecological balance. They constructed massive earthen embankments (bunds) to tame the mighty Brahmaputra river system, and excavated grand historical reservoirs—such as Joysagar, Sivasagar, and Gaurisagar—which served as advanced rainwater harvesting hubs. These systems successfully prevented catastrophic flooding while supplying clean water to hundreds of agricultural settlements.
+            </p>
+            <p className="mt-3" style={{ color: 'var(--muted)', fontSize: '0.96rem', lineHeight: '1.6' }}>
+              GAF aims to revive this historic ethos of ecological balance and community-driven water preservation in modern Northeast India. By implementing comprehensive school plantation drives, taming erosion through community action, and initiating rural street illumination, we honor our ancestors' sophisticated environmental engineering with direct grassroots action.
+            </p>
+          </div>
+          
+          <div className="legacy-visual-col">
+            <div className="glass-card legacy-card-visual">
+              <div className="visual-logo-container-about" style={{ marginBottom: '1.5rem', background: '#ffffff', padding: '10px 20px', borderRadius: '4px', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'var(--shadow-sm)' }}>
+                <img src="/logo.png" alt="Green Ahom Federation Logo" style={{ height: '48px', width: 'auto', objectFit: 'contain' }} />
               </div>
+              <h3 style={{ color: 'var(--white)', fontFamily: 'var(--font-header)', fontWeight: '700' }}>Ahom Ecological Legacy</h3>
+              <p style={{ color: 'rgba(255, 255, 255, 0.85)' }}>Honoring 600 years of sophisticated water engineering, earth embankments, and sustainable community hydrology through local ecological action.</p>
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* 3. STATUTORY COMPLIANCE & LEGAL CHARTER CARD */}
-      {complianceSection && (
-        <section className="compliance-section section-padding bg-sand" id={complianceSection.id}>
-          <div className="container-custom">
-            <div className="section-header text-center">
-              {complianceSection.badge && <span className="badge badge-gold">{complianceSection.badge}</span>}
-              <h2>{complianceSection.heading}</h2>
-              <div className="gold-line margin-center" />
-              {complianceSection.subtitle && (
-                <p className="section-subtitle mt-2">
-                  {complianceSection.subtitle}
+      <section className="compliance-section section-padding bg-sand">
+        <div className="container-custom">
+          <div className="section-header text-center">
+            <span className="badge badge-gold">STATUTORY INTEGRITY</span>
+            <h2>Legal Framework &amp; Compliance</h2>
+            <div className="gold-line margin-center" />
+            <p className="section-subtitle mt-2">
+              Green Ahom Federation is bound by absolute compliance under Section 8 of the Indian Companies Act, 2013.
+            </p>
+          </div>
+
+          <div className="glass-card compliance-card-inner mt-5">
+            <div className="compliance-grid">
+              <div className="comp-col">
+                <h3>Non-Profit Constitutional Safeguards</h3>
+                <p className="mt-3">
+                  Under GAF's Altered Memorandum of Association (MOA) and Articles of Association (AOA) witnessed in Delhi on <strong>April 28, 2026</strong>, GAF operates under rigid Section 8 constitutional limits:
                 </p>
-              )}
-            </div>
+                <ul className="bullet-checks-list mt-3">
+                  <li><strong>Absolute Dividend Prohibition:</strong> 100% of profits or income are solely applied to the promotion of GAF’s public welfare and ecological objectives. No dividends or bonuses can be paid directly or indirectly to any subscriber or member.</li>
+                  <li><strong>Limited Liability:</strong> The liability of the subscribers is limited strictly to the nominal value of their shares.</li>
+                  <li><strong>Authorized Share Capital:</strong> ₹50,000 divided into 5,000 equity shares of ₹10 each.</li>
+                  <li><strong>Certified CA Audit:</strong> All ledger transactions are fully verified by certified witness and accountant <strong>ACA Ashu Bhardwaj (M. No. 560437)</strong>.</li>
+                </ul>
+              </div>
 
-            <div className="glass-card compliance-card-inner mt-5">
-              <div className="compliance-grid">
-                <div className="comp-col">
-                  {complianceSection.content && (
-                    <div dangerouslySetInnerHTML={{ __html: complianceSection.content }} />
-                  )}
-                </div>
-
-                <div className="comp-col comp-visual-info">
-                  <div className="statutory-badge-box">
-                    <span className="statutory-seal">CERTIFIED</span>
-                    <h4>{complianceSection.cert_title}</h4>
-                    <p>{complianceSection.cert_desc}</p>
-                    <div className="statutory-divider" />
-                    {complianceSection.cert_meta?.map((meta, idx) => (
-                      <div className="statutory-meta-row" key={idx}>
-                        <span>{meta.label}</span>
-                        <strong>{meta.value}</strong>
-                      </div>
-                    ))}
+              <div className="comp-col comp-visual-info">
+                <div className="statutory-badge-box">
+                  <span className="statutory-seal">CERTIFIED</span>
+                  <h4>Ministry of Corporate Affairs</h4>
+                  <p>Incorporated under the Indian Companies Act, 2013.</p>
+                  <div className="statutory-divider" />
+                  <div className="statutory-meta-row">
+                    <span>ROC Oversight:</span>
+                    <strong>ROC Shillong (State of Assam)</strong>
+                  </div>
+                  <div className="statutory-meta-row">
+                    <span>Registration Type:</span>
+                    <strong>Section 8 (Limited by Shares)</strong>
+                  </div>
+                  <div className="statutory-meta-row">
+                    <span>CA Sign-off Date:</span>
+                    <strong>28.04.2026</strong>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
-      {/* 4. BOARD OF DIRECTORS */}
-      {directorsSection && (
-        <section className="directors-section section-padding bg-cream" id={directorsSection.id}>
-          <div className="container-custom">
-            <div className="section-header text-center">
-              {directorsSection.badge && <span className="badge">{directorsSection.badge}</span>}
-              <h2>{directorsSection.heading}</h2>
-              <div className="gold-line margin-center" />
-              {directorsSection.subtitle && (
-                <p className="section-subtitle mt-2">
-                  {directorsSection.subtitle}
-                </p>
-              )}
+      {/* 4. BOARD OF DIRECTORS & SUBSCRIBERS PROFILE GRID */}
+      <section className="directors-section section-padding bg-cream">
+        <div className="container-custom">
+          <div className="section-header text-center">
+            <span className="badge">GOVERNANCE</span>
+            <h2>Board of Subscriber-Directors</h2>
+            <div className="gold-line margin-center" />
+            <p className="section-subtitle mt-2">
+              Meet GAF's founding social activist subscribers, who hold direct stewardship over GAF's multi-district operations and compliance.
+            </p>
+          </div>
+
+          <div className="grid-responsive directors-grid mt-5">
+            {boardSubscribers.map((dir, idx) => (
+              <div className="glass-card director-card" key={idx}>
+                <div className="dir-card-top">
+                  <span className="dir-badge">{dir.shares}</span>
+                  <h3>{dir.name}</h3>
+                  <span className="dir-role">{dir.role}</span>
+                </div>
+                <div className="dir-card-body mt-3">
+                  <p className="dir-bg">{dir.background}</p>
+                  <p className="dir-address mt-3"><strong>Registered Address:</strong><br />{dir.address}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. FLAGSHIP INITIATIVE: IDEAL ACADEMY, HAILAKANDI */}
+      <section className="ideal-academy-section section-padding">
+        <div className="container-custom">
+          <div className="section-header text-center">
+            <span className="badge badge-gold">FLAGSHIP EDUCATIONAL PROGRAMME</span>
+            <h2>Ideal Academy, Hailakandi</h2>
+            <div className="gold-line margin-center" />
+            <p className="section-subtitle mt-2">
+              An Educational Initiative acquired in FY 2025–26, empowering rural children through intensive, conceptual, and affordable learning.
+            </p>
+          </div>
+
+          <div className="academy-grid-wrapper mt-5">
+            {/* School Info Board */}
+            <div className="glass-card school-info-card bg-primary text-white">
+              <h3 className="text-white" style={{ color: 'var(--white)' }}>Basic Information</h3>
+              <div className="gold-line" />
+              <div className="school-details-list mt-4">
+                <div className="sch-detail-item"><span>School Name:</span><strong>Ideal Academy, Hailakandi</strong></div>
+                <div className="sch-detail-item"><span>Managed By:</span><strong>Green Ahom Federation (GAF)</strong></div>
+                <div className="sch-detail-item"><span>UDISE Code:</span><strong>18230124113</strong></div>
+                <div className="sch-detail-item"><span>Location:</span><strong>Hailakandi, Assam</strong></div>
+                <div className="sch-detail-item"><span>Academic Coverage:</span><strong>Nursery to Class X</strong></div>
+                <div className="sch-detail-item"><span>Current Strength:</span><strong className="text-gold">364 Students</strong></div>
+              </div>
             </div>
 
-            <div className="grid-responsive directors-grid mt-5">
-              {directorsSection.items?.map((dir, idx) => (
-                <div className="glass-card director-card" key={idx}>
-                  <div className="dir-card-top">
-                    {dir.shares && <span className="dir-badge">{dir.shares}</span>}
-                    <h3>{dir.name}</h3>
-                    <span className="dir-role">{dir.role}</span>
-                  </div>
-                  <div className="dir-card-body mt-3">
-                    <p className="dir-bg">{dir.background || dir.desc}</p>
-                    {dir.address && <p className="dir-address mt-3"><strong>Registered Address:</strong><br />{dir.address}</p>}
-                  </div>
-                </div>
-              ))}
+            {/* School Content */}
+            <div className="academy-main-details-col">
+              <h3>Vision &amp; Educational Mission</h3>
+              <p className="mt-3" style={{ color: 'var(--muted)' }}>
+                The primary objective behind GAF's statutory acquisition and reinforcement of Ideal Academy in FY 2025-26 was to establish a sustainable educational framework where rural children from marginalized families can receive quality conceptual education, moral guidance, and hostel support at an affordable cost.
+              </p>
+              <p className="mt-2" style={{ color: 'var(--muted)' }}>
+                Green Ahom Federation believes that education is the ultimate accelerator for meaningful engagement. We tackle school dropout rates by actively counseling parents and supporting students with basic educational necessities.
+              </p>
+              <h4 className="mt-4">The institution specifically focuses on:</h4>
+              <ul className="bullet-checks-list mt-2">
+                <li>Providing quality and affordable education to rural and semi-urban students</li>
+                <li>Ensuring inclusive education for SC, ST, OBC, MOBC, Minority, and economically backward communities</li>
+                <li>Reducing school dropout rates in underserved regions</li>
+                <li>Promoting conceptual and intensive learning methods</li>
+                <li>Developing discipline, moral values, leadership, and social responsibility among students</li>
+                <li>Supporting students with hostel and guided academic facilities</li>
+                <li>Creating a safe and nurturing educational environment for first-generation learners</li>
+              </ul>
             </div>
           </div>
-        </section>
-      )}
 
-      {/* 5. FLAGSHIP INITIATIVE: IDEAL ACADEMY */}
-      {academySection && (
-        <section className="ideal-academy-section section-padding" id={academySection.id}>
-          <div className="container-custom">
-            <div className="section-header text-center">
-              {academySection.badge && <span className="badge badge-gold">{academySection.badge}</span>}
-              <h2>{academySection.heading}</h2>
-              <div className="gold-line margin-center" />
-              {academySection.subtitle && (
-                <p className="section-subtitle mt-2">
-                  {academySection.subtitle}
-                </p>
-              )}
-            </div>
-
-            <div className="academy-grid-wrapper mt-5">
-              {/* School Info Board */}
-              <div className="glass-card school-info-card bg-primary text-white">
-                <h3 className="text-white" style={{ color: 'var(--white)' }}>Basic Information</h3>
-                <div className="gold-line" />
-                <div className="school-details-list mt-4">
-                  {academySection.school_info?.map((info, idx) => (
-                    <div className="sch-detail-item" key={idx}>
-                      <span>{info.label}</span>
-                      <strong className={info.isGold ? 'text-gold' : ''}>{info.value}</strong>
-                    </div>
-                  ))}
-                </div>
+          {/* Core Contributions */}
+          <div className="academy-contributions-box glass-card mt-5">
+            <h3>Major Contributions During the Last Year</h3>
+            <div className="contributions-grid-inner mt-4">
+              <div className="contrib-item">
+                <h5 className="contrib-item-header"><span className="contrib-num">01.</span> Academic Strengthening</h5>
+                <p>Improved classroom learning systems with conceptual teaching approaches. Enhanced student mentoring and regular academic monitoring. Introduced intensive learning support for weak and first-generation learners. Strengthened English, Science, Mathematics, and General Knowledge education.</p>
               </div>
-
-              {/* School Content */}
-              <div className="academy-main-details-col">
-                <h3>Vision &amp; Educational Mission</h3>
-                {academySection.content && (
-                  <div className="content-html" dangerouslySetInnerHTML={{ __html: academySection.content }} />
-                )}
+              <div className="contrib-item">
+                <h5 className="contrib-item-header"><span className="contrib-num">02.</span> Inclusion of Vulnerable Communities</h5>
+                <p>Increased admission opportunities for students from economically weaker families. Encouraged enrollment of SC, ST, OBC, MOBC, and minority children. Reduced educational inequality by making affordable education accessible in rural areas.</p>
+              </div>
+              <div className="contrib-item">
+                <h5 className="contrib-item-header"><span className="contrib-num">03.</span> Hostel &amp; Student Support</h5>
+                <p>Expanded hostel-based learning support for students from distant rural villages. Provided a disciplined and secure academic atmosphere for children. Supported students with basic educational necessities and mentoring guidance.</p>
+              </div>
+              <div className="contrib-item">
+                <h5 className="contrib-item-header"><span className="contrib-num">04.</span> Social &amp; Community Impact</h5>
+                <p>Helped prevent school dropouts among financially vulnerable students. Encouraged parents from low-income households to continue children’s education. Generated educational awareness in underserved communities of Hailakandi District. Promoted girls’ education and equal learning opportunities.</p>
               </div>
             </div>
-
-            {/* Core Contributions */}
-            {academySection.items && academySection.items.length > 0 && (
-              <div className="academy-contributions-box glass-card mt-5">
-                <h3>{academySection.contributions_heading || 'Major Contributions During the Last Year'}</h3>
-                <div className="contributions-grid-inner mt-4">
-                  {academySection.items.map((contrib, idx) => (
-                    <div className="contrib-item" key={contrib.id || idx}>
-                      <h5 className="contrib-item-header">
-                        <span className="contrib-num">0{idx + 1}.</span> {contrib.title}
-                      </h5>
-                      <p>{contrib.desc}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       {/* 6. OUR WORKING APPROACH */}
-      {workingApproachSection && (
-        <section className="team-section section-padding bg-cream" id={workingApproachSection.id}>
-          <div className="container-custom">
-            <div className="section-header text-center">
-              {workingApproachSection.badge && <span className="badge">{workingApproachSection.badge}</span>}
-              <h2>{workingApproachSection.heading}</h2>
-              <div className="gold-line margin-center" />
-              {workingApproachSection.subtitle && (
-                <p className="section-subtitle mt-2">
-                  {workingApproachSection.subtitle}
-                </p>
-              )}
-            </div>
-
-            <div className="grid-responsive team-grid mt-5">
-              {workingApproachSection.items?.map((approach, idx) => (
-                <div className="glass-card value-card text-center" key={approach.id || idx}>
-                  <div className="approach-num-icon">0{idx + 1}</div>
-                  <h3>{approach.title}</h3>
-                  <p className="mt-2">{approach.desc}</p>
-                </div>
-              ))}
-            </div>
+      <section className="team-section section-padding bg-cream">
+        <div className="container-custom">
+          <div className="section-header text-center">
+            <span className="badge">OPERATIONS</span>
+            <h2>Our Working Approach</h2>
+            <div className="gold-line margin-center" />
+            <p className="section-subtitle mt-2">
+              How GAF translates its sustainable mission into grassroot activities across Northeast India.
+            </p>
           </div>
-        </section>
-      )}
+
+          <div className="grid-responsive team-grid mt-5">
+            {workingApproaches.map((approach) => (
+              <div className="glass-card value-card text-center" key={approach.title}>
+                <div className="approach-num-icon">{approach.num}</div>
+                <h3>{approach.title}</h3>
+                <p className="mt-2" style={{ fontSize: '0.92rem', lineHeight: '1.6' }}>{approach.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <style>{`
         /* LEGACY STORY */
@@ -246,10 +296,6 @@ const AboutUs = () => {
           }
         }
 
-        .legacy-text-col .content-html p {
-          margin-top: 1rem;
-        }
-
         .legacy-card-visual {
           padding: 3.5rem 2rem;
           text-align: center;
@@ -260,7 +306,7 @@ const AboutUs = () => {
           flex-direction: column;
           align-items: center;
           justify-content: center;
-          background: linear-gradient(to bottom, rgba(17, 63, 39, 0.85), rgba(17, 63, 39, 0.95)), 
+          background: linear-gradient(to bottom, rgba(26, 45, 66, 0.85), rgba(26, 45, 66, 0.95)), 
                       url('https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80') center/cover no-repeat !important;
         }
 
@@ -301,12 +347,11 @@ const AboutUs = () => {
           font-size: 0.95rem;
           line-height: 1.6;
           color: var(--muted);
-          margin-top: 1rem;
         }
 
         .statutory-badge-box {
           background-color: var(--sand);
-          border: 1px solid rgba(17, 63, 39, 0.08);
+          border: 1px solid #eaeaea;
           border-radius: var(--radius-md);
           padding: 2rem;
           text-align: center;
@@ -327,8 +372,15 @@ const AboutUs = () => {
 
         .statutory-divider {
           height: 1px;
-          background-color: rgba(17, 63, 39, 0.08);
+          background-color: #eaeaea;
           margin: 1.5rem 0;
+        }
+
+        .sub-bar-fill {
+          height: 100%;
+          background: linear-gradient(90deg, var(--primary) 0%, var(--gold) 100%);
+          border-radius: 3px;
+          animation: growWidth 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
         .statutory-meta-row {
@@ -378,15 +430,15 @@ const AboutUs = () => {
 
         .dir-bg {
           font-size: 0.9rem;
-          line-height: 1.65;
+          line-height: 1.55;
           color: var(--muted);
         }
 
         .dir-address {
           font-size: 0.8rem;
-          line-height: 1.5;
+          line-height: 1.4;
           color: var(--muted);
-          border-top: 1px solid rgba(17, 63, 39, 0.08);
+          border-top: 1px solid #eaeaea;
           padding-top: 12px;
         }
 
@@ -437,7 +489,6 @@ const AboutUs = () => {
           display: flex;
           flex-direction: column;
           gap: 10px;
-          padding-left: 0;
         }
 
         .bullet-checks-list li {
@@ -457,11 +508,6 @@ const AboutUs = () => {
           background-color: var(--gold);
           mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E") no-repeat center / contain;
           -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'%3E%3C/polyline%3E%3C/svg%3E") no-repeat center / contain;
-        }
-
-        .academy-main-details-col .content-html p {
-          margin-top: 1rem;
-          color: var(--muted);
         }
 
         .academy-contributions-box {

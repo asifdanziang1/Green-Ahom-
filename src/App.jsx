@@ -14,19 +14,7 @@ import Partners from './pages/Partners';
 import Volunteer from './pages/Volunteer';
 import Donate from './pages/Donate';
 import Contact from './pages/Contact';
-import AdminLayout from './admin/AdminLayout';
-import Dashboard from './admin/pages/Dashboard';
-import SectionsManager from './admin/pages/SectionsManager';
-import SectionEditor from './admin/pages/SectionEditor';
-import ProgramsManager from './admin/pages/ProgramsManager';
-import BlogManager from './admin/pages/BlogManager';
-import ArticlesManager from './admin/pages/ArticlesManager';
-import LegalPagesManager from './admin/pages/LegalPagesManager';
-import MediaLibrary from './admin/pages/MediaLibrary';
-import PaymentsManager from './admin/pages/PaymentsManager';
-import SeoManager from './admin/pages/SeoManager';
-import UsersManager from './admin/pages/UsersManager';
-import SettingsManager from './admin/pages/SettingsManager';
+import Admin from './pages/Admin';
 
 function App() {
   const location = useLocation();
@@ -49,20 +37,8 @@ function App() {
           <Route path="/partners" element={<Partners />} />
           <Route path="/volunteer" element={<Volunteer />} />
           <Route path="/donate" element={<Donate />} />
-          <Route path="/admin" element={<AdminLayout />}>
-            <Route index element={<Dashboard />} />
-            <Route path="sections" element={<SectionsManager />} />
-            <Route path="sections/:pageId" element={<SectionEditor />} />
-            <Route path="programs" element={<ProgramsManager />} />
-            <Route path="blog" element={<BlogManager />} />
-            <Route path="articles" element={<ArticlesManager />} />
-            <Route path="legal" element={<LegalPagesManager />} />
-            <Route path="media" element={<MediaLibrary />} />
-            <Route path="payments" element={<PaymentsManager />} />
-            <Route path="seo" element={<SeoManager />} />
-            <Route path="users" element={<UsersManager />} />
-            <Route path="settings" element={<SettingsManager />} />
-          </Route>
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/admin" element={<Admin />} />
         </Routes>
       </main>
 

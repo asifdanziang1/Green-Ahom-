@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useContent } from '../admin/hooks/useContent';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -12,11 +11,28 @@ const Contact = () => {
   const [formStatus, setFormStatus] = useState('');
   const [activeFaq, setActiveFaq] = useState(null);
 
-  const { getSection, isLoading } = useContent('contact');
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const faqs = [
+    {
+      q: 'Are my donations eligible for income tax exemptions?',
+      a: 'Yes, absolutely. Green Ahom Federation is a registered public NPO with valid Section 80G credentials. Indian tax payers are eligible to claim a 50% tax deduction on all donations. Your tax receipt is generated instantly upon payment.'
+    },
+    {
+      q: 'How are sowed saplings tracked and monitored?',
+      a: 'We map every sapling with geographical coordination logs (GIS tags). Our Field Rangers conduct physical growth audits twice a year. Donors receive bi-annual growth and survival index reports directly mapped to their sponsored corridor.'
+    },
+    {
+      q: 'Can I volunteer if I reside outside of Assam?',
+      a: 'Yes! We have a highly active Remote Squad under our Digital Catalyst role. You can assist with software development, GIS mapping, writing, or promoting ecological awareness online from anywhere in the world.'
+    },
+    {
+      q: 'Does GAF support physical corporate CSR site visits?',
+      a: 'Absolutely. For our Platinum and Diamond corporate patrons, we coordinate guided site visits to our Majuli som plantations and Tezpur nursery banks to witness audited CSR utilization firsthand.'
+    }
+  ];
 
   const handlePhoneChange = (e) => {
     const val = e.target.value.replace(/\D/g, '');
@@ -90,37 +106,28 @@ const Contact = () => {
     }
   };
 
-  if (isLoading) return null;
-
-  const heroSection = getSection('contact_hero');
-  const infoSection = getSection('contact_info');
-  const faqSection = getSection('contact_faqs');
-
   return (
     <div className="contact-page animate-fade-scale">
       {/* 1. HERO HEADER */}
-      {heroSection && (
-        <section className="hero-section-premium">
-          <div className="container-custom">
-            <span className="badge badge-gold">{heroSection.badge}</span>
-            <h1 className="text-white mt-3">{heroSection.heading}</h1>
-            <p className="hero-subtitle-premium">
-              {heroSection.subtitle}
-            </p>
-          </div>
-        </section>
-      )}
+      <section className="hero-section-premium">
+        <div className="container-custom">
+          <span className="badge badge-gold">GET IN TOUCH</span>
+          <h1 className="text-white mt-3">Connect With GAF</h1>
+          <p className="contact-hero-subtitle text-white-muted" style={{ maxWidth: '650px', margin: '1.5rem auto 0 auto', fontSize: '1.15rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
+            Have questions about CSR sponsorships, volunteering logistics, or our biological seeds vault? Drop us a message or visit our Secretariat.
+          </p>
+        </div>
+      </section>
 
       {/* 2. CONTACT DETAILS & GLASS FORM */}
-      {infoSection && (
-        <section className="contact-main-section section-padding">
-          <div className="container-custom contact-wrapper-grid">
-            
-            {/* Left Column: Form */}
-            <div className="contact-form-col">
-              <div className="glass-card contact-form-card-inner">
-                <h3>{infoSection.formHeading}</h3>
-                <p className="form-subtext">{infoSection.formSubtitle}</p>
+      <section className="contact-main-section section-padding">
+        <div className="container-custom contact-wrapper-grid">
+          
+          {/* Left Column: Form */}
+          <div className="contact-form-col">
+            <div className="glass-card contact-form-card-inner">
+              <h3>Send a Message</h3>
+              <p className="form-subtext">We monitor inboxes 24/7 and reply to standard inquiries in 24 hours.</p>
               
               {formStatus === 'success' ? (
                 <div className="form-success-alert animate-fade-scale">
@@ -208,100 +215,106 @@ const Contact = () => {
             </div>
           </div>
 
-            {/* Right Column: Physical Details & Map */}
-            <div className="contact-details-col">
-              <div className="contact-details-header">
-                <span className="badge">{infoSection.officeBadge}</span>
-                <h2>{infoSection.officeHeading}</h2>
-                <div className="gold-line" />
-              </div>
+          {/* Right Column: Physical Details & Map */}
+          <div className="contact-details-col">
+            <div className="section-header text-center">
+              <span className="badge">OFFICES</span>
+              <h2>GAF Secretariat</h2>
+              <div className="gold-line margin-center" />
+            </div>
 
-              <div className="office-details-box mt-4">
-                {(infoSection.locations || []).map((loc, idx) => (
-                  <div className="detail-item-iconic" key={idx}>
-                    <span className="d-icon">{renderContactIcon(loc.iconName)}</span>
-                    <div className="d-text">
-                      <strong>{loc.title}</strong>
-                      <p>{loc.text}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* INTERACTIVE VECTOR SVG MAP */}
-              <div className="glass-card interactive-vector-map-box mt-4">
-                <h4>Assam Campaign Hubs</h4>
-                <div className="map-svg-container mt-3">
-                  <svg viewBox="0 0 400 150" className="assam-vector-map">
-                    <path 
-                      d="M 50,70 Q 100,50 150,60 T 250,75 T 320,60 T 380,45 Q 385,85 360,95 T 280,85 T 180,95 T 100,80 Z" 
-                      fill="none" 
-                      stroke="rgba(17, 63, 39, 0.12)" 
-                      strokeWidth="3"
-                      strokeDasharray="4 4"
-                    />
-                    
-                    <circle cx="80" cy="72" r="6" fill="var(--primary)" className="map-node-pulse" />
-                    <text x="75" y="90" className="map-lbl-node">Guwahati</text>
-                    
-                    <circle cx="180" cy="62" r="6" fill="#d95f43" className="map-node-pulse" />
-                    <text x="175" y="50" className="map-lbl-node">Tezpur</text>
-                    
-                    <circle cx="280" cy="74" r="6" fill="var(--primary)" className="map-node-pulse" />
-                    <text x="275" y="92" className="map-lbl-node">Majuli</text>
-                    
-                    <circle cx="320" cy="66" r="6" fill="var(--primary)" className="map-node-pulse" />
-                    <text x="315" y="52" className="map-lbl-node">Jorhat</text>
-
-                    <circle cx="110" cy="115" r="6" fill="#d95f43" className="map-node-pulse" />
-                    <text x="100" y="132" className="map-lbl-node" style={{ fontWeight: '800' }}>Hailakandi (Ideal Academy)</text>
-                  </svg>
+            <div className="office-details-box mt-4">
+              <div className="detail-item-iconic">
+                <span className="d-icon">{renderContactIcon('map')}</span>
+                <div className="d-text">
+                  <strong>Headquarters Secretariat</strong>
+                  <p>GAF Secretariat, Zoo Road Tiniali, Guwahati, Assam - 781024</p>
                 </div>
-                <p className="map-caption">Terracotta nodes represent educational and primary hubs. Green nodes indicate active conservation &amp; relief zones.</p>
+              </div>
+
+              <div className="detail-item-iconic">
+                <span className="d-icon">{renderContactIcon('mail')}</span>
+                <div className="d-text">
+                  <strong>Direct Email Support</strong>
+                  <p>info@greenahom.org | csr@greenahom.org</p>
+                </div>
+              </div>
+
+              <div className="detail-item-iconic">
+                <span className="d-icon">{renderContactIcon('phone')}</span>
+                <div className="d-text">
+                  <strong>Help Desk Hotlines</strong>
+                  <p>+91 (0361) 2938-1200 | +91 98450-AHOM-12</p>
+                </div>
               </div>
             </div>
 
+            {/* INTERACTIVE VECTOR SVG MAP */}
+            <div className="glass-card interactive-vector-map-box mt-4">
+              <h4>Assam Campaign Hubs</h4>
+              <div className="map-svg-container mt-3">
+                <svg viewBox="0 0 400 150" className="assam-vector-map">
+                  <path 
+                    d="M 50,70 Q 100,50 150,60 T 250,75 T 320,60 T 380,45 Q 385,85 360,95 T 280,85 T 180,95 T 100,80 Z" 
+                    fill="none" 
+                    stroke="rgba(26, 45, 66, 0.12)" 
+                    strokeWidth="3"
+                    strokeDasharray="4 4"
+                  />
+                  
+                  <circle cx="80" cy="72" r="6" fill="#344e68" className="map-node-pulse" />
+                  <text x="75" y="90" className="map-lbl-node">Guwahati</text>
+                  
+                  <circle cx="180" cy="62" r="6" fill="#d95f43" className="map-node-pulse" />
+                  <text x="175" y="50" className="map-lbl-node">Tezpur</text>
+                  
+                  <circle cx="280" cy="74" r="6" fill="#344e68" className="map-node-pulse" />
+                  <text x="275" y="92" className="map-lbl-node">Majuli</text>
+                  
+                  <circle cx="320" cy="66" r="6" fill="#344e68" className="map-node-pulse" />
+                  <text x="315" y="52" className="map-lbl-node">Jorhat</text>
+
+                  <circle cx="110" cy="115" r="6" fill="#d95f43" className="map-node-pulse" />
+                  <text x="100" y="132" className="map-lbl-node" style={{ fontWeight: '800' }}>Hailakandi (Ideal Academy)</text>
+                </svg>
+              </div>
+              <p className="map-caption">Terracotta nodes represent educational and primary hubs. Green nodes indicate active conservation &amp; relief zones.</p>
+            </div>
           </div>
-        </section>
-      )}
+
+        </div>
+      </section>
 
       {/* 3. DYNAMIC FAQ ACCORDION */}
-      {faqSection && (
-        <section className="faq-section section-padding bg-cream">
-          <div className="container-custom">
-            <div className="section-header text-center">
-              <span className="badge">{faqSection.badge}</span>
-              <h2>{faqSection.heading}</h2>
-              <div className="gold-line margin-center" />
-              <p className="section-subtitle mt-2">
-                {faqSection.subtitle}
-              </p>
-            </div>
+      <section className="faq-section section-padding bg-cream">
+        <div className="container-custom">
+          <div className="section-header text-center">
+            <span className="badge">FAQS</span>
+            <h2>Common Inquiries Answered</h2>
+            <div className="gold-line margin-center" />
+          </div>
 
-            <div className="faq-accordion-box mt-5">
-              {(faqSection.items || []).map((faq, index) => (
-                <div 
-                  className={`faq-item glass-card ${activeFaq === index ? 'active' : ''}`} 
-                  key={index}
-                >
-                  <button 
-                    className="faq-question-btn" 
-                    onClick={() => toggleFaq(index)}
-                  >
-                    <span>{faq.q}</span>
-                    <span className="faq-toggle-icon">
-                      {activeFaq === index ? '−' : '+'}
-                    </span>
-                  </button>
-                  <div className="faq-answer-pane">
+          <div className="faq-accordion-container mt-5">
+            {faqs.map((faq, idx) => (
+              <div 
+                className={`glass-card faq-card-accordion ${activeFaq === idx ? 'open' : ''}`}
+                onClick={() => toggleFaq(idx)}
+                key={idx}
+              >
+                <div className="faq-header-trigger">
+                  <h4>{faq.q}</h4>
+                  <span className="faq-arrow">{activeFaq === idx ? '−' : '+'}</span>
+                </div>
+                {activeFaq === idx && (
+                  <div className="faq-body-content animate-fade-scale">
                     <p>{faq.a}</p>
                   </div>
-                </div>
-              ))}
-            </div>
+                )}
+              </div>
+            ))}
           </div>
-        </section>
-      )}
+        </div>
+      </section>
 
       <style>{`
 
@@ -347,25 +360,14 @@ const Contact = () => {
           width: 60px;
           height: 60px;
           border-radius: 50%;
-          background-color: rgba(17, 63, 39, 0.08);
-          border: 1px solid rgba(17, 63, 39, 0.2);
+          background-color: rgba(52, 78, 104, 0.08);
+          border: 1px solid rgba(52, 78, 104, 0.2);
           margin-bottom: 1rem;
         }
 
         .form-success-alert h4 {
           color: var(--teal);
           margin-bottom: 8px;
-        }
-
-        .contact-details-header {
-          margin-bottom: 30px;
-        }
-        .contact-details-header h2 {
-          color: var(--primary);
-        }
-        .contact-details-header .gold-line {
-          margin-left: 0 !important;
-          margin-right: auto !important;
         }
 
         /* PHYSICAL DETAILS */
@@ -404,7 +406,7 @@ const Contact = () => {
           font-size: 0.9rem;
           color: var(--muted);
           margin-top: 4px;
-          line-height: 1.6;
+          line-height: 1.4;
         }
 
         /* VECTOR MAP STYLE */
@@ -422,7 +424,7 @@ const Contact = () => {
         .map-svg-container {
           background-color: #faf9f6;
           border-radius: var(--radius-sm);
-          border: 1px solid rgba(17, 63, 39, 0.08);
+          border: 1px solid #eaeaea;
           padding: 10px;
         }
 
@@ -456,102 +458,68 @@ const Contact = () => {
         }
 
         /* FAQ ACCORDION */
-        .faq-accordion-box {
+        .faq-accordion-container {
           max-width: 800px;
           margin: 0 auto;
           display: flex;
           flex-direction: column;
           gap: 16px;
-          width: 100%;
         }
 
-        .faq-item {
-          border: 1px solid rgba(17, 63, 39, 0.08);
-          border-radius: var(--radius-md);
-          overflow: hidden;
-          background: var(--white);
+        .faq-card-accordion {
+          padding: 1.5rem 1.8rem;
+          background-color: var(--white);
+          cursor: pointer;
           transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
           border-left: 4px solid transparent;
         }
 
-        .faq-item:hover {
-          border-color: rgba(17, 63, 39, 0.15);
-          transform: translateY(-1px);
-          box-shadow: var(--shadow-sm);
+        .faq-card-accordion:hover {
+          border-color: var(--gold);
+          border-left-color: var(--gold-hover);
         }
 
-        .faq-item.active {
-          border-color: rgba(17, 63, 39, 0.15);
+        .faq-card-accordion.open {
+          background-color: var(--cream);
+          border-color: var(--border-flat);
           border-left: 4px solid var(--gold);
           box-shadow: var(--shadow-md);
-          background: var(--white);
         }
 
-        .faq-question-btn {
+        .faq-header-trigger {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          width: 100%;
-          padding: 1.5rem 1.8rem;
-          background: transparent;
-          border: none;
-          outline: none;
-          cursor: pointer;
-          text-align: left;
-          font-family: var(--font-header) !important;
-          font-size: 1.1rem;
+        }
+
+        .faq-header-trigger h4 {
+          margin: 0;
+          font-size: 1.05rem;
           font-weight: 700;
           color: var(--primary);
-          transition: all 0.2s ease;
-          gap: 16px;
         }
 
-        .faq-question-btn:hover {
-          color: var(--gold);
-        }
-
-        .faq-question-btn span:first-child {
-          line-height: 1.4;
-          flex-grow: 1;
-        }
-
-        .faq-toggle-icon {
-          font-family: var(--font-header) !important;
-          font-size: 1.4rem;
-          font-weight: 600;
+        .faq-arrow {
+          font-size: 1.5rem;
+          font-weight: bold;
           color: var(--muted);
           line-height: 1;
-          transition: transform 0.3s ease, color 0.3s ease;
-          flex-shrink: 0;
         }
 
-        .faq-item.active .faq-toggle-icon {
-          color: var(--gold);
-          transform: rotate(180deg);
+        .faq-card-accordion.open .faq-arrow {
+          color: var(--teal);
         }
 
-        .faq-answer-pane {
-          max-height: 0;
-          overflow: hidden;
-          opacity: 0;
-          transition: max-height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
-          padding: 0 1.8rem;
+        .faq-body-content {
+          border-top: 1px solid #eaeaea;
+          padding-top: 1rem;
+          margin-top: 1rem;
         }
 
-        .faq-item.active .faq-answer-pane {
-          max-height: 500px;
-          opacity: 1;
-          padding: 0 1.8rem 1.6rem 1.8rem;
-          border-top: 1px solid rgba(17, 63, 39, 0.08);
-          padding-top: 1.2rem;
-          margin-top: -0.2rem;
-        }
-
-        .faq-answer-pane p {
-          font-family: var(--font-body);
+        .faq-body-content p {
           font-size: 0.95rem;
           color: var(--muted);
-          line-height: 1.65;
+          line-height: 1.6;
           margin: 0;
         }
       `}</style>

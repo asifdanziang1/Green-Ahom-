@@ -293,22 +293,21 @@ const Navigation = () => {
       {/* STYLES SCOPED LOCALLY TO MINIMIZE DEPENDENCIES */}
       <style>{`
         .fixed-nav {
-          position: sticky;
+          position: fixed;
           top: 0;
+          left: 0;
+          width: 100%;
           z-index: 1000;
-          height: 68px;
-          display: flex;
-          align-items: center;
-          background: rgba(255, 255, 255, 0.95);
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          border-bottom: 1px solid rgba(17, 63, 39, 0.05);
+          padding: 1.2rem 0;
+          background: var(--white);
+          border-bottom: 1px solid #eaeaea;
           transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
         
         .nav-scrolled {
-          background: rgba(255, 255, 255, 0.98);
-          border-bottom: 1px solid rgba(17, 63, 39, 0.08);
+          padding: 0.8rem 0;
+          background: var(--white);
+          border-bottom: 1px solid #eaeaea;
           box-shadow: var(--shadow-sm);
         }
 
@@ -318,8 +317,8 @@ const Navigation = () => {
           padding: 0 1.5rem;
           display: flex;
           align-items: center;
+          justify-content: space-between;
           width: 100%;
-          gap: 40px;
         }
 
         .nav-logo {
@@ -330,8 +329,8 @@ const Navigation = () => {
         }
 
         .logo-img {
-          height: 58px;
-          max-width: 280px;
+          height: 48px;
+          max-width: 240px;
           width: auto;
           object-fit: contain;
           display: block;
@@ -339,23 +338,23 @@ const Navigation = () => {
         }
 
         .nav-scrolled .logo-img {
-          height: 46px;
+          height: 38px;
         }
 
         @media (max-width: 768px) {
           .logo-img {
-            height: 46px;
-            max-width: 190px;
+            height: 38px;
+            max-width: 170px;
           }
           .nav-scrolled .logo-img {
-            height: 40px;
+            height: 34px;
           }
         }
 
         .nav-links {
           display: flex;
           align-items: center;
-          gap: 32px;
+          gap: clamp(15px, 2.2vw, 36px);
         }
 
         @media (max-width: 1024px) {
@@ -370,13 +369,13 @@ const Navigation = () => {
 
         .nav-link-item {
           font-family: var(--font-header);
-          font-weight: 600;
-          font-size: 0.9rem;
+          font-weight: 700;
+          font-size: 0.82rem;
           color: var(--primary-light);
           position: relative;
           padding: 10px 0;
-          letter-spacing: 0.3px;
-          text-transform: capitalize;
+          letter-spacing: 0.6px;
+          text-transform: uppercase;
           transition: var(--transition-fast);
         }
 
@@ -424,7 +423,7 @@ const Navigation = () => {
           left: 0;
           width: 100%;
           background: var(--cream);
-          border-bottom: 1px solid rgba(17, 63, 39, 0.08);
+          border-bottom: 1px solid #eaeaea;
           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
           padding: 3.5rem 0;
           z-index: 99;
@@ -491,7 +490,7 @@ const Navigation = () => {
           letter-spacing: 1.2px;
           text-transform: uppercase;
           margin-bottom: 1.2rem;
-          border-bottom: 1px solid rgba(17, 63, 39, 0.08);
+          border-bottom: 1px solid #eaeaea;
           padding-bottom: 6px;
         }
 
@@ -518,7 +517,7 @@ const Navigation = () => {
 
         /* FEATURED OUTLINE BOX */
         .featured-border-box {
-          border: 1px solid rgba(17, 63, 39, 0.08);
+          border: 1px solid #eaeaea;
           border-radius: 4px;
           padding: 1.5rem;
           background: var(--white);
@@ -579,17 +578,11 @@ const Navigation = () => {
           align-items: center;
           gap: 16px;
           z-index: 1001;
-          margin-left: auto;
         }
 
         .donate-btn {
-          padding: 0.7rem 1.8rem;
+          padding: 0.65rem 1.4rem;
           font-size: 0.82rem;
-          display: inline-flex;
-          align-items: center;
-          gap: 6px;
-          text-transform: uppercase;
-          font-weight: 700;
         }
 
         @media (max-width: 500px) {

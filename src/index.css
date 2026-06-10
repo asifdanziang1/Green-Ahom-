@@ -2,49 +2,40 @@
 
 /* --- CUSTOM DESIGN SYSTEM VARIABLES --- */
 :root {
-  /* Premium Deep Forest Emerald & Terracotta Orange Palette */
-  --primary: #113f27;       /* Deep Forest Emerald - Secondary Brand color */
-  --primary-light: #1b4e33; /* Slightly lighter forest green */
-  --primary-rgb: 17, 63, 39;
-  --gold: #d95f43;          /* Warm Terracotta Orange matching brand logo */
+  --primary: #1a2d42;
+  --primary-light: #253e59;
+  --primary-rgb: 26, 45, 66;
+  --gold: #d95f43;          /* Warm Terracotta Rust exactly matching logo */
   --gold-hover: #c24d33;    /* Hover terracotta shade */
   --gold-rgb: 217, 95, 67;
-  --teal: #1a3b2b;          /* Deep Sage Green */
-  --teal-light: #234a36;    /* Medium Sage Green */
-  --teal-rgb: 26, 59, 43;
-  --sand: #f3f6f4;          /* Soft Sage Off-white backdrop replacing cold slate grey */
-  --cream: #ffffff;         /* Pure white surfaces */
+  --teal: #344e68;
+  --teal-light: #4b6a8a;
+  --teal-rgb: 52, 78, 104;
+  --sand: #f9f8f6;          /* Premium soft sand backdrop */
+  --cream: #fffdf9;         /* Premium pure cream backdrop */
   --white: #ffffff;
-  --dark: #07150e;          /* Deepest forest green-black for rich contrast */
-  --muted: #4a5d52;         /* Muted Sage text color for premium readability */
-  --border-flat: 1px solid rgba(17, 63, 39, 0.1);
-  --border-glass: 1px solid rgba(17, 63, 39, 0.08);
+  --dark: #111816;
+  --muted: #2c302e;         /* Premium muted dark charcoal paragraphs */
+  --border-flat: 1px solid #eaeaea;
+  --border-glass: 1px solid #eaeaea;
   --border-glass-light: rgba(255, 255, 255, 0.15);
-  --bg-glass: rgba(255, 255, 255, 0.85);
-  --bg-glass-dark: rgba(7, 21, 14, 0.95);
-  --shadow-sm: 0 1px 2px 0 rgba(7, 21, 14, 0.04);
-  --shadow-md: 0 4px 6px -1px rgba(7, 21, 14, 0.04), 0 2px 4px -2px rgba(7, 21, 14, 0.04);
-  --shadow-lg: 0 10px 15px -3px rgba(7, 21, 14, 0.04), 0 4px 6px -4px rgba(7, 21, 14, 0.04);
-  --shadow-xl: 0 20px 25px -5px rgba(7, 21, 14, 0.04), 0 8px 10px -6px rgba(7, 21, 14, 0.04);
-  --radius-sm: 8px;         /* Crisp, modern corners */
-  --radius-md: 12px;        /* Standard card radius */
-  --radius-lg: 16px;        /* Medium container radius */
-  --radius-xl: 24px;        /* Beautiful round corners for main overlays */
-  --font-header: 'Plus Jakarta Sans', sans-serif; /* Switched to Plus Jakarta for modern feel */
-  --font-subheader: 'Plus Jakarta Sans', sans-serif; 
+  --bg-glass: rgba(255, 255, 255, 0.98);
+  --bg-glass-dark: rgba(17, 24, 22, 0.98);
+  --shadow-sm: 0 2px 10px rgba(26, 45, 66, 0.03);
+  --shadow-md: 0 12px 32px rgba(26, 45, 66, 0.05);
+  --shadow-lg: 0 22px 48px rgba(26, 45, 66, 0.08);
+  --shadow-gold: none;
+  --radius-sm: 6px;         /* Softened button/badge radius */
+  --radius-md: 10px;        /* Softened standard card layout corners */
+  --radius-lg: 14px;        /* Softer medium card container corners */
+  --radius-xl: 20px;        /* Beautiful round corners for main overlays */
+  --font-header: 'Cinzel', serif; /* Primary headings use flared serif for high credibility */
+  --font-subheader: 'Plus Jakarta Sans', sans-serif; /* Subheadings use highly modern sans-serif */
   --font-body: 'Inter', sans-serif;
-  --font-logo: 'Cinzel', serif; /* Preserve Cinzel ONLY for the logo brand */
+  --font-logo: 'Cinzel', serif;
   --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-normal: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   --transition-slow: 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-
-  /* Spacing Scale */
-  --space-xs: 8px;
-  --space-sm: 16px;
-  --space-md: 24px;
-  --space-lg: 32px;
-  --space-xl: 48px;
-  --space-2xl: 64px;
 }
 
 /* --- RESET & BASE STYLES --- */
@@ -77,7 +68,7 @@ body {
   background: var(--sand);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(17, 63, 39, 0.15);
+  background: rgba(26, 45, 66, 0.15);
   border-radius: 8px;
   border: 2px solid var(--sand);
 }
@@ -86,55 +77,53 @@ body {
 }
 
 /* --- TYPOGRAPHY --- */
-h1, h2, h3, h4, h5, h6 {
+h1, h2 {
   font-family: var(--font-header);
+  font-weight: 700;
+  line-height: 1.25;
   color: var(--primary);
-  margin-bottom: 0;
+  letter-spacing: 0.2px;
+}
+
+h3, h4, h5, h6 {
+  font-family: var(--font-subheader);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--primary);
+  letter-spacing: -0.1px;
 }
 
 h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  font-size: clamp(2.4rem, 5vw, 4rem);
+  font-weight: 700;
 }
 
 h2 {
-  font-size: clamp(2rem, 4vw, 2.75rem);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  position: relative;
 }
 
 h3 {
-  font-size: clamp(1.4rem, 2.5vw, 1.75rem);
-  font-weight: 600;
-  line-height: 1.3;
+  font-size: clamp(1.3rem, 2.5vw, 1.65rem);
 }
 
 h4 {
   font-size: 1.25rem;
-  font-weight: 600;
-  line-height: 1.4;
 }
 
 h5 {
   font-size: 1.1rem;
-  font-weight: 600;
 }
 
 h6 {
   font-size: 0.95rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
 }
 
 p {
-  font-size: 1.05rem;
+  font-size: 0.96rem;
   color: var(--muted);
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.65;
 }
 
 a {
@@ -153,7 +142,7 @@ a {
 }
 
 .logo-brand-main {
-  font-family: var(--font-logo);
+  font-family: var(--font-header);
   font-weight: 800;
   font-size: 1.25rem;
   letter-spacing: 2px;
@@ -162,7 +151,7 @@ a {
 }
 
 .logo-brand-sub {
-  font-family: var(--font-logo);
+  font-family: var(--font-header);
   font-weight: 700;
   font-size: 0.68rem;
   letter-spacing: 5.8px;
@@ -202,29 +191,27 @@ a {
 
 .glass-card {
   background: var(--white);
-  border: var(--border-glass);
-  box-shadow: var(--shadow-sm);
+  border: var(--border-flat);
+  box-shadow: var(--shadow-md);
   border-radius: var(--radius-md);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
   overflow: hidden;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
 }
 
 .glass-card:hover {
   transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: rgba(17, 63, 39, 0.12);
+  box-shadow: var(--shadow-lg), 0 8px 30px rgba(217, 95, 67, 0.08);
+  border-color: rgba(217, 95, 67, 0.35);
 }
 
 .section-padding {
-  padding: clamp(4rem, 8vw, 6.5rem) 0;
+  padding: clamp(5rem, 8vw, 8rem) 0;
 }
 
 .container-custom {
-  max-width: 1280px;
+  max-width: 1240px;
   margin: 0 auto;
-  padding: 0 clamp(1.5rem, 5vw, 2rem);
+  padding: 0 1.5rem;
   width: 100%;
 }
 
@@ -233,27 +220,32 @@ a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.85rem 1.8rem;
-  font-family: var(--font-header);
+  padding: 0.85rem 2.2rem;
+  font-family: var(--font-body);
   font-weight: 600;
-  font-size: 0.95rem;
-  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  border-radius: var(--radius-sm); /* Crisp 4px corner */
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   border: 1px solid transparent;
-  gap: 8px;
+  gap: 10px;
   position: relative;
   overflow: hidden;
-  line-height: 1.2;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
 }
 
 .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--shadow-md);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(26, 45, 66, 0.1);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 8px 20px rgba(26, 45, 66, 0.2);
 }
 
 .btn:active {
-  transform: translateY(0);
+  transform: translateY(-0.5px) scale(0.98);
 }
 
 .btn-primary {
@@ -338,31 +330,31 @@ a {
   padding: 0.9rem 1.2rem;
   font-family: var(--font-body);
   font-size: 0.92rem;
-  border: 1px solid rgba(17, 63, 39, 0.12);
+  border: 1px solid rgba(26, 45, 66, 0.12);
   background-color: var(--cream);
   border-radius: var(--radius-sm);
   color: var(--dark);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  box-shadow: inset 0 1px 2px rgba(17, 63, 39, 0.02);
+  box-shadow: inset 0 1px 2px rgba(26, 45, 66, 0.02);
 }
 
 .form-control:focus {
   outline: none;
   border-color: var(--gold);
   background-color: var(--white);
-  box-shadow: 0 0 0 3px rgba(217, 95, 67, 0.1), inset 0 1px 2px rgba(17, 63, 39, 0.02);
+  box-shadow: 0 0 0 3px rgba(217, 95, 67, 0.1), inset 0 1px 2px rgba(26, 45, 66, 0.02);
 }
 
 /* --- ASYMMETRIC GRID & DECORATIONS --- */
 .gradient-overlay {
-  background: linear-gradient(135deg, rgba(17, 63, 39, 0.95) 0%, rgba(26, 59, 43, 0.9) 100%);
+  background: linear-gradient(135deg, rgba(26, 45, 66, 0.95) 0%, rgba(52, 78, 104, 0.9) 100%);
 }
 
 .gold-line {
   height: 3px;
   width: 48px;
   background: linear-gradient(90deg, var(--gold) 0%, var(--gold-hover) 100%);
-  margin-top: 8px;
+  margin-top: 14px;
   border-radius: 2px;
 }
 
@@ -379,7 +371,6 @@ a {
   letter-spacing: 1px;
   width: fit-content;
   border: 1px solid rgba(217, 95, 67, 0.15);
-  margin-bottom: 10px;
 }
 
 /* --- KEYFRAME ANIMATIONS --- */
@@ -438,15 +429,10 @@ a {
   margin-right: auto !important;
 }
 
-/* --- GLOBAL PREMIUM SECTION DIVIDER BORDERS --- */
+/* --- PREMIUM GLOBAL SECTION DIVIDER BORDERS --- */
 section {
-  border-bottom: 1px solid rgba(17, 63, 39, 0.08);
-  position: relative;
-}
-
-section + section.bg-primary, 
-section + .bg-dark {
-  border-top: none;
+  border-bottom: 1px solid #e2dfd5 !important;
+  position: relative !important;
 }
 
 /* Adaptive Dark Backdrops Override */
@@ -455,26 +441,20 @@ section.bg-dark,
 .bg-primary, 
 .bg-dark,
 .highlights-section {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
 }
 
 /* Double-Border Footer Prevention */
 main > :last-child,
 section:last-of-type {
-  border-bottom: none;
-}
-
-.heading-stack {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+  border-bottom: none !important;
 }
 
 /* --- GLOBAL PREMIUM HERO BACKGROUND --- */
 .hero-section-premium {
   position: relative;
-  padding: clamp(5rem, 8vw, 7rem) 0 clamp(4rem, 6vw, 6rem) 0;
-  background: linear-gradient(135deg, rgba(7, 21, 14, 0.98) 0%, rgba(17, 63, 39, 0.95) 100%),
+  padding: clamp(8rem, 12vw, 10rem) 0 clamp(4rem, 6vw, 6rem) 0;
+  background: linear-gradient(135deg, rgba(26, 45, 66, 0.98) 0%, rgba(37, 62, 89, 0.95) 100%),
               url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat !important;
   overflow: hidden;
   text-align: center;
@@ -511,92 +491,5 @@ section:last-of-type {
 .animate-grow-width {
   animation: growWidth 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
 }
-
-/* Global Section Subtitle and Form Row layout helpers */
-.section-subtitle {
-  font-family: var(--font-body) !important;
-  font-size: clamp(0.95rem, 1.5vw, 1.08rem) !important;
-  font-weight: 400 !important;
-  color: var(--muted) !important;
-  opacity: 0.85;
-  max-width: 65ch !important;
-  margin: 14px auto 0 auto !important;
-  line-height: 1.65 !important;
-  text-align: center;
-}
-
-.form-group-row {
-  display: flex;
-  gap: 1.25rem;
-  width: 100%;
-}
-
-.form-group-row > .form-group {
-  flex: 1;
-  min-width: 200px;
-}
-
-@media (max-width: 576px) {
-  .form-group-row {
-    flex-direction: column;
-    gap: 0;
-  }
-}
-
-/* Global Premium Hero Subtitle (Standardized for secondary pages) */
-.hero-subtitle-premium {
-  font-family: var(--font-body) !important;
-  font-size: clamp(1.05rem, 2vw, 1.18rem) !important;
-  line-height: 1.65 !important;
-  color: rgba(255, 255, 255, 0.8) !important;
-  max-width: 680px !important;
-  margin: 1.5rem auto 0 auto !important;
-  text-align: center !important;
-}
-
-/* Fallback standardization for elements inside glass-cards */
-.glass-card h3 {
-  font-size: clamp(1.15rem, 2vw, 1.35rem);
-  font-weight: 700;
-  line-height: 1.35;
-  color: var(--primary);
-}
-
-.glass-card p {
-  font-size: 0.92rem;
-  line-height: 1.6;
-  color: var(--muted);
-}
-
-/* Story quotes override to preserve blockquote paragraph sizing */
-.story-quote-body p {
-  font-size: 1rem !important;
-  line-height: 1.65 !important;
-}
-
-/* Standardized CTA Banner Sizing and Spacing */
-.cta-heading {
-  font-size: clamp(1.5rem, 3.2vw, 2.2rem) !important;
-  line-height: 1.3 !important;
-  font-weight: 700 !important;
-}
-
-.cta-subtitle {
-  font-size: clamp(0.95rem, 1.5vw, 1.05rem) !important;
-  line-height: 1.65 !important;
-  max-width: 600px !important;
-  margin: 16px auto 0 auto !important;
-}
-
-.bg-primary .cta-subtitle,
-.bg-dark .cta-subtitle {
-  color: rgba(255, 255, 255, 0.8) !important;
-}
-
-.cta-box-inner .cta-subtitle {
-  color: var(--muted) !important;
-}
-
-
 
 

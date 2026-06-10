@@ -1,22 +1,79 @@
 import React, { useState, useEffect } from 'react';
-import { useContent } from '../admin/hooks/useContent';
 
 const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState('ALL');
-  const { getSection, isLoading } = useContent('gallery');
+  const [galleryItems, setGalleryItems] = useState([]);
   const [activeLightboxItem, setActiveLightboxItem] = useState(null);
 
+  const defaultGallery = [
+    {
+      id: 'gal-1',
+      title: 'Majuli Canopy Plantation',
+      category: 'FORESTS',
+      location: 'Tezpur Embankments, Sonitpur',
+      desc: 'Local youth squads working alongside field rangers to plant deep-rooted native saplings to prevent Brahmaputra riverbed erosion.',
+      imageUrl: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80',
+      iconName: 'forest'
+    },
+    {
+      id: 'gal-2',
+      title: 'Muga Silk Thread Weaving',
+      category: 'ARTISANS',
+      location: 'Weaving Co-op, Majuli Island',
+      desc: 'Artisan leaders reeling organic gold-tinted silk yarn from Som-fed silkworms using modern solar-powered spinning kits.',
+      imageUrl: 'https://images.unsplash.com/photo-1598257006458-087169a1f08d?auto=format&fit=crop&w=800&q=80',
+      iconName: 'artisan'
+    },
+    {
+      id: 'gal-3',
+      title: 'Deepor Beel Bird Sanctuary',
+      category: 'WETLANDS',
+      location: 'Deepor Beel Wetland, Guwahati',
+      desc: 'Migratory waterfowl returning to local waters after GAF volunteers successfully cleared invasive green hyacinth stalks.',
+      imageUrl: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80',
+      iconName: 'wetland'
+    },
+    {
+      id: 'gal-4',
+      title: 'Botanical Seed Preservation Drive',
+      category: 'FORESTS',
+      location: 'GAF Organic Seed Nursery, Tezpur',
+      desc: 'Assamese botanists cataloguing endangered seed structures collected from deep tropical forests for germination vaulting.',
+      imageUrl: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=80',
+      iconName: 'seed'
+    },
+    {
+      id: 'gal-5',
+      title: 'Bamboo Craft Workshop',
+      category: 'ARTISANS',
+      location: 'Eco-Craft Secretariat, Jorhat',
+      desc: 'Young community craftsmen carving premium, sustainable bamboo housewares as part of our green livelihood campaign.',
+      imageUrl: 'https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?auto=format&fit=crop&w=800&q=80',
+      iconName: 'craft'
+    },
+    {
+      id: 'gal-6',
+      title: 'Youth Squad Training',
+      category: 'COMMUNITY',
+      location: 'GAF Field Camp, Tezpur',
+      desc: 'A vibrant group of 40+ local college volunteers holding endemic forest saplings before deploying on the riverbanks.',
+      imageUrl: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80',
+      iconName: 'community'
+    }
+  ];
+
   useEffect(() => {
+    const savedGallery = localStorage.getItem('gaf_gallery');
+    if (savedGallery) {
+      setGalleryItems(JSON.parse(savedGallery));
+    } else {
+      localStorage.setItem('gaf_gallery', JSON.stringify(defaultGallery));
+      setGalleryItems(defaultGallery);
+    }
     window.scrollTo(0, 0);
   }, []);
 
-  if (isLoading) return null;
-
-  const heroSection = getSection('gallery_hero');
-  const gridSection = getSection('gallery_grid');
-
-  const galleryItems = gridSection?.items || [];
-  const categories = gridSection?.categories || ['ALL'];
+  const categories = ['ALL', 'FORESTS', 'WETLANDS', 'ARTISANS', 'COMMUNITY'];
 
   const filteredItems = activeFilter === 'ALL'
     ? galleryItems
@@ -83,17 +140,15 @@ const Gallery = () => {
   return (
     <div className="gallery-page animate-fade-scale">
       {/* 1. HERO BANNER */}
-      {heroSection && (
-        <section className="hero-section-premium">
-          <div className="container-custom">
-            <span className="badge badge-gold">{heroSection.badge}</span>
-            <h1 className="text-white mt-3">{heroSection.heading}</h1>
-            <p className="hero-subtitle-premium">
-              {heroSection.subtitle}
-            </p>
-          </div>
-        </section>
-      )}
+      <section className="hero-section-premium">
+        <div className="container-custom">
+          <span className="badge badge-gold">VISUAL ARCHIVE</span>
+          <h1 className="text-white mt-3">GAF Field Gallery</h1>
+          <p className="gallery-hero-subtitle text-white-muted" style={{ maxWidth: '650px', margin: '1.5rem auto 0 auto', fontSize: '1.15rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
+            Explore photos capturing our community work, reforestation drives, weaving co-operatives, and returning wildlife in Assam.
+          </p>
+        </div>
+      </section>
 
       {/* 2. FILTER CONTROLS & PHOTO GRID */}
       <section className="gallery-grid-section section-padding">
@@ -121,7 +176,7 @@ const Gallery = () => {
                   onClick={() => openLightbox(item)}
                   style={{ animationDelay: `${idx * 0.05}s` }}
                 >
-                  <div className="gallery-item-image" style={{ background: `linear-gradient(to bottom, rgba(17, 63, 39, 0.35), rgba(17, 63, 39, 0.75)), url(${item.imageUrl}) center/cover no-repeat` }}>
+                  <div className="gallery-item-image" style={{ background: `linear-gradient(to bottom, rgba(26, 45, 66, 0.35), rgba(26, 45, 66, 0.75)), url(${item.imageUrl}) center/cover no-repeat` }}>
                     <div className="item-symbol-decor">{renderIcon(item.iconName, 56)}</div>
                     <div className="item-hover-metadata">
                       <span className="meta-category">{item.category}</span>
@@ -153,7 +208,7 @@ const Gallery = () => {
             <button className="lightbox-close-btn" onClick={closeLightbox}>×</button>
             
             <div className="lightbox-layout-grid">
-              <div className="lightbox-image-side" style={{ background: `linear-gradient(to bottom, rgba(17, 63, 39, 0.35), rgba(17, 63, 39, 0.75)), url(${activeLightboxItem.imageUrl}) center/cover no-repeat` }}>
+              <div className="lightbox-image-side" style={{ background: `linear-gradient(to bottom, rgba(26, 45, 66, 0.35), rgba(26, 45, 66, 0.75)), url(${activeLightboxItem.imageUrl}) center/cover no-repeat` }}>
                 <span className="lightbox-symbol">{renderIcon(activeLightboxItem.iconName, 100)}</span>
               </div>
               
@@ -272,7 +327,7 @@ const Gallery = () => {
           left: 0;
           width: 100%;
           height: 100%;
-          background: linear-gradient(to top, rgba(17, 63, 39, 0.95) 0%, rgba(17, 63, 39, 0.25) 100%);
+          background: linear-gradient(to top, rgba(26, 45, 66, 0.95) 0%, rgba(26, 45, 66, 0.25) 100%);
           padding: 1.5rem;
           display: flex;
           flex-direction: column;
@@ -314,7 +369,7 @@ const Gallery = () => {
           left: 0;
           width: 100vw;
           height: 100vh;
-          background-color: rgba(17, 63, 39, 0.55);
+          background-color: rgba(26, 45, 66, 0.55);
           backdrop-filter: blur(8px);
           -webkit-backdrop-filter: blur(8px);
           z-index: 10000;
@@ -354,7 +409,7 @@ const Gallery = () => {
           width: 38px;
           height: 38px;
           background-color: var(--sand);
-          border: 1px solid rgba(17, 63, 39, 0.08);
+          border: 1px solid rgba(26, 45, 66, 0.08);
           border-radius: 50%;
           font-size: 22px;
           color: var(--muted);
@@ -391,14 +446,14 @@ const Gallery = () => {
           align-items: center;
           justify-content: center;
           padding: 4rem 2rem;
-          border-right: 1px solid rgba(17, 63, 39, 0.08);
+          border-right: 1px solid #eaeaea;
         }
 
         @media (max-width: 768px) {
           .lightbox-image-side {
             padding: 2.5rem;
             border-right: none;
-            border-bottom: 1px solid rgba(17, 63, 39, 0.08);
+            border-bottom: 1px solid #eaeaea;
           }
         }
 
@@ -429,7 +484,7 @@ const Gallery = () => {
 
         .lightbox-divider {
           height: 1px;
-          background-color: rgba(17, 63, 39, 0.08);
+          background-color: #eaeaea;
           margin: 1.5rem 0;
         }
 
@@ -443,7 +498,7 @@ const Gallery = () => {
         .lightbox-footer-note {
           font-size: 0.72rem;
           font-weight: 700;
-          color: rgba(17, 63, 39, 0.4);
+          color: rgba(26, 45, 66, 0.4);
           text-transform: uppercase;
           letter-spacing: 0.5px;
         }

@@ -48,7 +48,7 @@ const Footer = () => {
               <Link to="/work">Our Work</Link>
               <Link to="/impact">Impact Dashboard</Link>
               <Link to="/gallery">Gallery</Link>
-              <Link to="/partners">Partners</Link>
+              <Link to="/partners">Partners & Supporters</Link>
             </div>
           </div>
 
@@ -60,6 +60,7 @@ const Footer = () => {
               <Link to="/donate">Donate / Support</Link>
               <Link to="/reports">Annual Reports</Link>
               <Link to="/contact">Contact Us</Link>
+              <Link to="/admin" className="admin-footer-link">Admin Dashboard</Link>
             </div>
           </div>
 
@@ -124,7 +125,7 @@ const Footer = () => {
 
       <style>{`
         .footer-section {
-          padding: clamp(3.5rem, 5vw, 5.5rem) 0 24px 0;
+          padding: clamp(4rem, 6vw, 6rem) 0 2.5rem 0;
           position: relative;
           z-index: 10;
         }
@@ -152,13 +153,13 @@ const Footer = () => {
         .footer-logo {
           display: inline-flex;
           align-items: center;
-          margin: 0;
+          margin-bottom: 1.2rem;
         }
 
         .footer-logo-container {
           background: rgba(255, 255, 255, 0.98);
-          padding: 12px 16px;
-          border-radius: var(--radius-md);
+          padding: 8px 16px;
+          border-radius: 4px;
           display: inline-flex;
           align-items: center;
           justify-content: center;
@@ -182,7 +183,7 @@ const Footer = () => {
         .footer-desc {
           font-size: 0.95rem;
           color: rgba(250, 248, 244, 0.65);
-          margin: 16px 0;
+          margin-bottom: 1.5rem;
           max-width: 380px;
         }
 
@@ -214,7 +215,7 @@ const Footer = () => {
         .footer-heading {
           font-size: 1.1rem;
           font-weight: 600;
-          margin: 0 0 16px 0;
+          margin-bottom: 1.5rem;
           letter-spacing: 0.5px;
         }
 
@@ -259,9 +260,7 @@ const Footer = () => {
 
         .newsletter-input-group {
           display: flex;
-          align-items: stretch;
           width: 100%;
-          height: 44px;
         }
 
         .newsletter-input {
@@ -270,9 +269,7 @@ const Footer = () => {
           color: var(--sand);
           border-top-right-radius: 0;
           border-bottom-right-radius: 0;
-          padding: 0 16px;
-          height: 100%;
-          box-sizing: border-box;
+          padding: 0.8rem 1.2rem;
         }
 
         .newsletter-input:focus {
@@ -286,11 +283,6 @@ const Footer = () => {
           padding: 0 1.5rem;
           border: none;
           box-shadow: none;
-          height: 100%;
-          box-sizing: border-box;
-          display: flex;
-          align-items: center;
-          justify-content: center;
         }
 
         .newsletter-btn.success {
@@ -321,7 +313,7 @@ const Footer = () => {
         .footer-divider {
           height: 1px;
           background: rgba(255, 255, 255, 0.08);
-          margin: 40px 0 20px 0;
+          margin: 3.5rem 0 2rem 0;
         }
 
         .footer-bottom {
@@ -351,7 +343,6 @@ const Footer = () => {
 
         .sep-dot {
           color: rgba(255, 255, 255, 0.15);
-          margin: 0 8px;
         }
       `}</style>
     </footer>

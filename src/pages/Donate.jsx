@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import RazorpayModal from '../components/RazorpayModal';
-import { useContent } from '../admin/hooks/useContent';
 
 const Donate = () => {
-  const { getSection, isLoading } = useContent('donate');
   const [donateAmount, setDonateAmount] = useState(2500);
   const [donorDetails, setDonorDetails] = useState({
     name: '',
@@ -34,19 +32,13 @@ const Donate = () => {
     setIsPayModalOpen(true);
   };
 
-  // Get sections from CMS
-  const heroSection = getSection('donate_hero');
-  const calcSection = getSection('donate_calculator');
-
   // Math conversions for visual impact indicators mapped to client's actual programmes
-  const metrics = calcSection?.metrics || [
-    { id: 'education', iconName: 'education', label: 'Scholars', subLabel: 'Hailakandi Support / Month', divisor: 1500 },
-    { id: 'health', iconName: 'health', label: 'TB Patients', subLabel: 'Nutrition Packs Funded', divisor: 500 },
-    { id: 'relief', iconName: 'relief', label: 'Families', subLabel: 'Flood Dry Rations Distributed', divisor: 600 },
-    { id: 'animal', iconName: 'animal', label: 'Strays', subLabel: 'Veterinary Medical Packs', divisor: 250 }
-  ];
+  const tbNutritionKits = Math.floor(donateAmount / 500);         // ₹500 per month for a TB patient
+  const academyScholars = Math.floor(donateAmount / 1500);       // ₹1500 per month for an Ideal Academy student
+  const disasterRationKits = Math.floor(donateAmount / 600);     // ₹600 per emergency dry ration kit
+  const strayVeterinaryPacks = Math.floor(donateAmount / 250);   // ₹250 per stray animal vet pack
 
-  const quickAmounts = calcSection?.quickAmounts || [1500, 3000, 5000, 10000];
+  const quickAmounts = [1500, 3000, 5000, 10000];
 
   const renderIcon = (name) => {
     switch (name) {
@@ -82,33 +74,28 @@ const Donate = () => {
     }
   };
 
-  if (isLoading) return null;
-
   return (
     <div className="donate-page animate-fade-scale">
       {/* 1. HERO HEADER */}
-      {heroSection && (
-        <section className="hero-section-premium">
-          <div className="container-custom">
-            <span className="badge badge-gold">{heroSection.badge}</span>
-            <h1 className="text-white mt-3">{heroSection.heading}</h1>
-            <p className="hero-subtitle-premium">
-              {heroSection.subtitle}
-            </p>
-          </div>
-        </section>
-      )}
+      <section className="hero-section-premium">
+        <div className="container-custom">
+          <span className="badge badge-gold">SUPPORT GAF</span>
+          <h1 className="text-white mt-3">Sow the Seeds of Community Hope</h1>
+          <p className="donate-hero-subtitle text-white-muted" style={{ maxWidth: '650px', margin: '1.5rem auto 0 auto', fontSize: '1.15rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
+            Sponsor conceptual education in Hailakandi, monthly nutrition packs for tuberculosis patients, emergency flood dry rations, or stray animal veterinary rescues.
+          </p>
+        </div>
+      </section>
 
       {/* 2. DYNAMIC IMPACT CALCULATOR */}
-      {calcSection && (
-        <section className="calculator-section section-padding">
-          <div className="container-custom calc-wrapper-grid">
-            
-            {/* Left Column: Interactive Calculator */}
-            <div className="calc-card-col">
-              <div className="glass-card calculator-card">
-                <h3>{calcSection.heading}</h3>
-                <p className="calc-sub-desc">{calcSection.subtitle}</p>
+      <section className="calculator-section section-padding">
+        <div className="container-custom calc-wrapper-grid">
+          
+          {/* Left Column: Interactive Calculator */}
+          <div className="calc-card-col">
+            <div className="glass-card calculator-card">
+              <h3>Dynamic Impact Calculator</h3>
+              <p className="calc-sub-desc">Drag the slider to customize your contribution and see your specific grassroots output instantly.</p>
               
               {/* SLIDER CONTROLS */}
               <div className="slider-control-box mt-4">
@@ -208,40 +195,59 @@ const Donate = () => {
 
           {/* Right Column: Dynamic Biological Metrics */}
           <div className="calc-metrics-col">
-            <div className="calc-metrics-header">
-              <span className="badge">{calcSection.outcomesBadge}</span>
-              <h2>{calcSection.outcomesHeading}</h2>
-              <div className="gold-line" />
-              {calcSection.outcomesSubtitle && (
-                <p className="calc-metrics-subtitle mt-2">
-                  {calcSection.outcomesSubtitle}
-                </p>
-              )}
+            <div className="section-header text-center">
+              <span className="badge">HUMANITARIAN OUTCOMES</span>
+              <h2>Your Grassroots Social Outcome</h2>
+              <div className="gold-line margin-center" />
+              <p className="section-subtitle mt-2">
+                At Green Ahom Federation, we ensure direct field utilization. Here is exactly what your contribution funds:
+              </p>
             </div>
 
             <div className="grid-responsive outcomes-grid mt-4">
-              {metrics.map(metric => (
-                <div className="glass-card outcome-card" key={metric.id}>
-                  <div className="o-icon">{renderIcon(metric.iconName)}</div>
-                  <div className="o-data">
-                    <strong className="text-teal">{Math.floor(donateAmount / metric.divisor)} {metric.label}</strong>
-                    <span>{metric.subLabel}</span>
-                  </div>
+              <div className="glass-card outcome-card">
+                <div className="o-icon">{renderIcon('education')}</div>
+                <div className="o-data">
+                  <strong className="text-teal">{academyScholars} Scholars</strong>
+                  <span>Hailakandi Support / Month</span>
                 </div>
-              ))}
+              </div>
+
+              <div className="glass-card outcome-card">
+                <div className="o-icon">{renderIcon('health')}</div>
+                <div className="o-data">
+                  <strong className="text-teal">{tbNutritionKits} TB Patients</strong>
+                  <span>Nutrition Packs Funded</span>
+                </div>
+              </div>
+
+              <div className="glass-card outcome-card">
+                <div className="o-icon">{renderIcon('relief')}</div>
+                <div className="o-data">
+                  <strong className="text-teal">{disasterRationKits} Families</strong>
+                  <span>Flood Dry Rations Distributed</span>
+                </div>
+              </div>
+
+              <div className="glass-card outcome-card">
+                <div className="o-icon">{renderIcon('animal')}</div>
+                <div className="o-data">
+                  <strong className="text-teal">{strayVeterinaryPacks} Strays</strong>
+                  <span>Veterinary Medical Packs</span>
+                </div>
+              </div>
             </div>
 
             <div className="trust-exemption-note glass-card mt-4">
-              <h4>{calcSection.trustHeading}</h4>
-              <p>
-                {calcSection.trustText}
+              <h4>Guaranteed Exemption under Section 80G</h4>
+              <p style={{ fontSize: '0.88rem', color: 'var(--muted)', lineHeight: '1.5' }}>
+                Green Ahom Federation is a legally registered Section 8 NPO with active statutory tax approvals. All contributions generate CA-audited secure receipt certificates instantly.
               </p>
             </div>
           </div>
 
         </div>
       </section>
-      )}
 
       {/* RAZORPAY PAYMENT GATEWAY */}
       <RazorpayModal
@@ -289,24 +295,6 @@ const Donate = () => {
           margin-bottom: 20px;
         }
 
-        .calc-metrics-header {
-          margin-bottom: 24px;
-        }
-        .calc-metrics-header h2 {
-          color: var(--primary);
-        }
-        .calc-metrics-header .gold-line {
-          margin-left: 0 !important;
-          margin-right: auto !important;
-        }
-        .calc-metrics-subtitle {
-          font-family: var(--font-body);
-          font-size: 0.95rem;
-          color: var(--muted);
-          line-height: 1.6;
-          margin-top: 10px;
-        }
-
         /* DYNAMIC RANGE SLIDER */
         .slider-value-display {
           font-family: var(--font-header);
@@ -320,7 +308,7 @@ const Donate = () => {
           -webkit-appearance: none;
           width: 100%;
           height: 6px;
-          background: rgba(17, 63, 39, 0.08);
+          background: rgba(26, 45, 66, 0.08);
           border-radius: 3px;
           outline: none;
           margin-bottom: 6px;
@@ -360,7 +348,7 @@ const Donate = () => {
         .quick-amt-btn {
           padding: 10px;
           background-color: var(--cream);
-          border: 1px solid rgba(17, 63, 39, 0.08);
+          border: 1px solid rgba(26, 45, 66, 0.08);
           font-family: var(--font-body);
           font-weight: 700;
           font-size: 0.85rem;
@@ -382,7 +370,7 @@ const Donate = () => {
         }
 
         .donor-quick-inputs-box {
-          border-top: 1px solid rgba(17, 63, 39, 0.08);
+          border-top: 1px solid rgba(26, 45, 66, 0.06);
           padding-top: 1.5rem;
         }
 
@@ -435,9 +423,9 @@ const Donate = () => {
           background-color: var(--cream);
           border-left: 4px solid var(--gold);
           border-radius: var(--radius-sm);
-          border-top: 1px solid rgba(17, 63, 39, 0.08);
-          border-right: 1px solid rgba(17, 63, 39, 0.08);
-          border-bottom: 1px solid rgba(17, 63, 39, 0.08);
+          border-top: 1px solid #eaeaea;
+          border-right: 1px solid #eaeaea;
+          border-bottom: 1px solid #eaeaea;
         }
 
         .trust-exemption-note h4 {
