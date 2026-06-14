@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 
@@ -14,19 +14,13 @@ import Partners from './pages/Partners';
 import Volunteer from './pages/Volunteer';
 import Donate from './pages/Donate';
 import Contact from './pages/Contact';
-import Admin from './pages/Admin';
 
 function App() {
-  const location = useLocation();
-
-  // Hide global navigation and footer on the Admin panel screen to allow full-screen dashboard experience
-  const isAdminRoute = location.pathname.startsWith('/admin');
-
   return (
     <div className="app-root-layout">
-      {!isAdminRoute && <Navigation />}
+      <Navigation />
       
-      <main className={`main-content-layout ${!isAdminRoute ? 'padding-nav' : ''}`}>
+      <main className="main-content-layout padding-nav">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
@@ -38,11 +32,10 @@ function App() {
           <Route path="/volunteer" element={<Volunteer />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/admin" element={<Admin />} />
         </Routes>
       </main>
 
-      {!isAdminRoute && <Footer />}
+      <Footer />
 
       <style>{`
         .app-root-layout {

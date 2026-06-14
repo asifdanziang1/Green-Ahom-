@@ -1,52 +1,12 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useContent } from '../admin/hooks/useContent';
 
 const Partners = () => {
+  const { getSection, isLoading } = useContent('partners');
   useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      setTimeout(() => {
-        const id = hash.replace('#', '');
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }, [window.location.hash]);
-
-  const institutionalPartners = [
-    {
-      name: 'Oil and Natural Gas Corporation (ONGC Silchar)',
-      role: 'CSR Sponsorship Patron',
-      desc: 'Generously sponsored GAF’s massive Nutritional Food Packet Distribution for 935 registered TB patients in Cachar and Hailakandi districts (FY 2023-24 CSR, budget ₹14,85,000), as well as GAF’s Cataract surgery support program (FY 2024-25, budget ₹1,59,590).',
-      badge: 'ONGC SILCHAR',
-      logoText: 'ONGC'
-    },
-    {
-      name: 'ITI Srikona Campus (Silchar, Cachar District)',
-      role: 'Educational Training Partner',
-      desc: 'Collaborated with GAF in FY 2022-23 to host the intensive Skill Training Class on Financial Literacy & Management, enabling technical students and rural youth to master banking systems and UPI budgeting.',
-      badge: 'ITI SRIKONA',
-      logoText: 'ITI'
-    },
-    {
-      name: 'BH College (Howli, Barpeta District)',
-      role: 'Rural Infrastructure Collaborator',
-      desc: 'Academic and logistical collaboration for GAF’s landmark Community Centre construction program inside Barpeta (FY 2024-25, total program budget ₹42,37,000), creating durable local development spaces.',
-      badge: 'BH COLLEGE',
-      logoText: 'BHC'
-    },
-    {
-      name: 'Cachar Cancer Hospital',
-      role: 'Humanitarian Health Partner',
-      desc: 'Professional coordination partner for GAF’s voluntary Blood Donation Camps and emergency volunteer mobilization efforts, supporting critical oncology patient care systems.',
-      badge: 'CACHAR CANCER',
-      logoText: 'CCH'
-    }
-  ];
+    window.scrollTo(0, 0);
+  }, []);
 
   const renderCredIcon = (id) => {
     switch (id) {
@@ -86,100 +46,182 @@ const Partners = () => {
             <path d="M2 12h20" />
           </svg>
         );
+      case 'darpan':
+        return (
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+            <line x1="4" y1="22" x2="4" y2="15" />
+          </svg>
+        );
+      case 'pan':
+        return (
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect x="3" y="4" width="18" height="16" rx="2" ry="2" />
+            <line x1="7" y1="8" x2="17" y2="8" />
+            <line x1="7" y1="12" x2="17" y2="12" />
+            <line x1="7" y1="16" x2="13" y2="16" />
+          </svg>
+        );
       default:
         return null;
     }
   };
 
+  if (isLoading) return null;
+
+  const heroSection = getSection('partners_hero');
+  const credentialsSection = getSection('partners_credentials');
+  const institutionalSection = getSection('partners_institutional');
+  const ctaSection = getSection('partners_cta');
+
   return (
     <div className="partners-page animate-fade-scale">
       {/* 1. HERO BANNER */}
-      <section className="hero-section-premium">
-        <div className="container-custom">
-          <span className="badge badge-gold">COLLABORATION</span>
-          <h1 className="text-white mt-3">CSR Partnerships &amp; Patrons</h1>
-          <p className="partners-hero-subtitle text-white-muted" style={{ maxWidth: '680px', margin: '1.5rem auto 0 auto', fontSize: '1.15rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
-            We collaborate with premier corporate entities, public administrations, and academic campuses to deploy verified social welfare programs across Northeast India.
-          </p>
-        </div>
-      </section>
+      {heroSection && (
+        <section className="hero-section-premium">
+          <div className="container-custom">
+            <span className="badge badge-gold">{heroSection.badge}</span>
+            <h1 className="text-white mt-3">{heroSection.heading}</h1>
+            <p className="hero-subtitle-premium">
+              {heroSection.subtitle}
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* 2. CSR COMPLIANCE STATUTORY */}
-      <section className="compliance-credentials-section section-padding bg-sand" id="credentials">
-        <div className="container-custom">
-          <div className="section-header text-center">
-            <span className="badge">TRUST FRAMEWORK</span>
-            <h2>Our Statutory CSR Credentials</h2>
-            <div className="gold-line margin-center" />
-            <p className="section-subtitle mt-2">
-              Green Ahom Federation complies with all statutory non-profit regulations of the Ministry of Corporate Affairs, India.
-            </p>
-          </div>
+      {credentialsSection && (
+        <section className="compliance-credentials-section section-padding bg-sand">
+          <div className="container-custom">
+            <div className="section-header text-center">
+              <span className="badge">{credentialsSection.badge}</span>
+              <h2>{credentialsSection.heading}</h2>
+              <div className="gold-line margin-center" />
+              <p className="section-subtitle mt-2">
+                {credentialsSection.subtitle}
+              </p>
+            </div>
 
-          <div className="grid-responsive credentials-grid mt-5">
-            {[
-              { id: 'csr1', title: 'MCA CSR-1 Implementing Agency', desc: 'GAF is officially registered with the Ministry of Corporate Affairs to execute CSR projects under Section 135 of the Indian Companies Act, 2013.' },
-              { id: '80g', title: '80G Tax Exemption Status', desc: 'Allows GAF’s corporate and individual patrons to claim 50% tax deductions on all charity donations under Section 80G.' },
-              { id: '12a', title: '12A Non-Profit Registration', desc: 'Registered under Section 12A of the Income Tax Act, 1961, establishing GAF’s verified tax-free charity status.' },
-              { id: 'companiesAct', title: 'Section 8 Constitutional Charter', desc: 'Strict dividend distribution prohibition, ensuring 100% of mobilized budgets directly support field projects.' }
-            ].map((cred) => (
-              <div className="glass-card credential-card" key={cred.id}>
-                <div className="cred-icon-box">{renderCredIcon(cred.id)}</div>
-                <h3>{cred.title}</h3>
-                <p style={{ fontSize: '0.9rem', color: 'var(--muted)', lineHeight: '1.5', marginTop: '10px' }}>{cred.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. DYNAMIC INSTITUTIONAL CO-OPERATIONS */}
-      <section className="tiers-section section-padding bg-cream">
-        <div className="container-custom">
-          <div className="section-header text-center">
-            <span className="badge">COLLABORATORS</span>
-            <h2>Our Verified Institutional Patrons</h2>
-            <div className="gold-line margin-center" />
-            <p className="section-subtitle mt-2">
-              Detailing GAF's official partnerships with corporate CSR wings, technical institutions, and college districts.
-            </p>
-          </div>
-
-          <div className="grid-responsive tiers-grid mt-5">
-            {institutionalPartners.map((partner, idx) => (
-              <div className="glass-card partner-card-inner" key={idx} style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--white)' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
-                  <span className="partner-badge-label" style={{ fontFamily: 'var(--font-body)', fontWeight: '800', fontSize: '0.72rem', color: 'var(--gold)', letterSpacing: '1px' }}>{partner.badge}</span>
-                  <div className="partner-visual-logo" style={{ fontFamily: 'var(--font-header)', fontWeight: '800', fontSize: '1.1rem', color: 'var(--primary)', border: '1px solid var(--border-subtle)', padding: '4px 10px', borderRadius: '4px', backgroundColor: 'var(--surface-default)' }}>{partner.logoText}</div>
+            <div className="grid-responsive credentials-grid mt-5">
+              {(credentialsSection.items || []).map((cred) => (
+                <div className="glass-card credential-card" key={cred.id} style={{ display: 'flex', flexDirection: 'column', justifyContent: 'space-between', height: '100%', backgroundColor: 'var(--white)' }}>
+                  <div>
+                    <div className="cred-icon-box">{renderCredIcon(cred.id)}</div>
+                    <h3>{cred.title}</h3>
+                    <p style={{ marginTop: '10px', fontSize: '0.92rem', color: 'var(--muted)' }}>{cred.desc}</p>
+                  </div>
+                  {cred.regNo && (
+                    <div style={{ marginTop: '16px', padding: '8px 12px', backgroundColor: 'var(--sand)', border: '1px solid rgba(17, 63, 39, 0.05)', borderRadius: '4px', fontSize: '0.8rem', fontFamily: 'monospace', color: 'var(--primary)', fontWeight: '700', wordBreak: 'break-all' }}>
+                      REF NO: {cred.regNo}
+                    </div>
+                  )}
                 </div>
-                <h3>{partner.name}</h3>
-                <span className="partner-role" style={{ fontSize: '0.85rem', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '4px', display: 'block' }}>{partner.role}</span>
-                <div style={{ height: '1px', backgroundColor: 'var(--border-subtle)', margin: '15px 0' }} />
-                <p style={{ fontSize: '0.9rem', color: 'var(--muted)', lineHeight: '1.6', flexGrow: '1' }}>{partner.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 4. CSR CALL TO ACTION */}
-      <section className="impact-cta-section section-padding bg-primary text-center">
-        <div className="container-custom">
-          <div className="cta-box-wrapper-inner">
-            <span className="badge badge-gold">CSR INTEGRATION</span>
-            <h2 className="text-white mt-3" style={{ color: 'var(--white)' }}>Partner with Green Ahom Federation</h2>
-            <p className="text-white-muted max-width-center mt-3" style={{ maxWidth: '600px', margin: '0 auto', color: 'rgba(255, 255, 255, 0.75)', fontSize: '1rem', lineHeight: '1.6' }}>
-              We facilitate seamless CSR-1 project integration under Schedule VII of the Companies Act, providing GIS geo-tagged beneficiary logs, monthly progress sheets, and professional third-party audit dossiers.
-            </p>
-            <div className="cta-buttons-row mt-4" style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link to="/reports" className="btn btn-gold">Review Audited Ledgers</Link>
-              <Link to="/contact" className="btn btn-outline-gold">Initiate CSR Proposal</Link>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* STYLES MOVED TO INDEX.CSS */}
+      {/* 3. DYNAMIC INSTITUTIONAL CO-OPERATIONS */}
+      {institutionalSection && (
+        <section className="tiers-section section-padding bg-cream">
+          <div className="container-custom">
+            <div className="section-header text-center">
+              <span className="badge">{institutionalSection.badge}</span>
+              <h2>{institutionalSection.heading}</h2>
+              <div className="gold-line margin-center" />
+              <p className="section-subtitle mt-2">
+                {institutionalSection.subtitle}
+              </p>
+            </div>
+
+            <div className="grid-responsive tiers-grid mt-5">
+              {(institutionalSection.items || []).map((partner, idx) => (
+                <div className="glass-card partner-card-inner" key={idx} style={{ padding: '2.5rem', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--white)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
+                    <span className="partner-badge-label" style={{ fontFamily: 'var(--font-body)', fontWeight: '800', fontSize: '0.72rem', color: 'var(--gold)', letterSpacing: '1px' }}>{partner.badge}</span>
+                    <div className="partner-visual-logo" style={{ fontFamily: 'var(--font-header)', fontWeight: '800', fontSize: '1.1rem', color: 'var(--primary)', border: '1px solid rgba(17, 63, 39, 0.08)', padding: '4px 10px', borderRadius: '4px', backgroundColor: '#faf9f6' }}>{partner.logoText}</div>
+                  </div>
+                  <h3>{partner.name}</h3>
+                  <span className="partner-role" style={{ fontSize: '0.85rem', color: 'var(--muted)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '4px', display: 'block' }}>{partner.role}</span>
+                  <div style={{ height: '1px', backgroundColor: 'rgba(17, 63, 39, 0.08)', margin: '15px 0' }} />
+                  <p style={{ flexGrow: '1' }}>{partner.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 4. CSR CALL TO ACTION */}
+      {ctaSection && (
+        <section className="impact-cta-section section-padding bg-primary text-center">
+          <div className="container-custom">
+            <div className="cta-box-wrapper-inner">
+              <span className="badge badge-gold">{ctaSection.badge}</span>
+              <h2 className="cta-heading text-white mt-3">{ctaSection.heading}</h2>
+              <p className="cta-subtitle mt-3">
+                {ctaSection.subtitle}
+              </p>
+              <div className="cta-buttons-row mt-4" style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
+                {ctaSection.cta_primary && (
+                  <Link to={ctaSection.cta_primary.link} className="btn btn-gold">{ctaSection.cta_primary.text}</Link>
+                )}
+                {ctaSection.cta_secondary && (
+                  <Link to={ctaSection.cta_secondary.link} className="btn btn-outline-gold">{ctaSection.cta_secondary.text}</Link>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      <style>{`
+
+        /* CREDENTIALS */
+        .credential-card {
+          padding: 2.2rem;
+          background-color: var(--white);
+        }
+
+        .cred-icon-box {
+          margin-bottom: 1.2rem;
+          width: 48px;
+          height: 48px;
+          background-color: rgba(217, 95, 67, 0.05);
+          border: 1px solid rgba(217, 95, 67, 0.1);
+          border-radius: var(--radius-sm);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .credential-card h3 {
+          font-size: 1.2rem;
+          margin-bottom: 10px;
+          color: var(--primary);
+        }
+
+        .partner-card-inner h3 {
+          font-size: 1.2rem;
+          color: var(--primary);
+          line-height: 1.4;
+        }
+
+        /* IMPACT CTA Banner */
+        .max-width-center {
+          max-width: 600px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .cta-buttons-row {
+          display: flex;
+          gap: 16px;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+      `}</style>
     </div>
   );
 };

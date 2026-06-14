@@ -71,13 +71,14 @@ const RazorpayModal = ({
       <html>
         <head>
           <title>Donation Receipt - Green Ahom Federation</title>
+          <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;800&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
           <style>
-            body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; padding: 40px; color: #333; }
+            body { font-family: 'Inter', sans-serif; padding: 40px; color: #333; }
             .receipt-box { max-width: 800px; margin: auto; border: 1px solid #eee; padding: 30px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); }
-            .header { display: flex; justify-content: space-between; border-bottom: 2px solid #0F1D19; padding-bottom: 20px; margin-bottom: 30px; }
-            .logo { font-weight: 800; font-size: 24px; color: #0F1D19; }
+            .header { display: flex; justify-content: space-between; border-bottom: 2px solid #0f172a; padding-bottom: 20px; margin-bottom: 30px; }
+            .logo { font-family: 'Cinzel', serif; font-weight: 800; font-size: 24px; color: #0f172a; }
             .org-details { text-align: right; font-size: 12px; line-height: 1.5; }
-            .title { text-align: center; text-transform: uppercase; margin-bottom: 30px; color: #0F1D19; }
+            .title { font-family: 'Cinzel', serif; text-align: center; text-transform: uppercase; margin-bottom: 30px; color: #0f172a; }
             .row { display: flex; justify-content: space-between; margin-bottom: 15px; border-bottom: 1px solid #f9f9f9; padding-bottom: 8px; }
             .label { font-weight: 600; color: #555; }
             .value { text-align: right; }
@@ -110,8 +111,8 @@ const RazorpayModal = ({
             <div class="row"><span class="label">Donor Email:</span><span class="value">${donorEmail}</span></div>
             ${donorPan ? `<div class="row"><span class="label">Donor PAN:</span><span class="value">${donorPan.toUpperCase()}</span></div>` : ''}
             <div class="row" style="font-size: 18px; border-bottom: 2px solid #eee; padding-bottom: 12px; margin-top: 20px;">
-              <span class="label" style="color: #0F1D19;">Donation Amount:</span>
-              <span class="value" style="font-weight: bold; color: #0F1D19;">₹${parseFloat(amount).toLocaleString('en-IN')}.00</span>
+              <span class="label" style="color: #0f172a;">Donation Amount:</span>
+              <span class="value" style="font-weight: bold; color: #0f172a;">₹${parseFloat(amount).toLocaleString('en-IN')}.00</span>
             </div>
             
             <div class="exempt">
@@ -195,8 +196,8 @@ const RazorpayModal = ({
           pan: donorPan || 'N/A',
         },
         theme: {
-          color: '#d95f43',
-          backdrop_color: 'rgba(15, 29, 25, 0.5)',
+          color: '#113f27',
+          backdrop_color: 'rgba(17, 63, 39, 0.5)',
         },
         modal: {
           ondismiss: () => {
@@ -243,11 +244,11 @@ const RazorpayModal = ({
 
               // Increment stats
               const currentStats = JSON.parse(
-                localStorage.getItem('gaf_stats') || '{"trees": 154820, "funds": 4820500, "weavers": 340, "wetlands": 12}'
+                localStorage.getItem('gaf_stats') || '{"students": 364, "funds": 23870590, "beneficiaries": 2635, "strayBud": 3541090}'
               );
-              currentStats.funds += parseFloat(amount);
-              const treesPlanted = Math.floor(amount / 250);
-              currentStats.trees += treesPlanted;
+              currentStats.funds = (currentStats.funds || 0) + parseFloat(amount);
+              const newBeneficiaries = Math.floor(amount / 1000) || 1;
+              currentStats.beneficiaries = (currentStats.beneficiaries || 2635) + newBeneficiaries;
               localStorage.setItem('gaf_stats', JSON.stringify(currentStats));
 
               if (onPaymentSuccess) onPaymentSuccess(newDonation);
@@ -452,7 +453,7 @@ const RazorpayModal = ({
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: rgba(15, 29, 25, 0.5);
+            background: rgba(17, 63, 39, 0.45);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             z-index: 10000;
@@ -472,7 +473,7 @@ const RazorpayModal = ({
             border: var(--border-flat);
             display: flex;
             flex-direction: column;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, sans-serif;
+            font-family: var(--font-body);
             animation: modalEnter 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
           }
 
@@ -547,7 +548,7 @@ const RazorpayModal = ({
 
           .razorpay-modal-body {
             padding: 24px;
-            background-color: var(--surface-default);
+            background-color: #faf9f6;
             min-height: 280px;
             max-height: 480px;
             overflow-y: auto;
@@ -578,7 +579,7 @@ const RazorpayModal = ({
           .rp-spinner {
             width: 50px;
             height: 50px;
-            border: 4px solid rgba(15, 29, 25, 0.06);
+            border: 4px solid rgba(17, 63, 39, 0.06);
             border-left-color: var(--primary);
             border-radius: 50%;
             animation: spin 1s linear infinite;
@@ -656,7 +657,7 @@ const RazorpayModal = ({
 
           .tx-details-box {
             background-color: var(--white);
-            border: 1px solid var(--border-subtle);
+            border: 1px solid rgba(17, 63, 39, 0.06);
             border-radius: var(--radius-md);
             padding: 14px;
             width: 100%;

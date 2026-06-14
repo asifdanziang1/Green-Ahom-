@@ -1,91 +1,22 @@
 import React, { useState, useEffect } from 'react';
+import { useContent } from '../admin/hooks/useContent';
 
 const Gallery = () => {
   const [activeFilter, setActiveFilter] = useState('ALL');
-  const [galleryItems, setGalleryItems] = useState([]);
+  const { getSection, isLoading } = useContent('gallery');
   const [activeLightboxItem, setActiveLightboxItem] = useState(null);
 
-  const defaultGallery = [
-    {
-      id: 'gal-1',
-      title: 'Majuli Canopy Plantation',
-      category: 'FORESTS',
-      location: 'Tezpur Embankments, Sonitpur',
-      desc: 'Local youth squads working alongside field rangers to plant deep-rooted native saplings to prevent Brahmaputra riverbed erosion.',
-      imageUrl: 'https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=800&q=80',
-      iconName: 'forest'
-    },
-    {
-      id: 'gal-2',
-      title: 'Muga Silk Thread Weaving',
-      category: 'ARTISANS',
-      location: 'Weaving Co-op, Majuli Island',
-      desc: 'Artisan leaders reeling organic gold-tinted silk yarn from Som-fed silkworms using modern solar-powered spinning kits.',
-      imageUrl: 'https://images.unsplash.com/photo-1598257006458-087169a1f08d?auto=format&fit=crop&w=800&q=80',
-      iconName: 'artisan'
-    },
-    {
-      id: 'gal-3',
-      title: 'Deepor Beel Bird Sanctuary',
-      category: 'WETLANDS',
-      location: 'Deepor Beel Wetland, Guwahati',
-      desc: 'Migratory waterfowl returning to local waters after GAF volunteers successfully cleared invasive green hyacinth stalks.',
-      imageUrl: 'https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=800&q=80',
-      iconName: 'wetland'
-    },
-    {
-      id: 'gal-4',
-      title: 'Botanical Seed Preservation Drive',
-      category: 'FORESTS',
-      location: 'GAF Organic Seed Nursery, Tezpur',
-      desc: 'Assamese botanists cataloguing endangered seed structures collected from deep tropical forests for germination vaulting.',
-      imageUrl: 'https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=80',
-      iconName: 'seed'
-    },
-    {
-      id: 'gal-5',
-      title: 'Bamboo Craft Workshop',
-      category: 'ARTISANS',
-      location: 'Eco-Craft Secretariat, Jorhat',
-      desc: 'Young community craftsmen carving premium, sustainable bamboo housewares as part of our green livelihood campaign.',
-      imageUrl: 'https://images.unsplash.com/photo-1528459801416-a9e53bbf4e17?auto=format&fit=crop&w=800&q=80',
-      iconName: 'craft'
-    },
-    {
-      id: 'gal-6',
-      title: 'Youth Squad Training',
-      category: 'COMMUNITY',
-      location: 'GAF Field Camp, Tezpur',
-      desc: 'A vibrant group of 40+ local college volunteers holding endemic forest saplings before deploying on the riverbanks.',
-      imageUrl: 'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80',
-      iconName: 'community'
-    }
-  ];
-
   useEffect(() => {
-    const savedGallery = localStorage.getItem('gaf_gallery');
-    if (savedGallery) {
-      setGalleryItems(JSON.parse(savedGallery));
-    } else {
-      localStorage.setItem('gaf_gallery', JSON.stringify(defaultGallery));
-      setGalleryItems(defaultGallery);
-    }
-    
-    const hash = window.location.hash;
-    if (hash) {
-      setTimeout(() => {
-        const id = hash.replace('#', '');
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }, [window.location.hash]);
+    window.scrollTo(0, 0);
+  }, []);
 
-  const categories = ['ALL', 'FORESTS', 'WETLANDS', 'ARTISANS', 'COMMUNITY'];
+  if (isLoading) return null;
+
+  const heroSection = getSection('gallery_hero');
+  const gridSection = getSection('gallery_grid');
+
+  const galleryItems = gridSection?.items || [];
+  const categories = gridSection?.categories || ['ALL'];
 
   const filteredItems = activeFilter === 'ALL'
     ? galleryItems
@@ -152,15 +83,17 @@ const Gallery = () => {
   return (
     <div className="gallery-page animate-fade-scale">
       {/* 1. HERO BANNER */}
-      <section className="hero-section-premium">
-        <div className="container-custom">
-          <span className="badge badge-gold">VISUAL ARCHIVE</span>
-          <h1 className="text-white mt-3">GAF Field Gallery</h1>
-          <p className="gallery-hero-subtitle text-white-muted" style={{ maxWidth: '650px', margin: '1.5rem auto 0 auto', fontSize: '1.15rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
-            Explore photos capturing our community work, reforestation drives, weaving co-operatives, and returning wildlife in Assam.
-          </p>
-        </div>
-      </section>
+      {heroSection && (
+        <section className="hero-section-premium">
+          <div className="container-custom">
+            <span className="badge badge-gold">{heroSection.badge}</span>
+            <h1 className="text-white mt-3">{heroSection.heading}</h1>
+            <p className="hero-subtitle-premium">
+              {heroSection.subtitle}
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* 2. FILTER CONTROLS & PHOTO GRID */}
       <section className="gallery-grid-section section-padding">
@@ -188,7 +121,7 @@ const Gallery = () => {
                   onClick={() => openLightbox(item)}
                   style={{ animationDelay: `${idx * 0.05}s` }}
                 >
-                  <div className="gallery-item-image" style={{ background: `linear-gradient(to bottom, rgba(15, 29, 25, 0.35), rgba(15, 29, 25, 0.75)), url(${item.imageUrl}) center/cover no-repeat` }}>
+                  <div className="gallery-item-image" style={{ background: `linear-gradient(to bottom, rgba(17, 63, 39, 0.35), rgba(17, 63, 39, 0.75)), url(${item.imageUrl}) center/cover no-repeat` }}>
                     <div className="item-symbol-decor">{renderIcon(item.iconName, 56)}</div>
                     <div className="item-hover-metadata">
                       <span className="meta-category">{item.category}</span>
@@ -220,7 +153,7 @@ const Gallery = () => {
             <button className="lightbox-close-btn" onClick={closeLightbox}>×</button>
             
             <div className="lightbox-layout-grid">
-              <div className="lightbox-image-side" style={{ background: `linear-gradient(to bottom, rgba(15, 29, 25, 0.35), rgba(15, 29, 25, 0.75)), url(${activeLightboxItem.imageUrl}) center/cover no-repeat` }}>
+              <div className="lightbox-image-side" style={{ background: `linear-gradient(to bottom, rgba(17, 63, 39, 0.35), rgba(17, 63, 39, 0.75)), url(${activeLightboxItem.imageUrl}) center/cover no-repeat` }}>
                 <span className="lightbox-symbol">{renderIcon(activeLightboxItem.iconName, 100)}</span>
               </div>
               
@@ -240,7 +173,281 @@ const Gallery = () => {
         </div>
       )}
 
-      {/* STYLES MOVED TO INDEX.CSS */}
+      <style>{`
+
+        /* FILTERS */
+        .filter-controls-row {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          flex-wrap: wrap;
+          margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+          font-family: var(--font-body);
+          font-weight: 700;
+          font-size: 0.75rem;
+          letter-spacing: 1px;
+          padding: 0.6rem 1.2rem;
+          border-radius: var(--radius-sm);
+          background-color: var(--white);
+          border: 1px solid var(--border-glass);
+          color: var(--primary-light);
+          cursor: pointer;
+          transition: all 0.2s ease;
+          text-transform: uppercase;
+        }
+
+        .filter-btn:hover {
+          border-color: var(--gold);
+          color: var(--gold);
+        }
+
+        .filter-btn.active {
+          background-color: var(--primary);
+          border-color: var(--primary);
+          color: var(--white);
+        }
+
+        /* MASONRY GRID */
+        .gallery-masonry-grid {
+          column-count: 3;
+          column-gap: 24px;
+          width: 100%;
+        }
+
+        @media (max-width: 991px) {
+          .gallery-masonry-grid {
+            column-count: 2;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .gallery-masonry-grid {
+            column-count: 1;
+          }
+        }
+
+        .gallery-item-wrapper {
+          break-inside: avoid;
+          margin-bottom: 24px;
+          cursor: pointer;
+          position: relative;
+          overflow: hidden;
+        }
+
+        .gallery-item-image {
+          height: 280px;
+          width: 100%;
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        /* Masonry asymmetric heights */
+        .gallery-item-wrapper:nth-child(2n) .gallery-item-image {
+          height: 340px;
+        }
+
+        .gallery-item-wrapper:nth-child(3n) .gallery-item-image {
+          height: 260px;
+        }
+
+        .item-symbol-decor {
+          color: white;
+          transition: transform 0.4s ease;
+        }
+
+        .gallery-item-wrapper:hover .item-symbol-decor {
+          transform: scale(1.15);
+        }
+
+        .item-hover-metadata {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(to top, rgba(17, 63, 39, 0.95) 0%, rgba(17, 63, 39, 0.25) 100%);
+          padding: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+          opacity: 0;
+          transition: opacity 0.4s ease;
+        }
+
+        .gallery-item-wrapper:hover .item-hover-metadata {
+          opacity: 1;
+        }
+
+        .meta-category {
+          font-family: var(--font-body);
+          font-weight: 800;
+          font-size: 0.7rem;
+          color: var(--gold);
+          letter-spacing: 1.5px;
+          text-transform: uppercase;
+        }
+
+        .item-hover-metadata h4 {
+          color: var(--white);
+          font-size: 1.1rem;
+          margin-top: 5px;
+          line-height: 1.35;
+        }
+
+        .meta-location {
+          font-size: 0.78rem;
+          color: rgba(255, 255, 255, 0.75);
+          margin-top: 4px;
+        }
+
+        /* LIGHTBOX MODAL */
+        .lightbox-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background-color: rgba(17, 63, 39, 0.55);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
+          z-index: 10000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 2rem;
+        }
+
+        @media (max-width: 576px) {
+          .lightbox-overlay {
+            padding: 1rem;
+          }
+        }
+
+        .lightbox-content-box {
+          background-color: var(--white);
+          border-radius: var(--radius-lg);
+          overflow: hidden;
+          width: 100%;
+          max-width: 850px;
+          box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+          border: var(--border-flat);
+          position: relative;
+          animation: zoomIn 0.3s ease forwards;
+        }
+
+        @keyframes zoomIn {
+          from { opacity: 0; transform: scale(0.98); }
+          to { opacity: 1; transform: scale(1); }
+        }
+
+        .lightbox-close-btn {
+          position: absolute;
+          top: 20px;
+          right: 20px;
+          width: 38px;
+          height: 38px;
+          background-color: var(--sand);
+          border: 1px solid rgba(17, 63, 39, 0.08);
+          border-radius: 50%;
+          font-size: 22px;
+          color: var(--muted);
+          cursor: pointer;
+          z-index: 10;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          box-shadow: var(--shadow-sm);
+        }
+
+        .lightbox-close-btn:hover {
+          background-color: var(--gold);
+          color: var(--white);
+          border-color: var(--gold);
+          transform: rotate(90deg);
+        }
+
+        .lightbox-layout-grid {
+          display: grid;
+          grid-template-columns: 1.1fr 0.9fr;
+          min-height: 400px;
+        }
+
+        @media (max-width: 768px) {
+          .lightbox-layout-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+
+        .lightbox-image-side {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 4rem 2rem;
+          border-right: 1px solid rgba(17, 63, 39, 0.08);
+        }
+
+        @media (max-width: 768px) {
+          .lightbox-image-side {
+            padding: 2.5rem;
+            border-right: none;
+            border-bottom: 1px solid rgba(17, 63, 39, 0.08);
+          }
+        }
+
+        .lightbox-symbol {
+          color: white;
+        }
+
+        .lightbox-details-side {
+          padding: 3rem 2.5rem;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+          .lightbox-details-side {
+            padding: 2rem;
+          }
+        }
+
+        .lightbox-location-lbl {
+          font-family: var(--font-body);
+          font-weight: 700;
+          font-size: 0.85rem;
+          margin-top: 8px;
+          display: block;
+        }
+
+        .lightbox-divider {
+          height: 1px;
+          background-color: rgba(17, 63, 39, 0.08);
+          margin: 1.5rem 0;
+        }
+
+        .lightbox-desc-txt {
+          font-size: 0.98rem;
+          color: var(--muted);
+          line-height: 1.6;
+          margin-bottom: 2rem;
+        }
+
+        .lightbox-footer-note {
+          font-size: 0.72rem;
+          font-weight: 700;
+          color: rgba(17, 63, 39, 0.4);
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+        }
+      `}</style>
     </div>
   );
 };

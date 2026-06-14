@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useContent } from '../admin/hooks/useContent';
 
 const Volunteer = () => {
   const [formData, setFormData] = useState({
@@ -11,51 +12,11 @@ const Volunteer = () => {
   });
   const [status, setStatus] = useState('');
 
-  useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      setTimeout(() => {
-        const id = hash.replace('#', '');
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }, [window.location.hash]);
+  const { getSection, isLoading } = useContent('volunteer');
 
-  const roles = [
-    {
-      id: 'canopy',
-      title: 'Canopy Sower',
-      desc: 'Participate in weekend seed-gathering treks and coordinate local bank re-wilding tree drives in Sonitpur and Tezpur.',
-      iconName: 'forest',
-      commitment: '4 hours / week'
-    },
-    {
-      id: 'heritage',
-      title: 'Heritage Ambassador',
-      desc: 'Assist in women weaving co-operatives with logistics, digital inventory management, and marketing organic silk fabrics.',
-      iconName: 'artisan',
-      commitment: '6 hours / week'
-    },
-    {
-      id: 'ranger',
-      title: 'Wetland Ranger',
-      desc: 'Deploy with local river squads to clear plastic waste, clear water hyacinths, and document bird species nesting seasons.',
-      iconName: 'wetland',
-      commitment: '5 hours / week'
-    },
-    {
-      id: 'digital',
-      title: 'Digital Catalyst',
-      desc: 'Spread conservation awareness, design visual content, or build mapping extensions for our open-source canopy registry from home.',
-      iconName: 'digital',
-      commitment: 'Flexible hours'
-    }
-  ];
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handlePhoneChange = (e) => {
     const val = e.target.value.replace(/\D/g, '');
@@ -132,64 +93,75 @@ const Volunteer = () => {
     }
   };
 
+  if (isLoading) return null;
+
+  const heroSection = getSection('volunteer_hero');
+  const rolesSection = getSection('volunteer_roles');
+  const formInfoSection = getSection('volunteer_form_info');
+
   return (
     <div className="volunteer-page animate-fade-scale">
       {/* 1. HERO HEADER */}
-      <section className="hero-section-premium">
-        <div className="container-custom">
-          <span className="badge badge-gold">JOIN THE SQUAD</span>
-          <h1 className="text-white mt-3">Volunteer With Us</h1>
-          <p className="vol-hero-subtitle text-white-muted" style={{ maxWidth: '650px', margin: '1.5rem auto 0 auto', fontSize: '1.15rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
-            Be the boots on the ground. Pitch your energy, professional skills, or local insights to help protect and restore Assam's precious biomes.
-          </p>
-        </div>
-      </section>
+      {heroSection && (
+        <section className="hero-section-premium">
+          <div className="container-custom">
+            <span className="badge badge-gold">{heroSection.badge}</span>
+            <h1 className="text-white mt-3">{heroSection.heading}</h1>
+            <p className="hero-subtitle-premium">
+              {heroSection.subtitle}
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* 2. ROLE PREVIEWS */}
-      <section className="roles-section section-padding">
-        <div className="container-custom">
-          <div className="section-header text-center">
-            <span className="badge">VOLUNTEER ROLES</span>
-            <h2>Find Your Calling In the Canopy</h2>
-            <div className="gold-line margin-center" />
-          </div>
+      {rolesSection && (
+        <section className="roles-section section-padding">
+          <div className="container-custom">
+            <div className="section-header text-center">
+              <span className="badge">{rolesSection.badge}</span>
+              <h2>{rolesSection.heading}</h2>
+              <div className="gold-line margin-center" />
+            </div>
 
-          <div className="grid-responsive roles-grid mt-5">
-            {roles.map((role) => (
-              <div className="glass-card role-card" key={role.title}>
-                <div className="r-icon">{renderIcon(role.iconName)}</div>
-                <h3>{role.title}</h3>
-                <p className="r-desc">{role.desc}</p>
-                <div className="r-footer">
-                  <span className="commitment-lbl text-teal">Commitment: {role.commitment}</span>
+            <div className="grid-responsive roles-grid mt-5">
+              {(rolesSection.items || []).map((role) => (
+                <div className="glass-card role-card" key={role.title}>
+                  <div className="r-icon">{renderIcon(role.iconName)}</div>
+                  <h3>{role.title}</h3>
+                  <p className="r-desc">{role.desc}</p>
+                  <div className="r-footer">
+                    <span className="commitment-lbl text-teal">Commitment: {role.commitment}</span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* 3. REGISTRATION FORM */}
       <section className="reg-form-section section-padding bg-cream">
         <div className="container-custom form-wrapper">
-          <div className="form-text-col">
-            <span className="badge">BECOME A MEMBER</span>
-            <h2>Register Your Application</h2>
-            <div className="gold-line" />
-            <p className="mt-3" style={{ color: 'var(--muted)' }}>
-              Submit your credentials below. Our Field Operations Coordinator will review your submission and contact you within 3 business days for a brief digital orientation.
-            </p>
-            
-            <div className="volunteer-induction-box mt-4">
-              <h4>Squad Inductions Include:</h4>
-              <ul className="induct-list">
-                <li>Endemic Seed Germination training.</li>
-                <li>First-Aid and forest navigation certifications.</li>
-                <li>Official GAF Field Ranger organic cotton T-shirt & Field Journal.</li>
-                <li>Invitation to our annual Majuli Island Eco-Stewardship Summit.</li>
-              </ul>
+          {formInfoSection && (
+            <div className="form-text-col">
+              <span className="badge">{formInfoSection.badge}</span>
+              <h2>{formInfoSection.heading}</h2>
+              <div className="gold-line" />
+              <p className="mt-3" style={{ color: 'var(--muted)' }}>
+                {formInfoSection.desc}
+              </p>
+              
+              <div className="volunteer-induction-box mt-4">
+                <h4>{formInfoSection.inductionHeading}</h4>
+                <ul className="induct-list">
+                  {(formInfoSection.inductionItems || []).map((item, idx) => (
+                    <li key={idx}>{item}</li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </div>
+          )}
 
           <div className="form-card-col">
             <div className="glass-card reg-form-card">
@@ -299,7 +271,142 @@ const Volunteer = () => {
         </div>
       </section>
 
-      {/* STYLES MOVED TO INDEX.CSS */}
+      <style>{`
+
+        /* ROLES */
+        .role-card {
+          padding: 2.5rem;
+          background-color: var(--white);
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .r-icon {
+          margin-bottom: 1.5rem;
+          width: 48px;
+          height: 48px;
+          background-color: rgba(217, 95, 67, 0.05);
+          border: 1px solid rgba(217, 95, 67, 0.15);
+          border-radius: var(--radius-sm);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          flex-shrink: 0;
+        }
+
+        .role-card:hover .r-icon {
+          background-color: rgba(217, 95, 67, 0.12);
+          border-color: rgba(217, 95, 67, 0.3);
+          transform: scale(1.08) rotate(5deg);
+        }
+
+        .role-card h3 {
+          margin-bottom: 10px;
+          font-size: 1.25rem;
+        }
+
+        .r-desc {
+          font-size: 0.95rem;
+          line-height: 1.5;
+          margin-bottom: 2rem;
+          flex-grow: 1;
+        }
+
+        .r-footer {
+          border-top: 1px solid rgba(17, 63, 39, 0.08);
+          padding-top: 1rem;
+        }
+
+        .commitment-lbl {
+          font-size: 0.8rem;
+          font-weight: 700;
+          font-family: var(--font-body);
+          text-transform: uppercase;
+        }
+
+        /* FORM */
+        .form-wrapper {
+          display: grid;
+          grid-template-columns: 1fr 1.1fr;
+          gap: 5rem;
+          align-items: center;
+        }
+
+        @media (max-width: 991px) {
+          .form-wrapper {
+            grid-template-columns: 1fr;
+            gap: 3rem;
+          }
+        }
+
+        .volunteer-induction-box {
+          background-color: var(--white);
+          border: 1px dashed rgba(17, 63, 39, 0.15);
+          border-radius: var(--radius-md);
+          padding: 1.8rem;
+        }
+
+        .volunteer-induction-box h4 {
+          margin-bottom: 12px;
+          color: var(--teal);
+        }
+
+        .induct-list {
+          list-style: none;
+          display: flex;
+          flex-direction: column;
+          gap: 8px;
+        }
+
+        .induct-list li {
+          font-size: 0.92rem;
+          color: var(--muted);
+          position: relative;
+          padding-left: 20px;
+        }
+
+        .induct-list li::before {
+          content: '—';
+          position: absolute;
+          left: 0;
+          color: var(--gold);
+          font-weight: bold;
+        }
+
+        .reg-form-card {
+          padding: 2.5rem;
+          background-color: var(--white);
+        }
+
+        .reg-form-card h3 {
+          color: var(--primary);
+        }
+
+        .form-success-alert {
+          text-align: center;
+          padding: 2.5rem 1rem;
+        }
+
+        .success-alert-badge-visual {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 60px;
+          height: 60px;
+          border-radius: 50%;
+          background-color: rgba(17, 63, 39, 0.08);
+          border: 1px solid rgba(17, 63, 39, 0.2);
+          margin-bottom: 1rem;
+        }
+
+        .form-success-alert h4 {
+          color: var(--teal);
+          margin-bottom: 8px;
+        }
+      `}</style>
     </div>
   );
 };

@@ -1,77 +1,14 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ImpactSlider from '../components/ImpactSlider';
+import { useContent } from '../admin/hooks/useContent';
 
 const Impact = () => {
+  const { getSection, getSectionByType, isLoading } = useContent('impact');
+
   useEffect(() => {
-    const hash = window.location.hash;
-    if (hash) {
-      setTimeout(() => {
-        const id = hash.replace('#', '');
-        const element = document.getElementById(id);
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
-    } else {
-      window.scrollTo(0, 0);
-    }
-  }, [window.location.hash]);
-
-  const metrics = [
-    {
-      id: 'funds',
-      title: 'Aggregated Operations',
-      val: '₹2.38Cr',
-      suffix: ' Audited Expenditure',
-      desc: 'GAF successfully scaled its grassroots programmatic disbursements from ₹3.58L in FY 2022-23 to ₹37.15L in FY 2023-24, reaching ₹1.97Cr in FY 2024-25.'
-    },
-    {
-      id: 'education',
-      title: 'Ideal Academy Students',
-      val: '364',
-      suffix: ' Enrolled Children',
-      desc: 'Providing intensive, quality conceptual Nursery to Class X learning and Hostel support inside Ideal Academy, Hailakandi (UDISE: 18230124113).'
-    },
-    {
-      id: 'health',
-      title: 'Public Health Care',
-      val: '2,635+',
-      suffix: ' Patients Supported',
-      desc: 'Delivering nutritional support kits to 935 registered TB patients (ONGC Silchar sponsored), 1,200 pregnant women and children (Luairpoa Karimganj), and 500+ eye care screening patients.'
-    },
-    {
-      id: 'relief',
-      title: 'Dry Rations & Relief',
-      val: '₹48.3L',
-      suffix: ' Hunger Elimination Aid',
-      desc: 'Direct food security dry rations mobilized across Nalbari, NC Hills, Cachar, Hailakandi, and Karimganj districts to support daily wage earners and flood survivors.'
-    }
-  ];
-
-  const fieldStories = [
-    {
-      id: 'story-1',
-      title: 'A Ray of Hope in Hailakandi',
-      author: 'Dilip Namasudra, Parent (Daily Wage Earner)',
-      quote: 'My children were dropping out of school because I could not afford standard tuition fees. GAF’s acquisition of Ideal Academy was a blessing. Today, my daughter studies in Class VIII with high-quality conceptual learning and hostel support, dreaming of becoming a doctor.',
-      iconName: 'education'
-    },
-    {
-      id: 'story-2',
-      title: 'ONGC CSR TB Patient Recovery',
-      author: 'Anjali Gogoi, Health Worker Outreach',
-      quote: 'Medical treatment alone is not enough to cure tuberculosis; rich nutritional care is critical. The high-protein ration packs that GAF distributes directly to our patient cohorts with ONGC Silchar support have successfully improved treatment success rates by providing human dignity.',
-      iconName: 'health'
-    },
-    {
-      id: 'story-3',
-      title: 'Luairpoa Maternal Nutrition Campaign',
-      author: 'Rina Begum, Lactating Mother (Karimganj)',
-      quote: 'GAF distributed highly nutritious food supplements directly to 1,200 pregnant women and young children below three years in our Luairpoa area. It helped ensure healthy pregnancy outcomes and basic infant immunity during deep financial hardship.',
-      iconName: 'health'
-    }
-  ];
+    window.scrollTo(0, 0);
+  }, []);
 
   const renderIcon = (name) => {
     switch (name) {
@@ -108,109 +45,319 @@ const Impact = () => {
     }
   };
 
+  if (isLoading) return null;
+
+  const heroSection = getSection('impact_hero');
+  const metricsSection = getSection('impact_metrics');
+  const dashboardSection = getSection('impact_dashboard');
+  const sliderSection = getSection('impact_slider');
+  const storiesSection = getSection('impact_stories');
+  const ctaSection = getSection('impact_cta');
+
   return (
     <div className="impact-page animate-fade-scale">
       {/* 1. HERO HEADER */}
-      <section className="hero-section-premium">
-        <div className="container-custom">
-          <span className="badge badge-gold">VERIFIED Biological &amp; Social Outcomes</span>
-          <h1 className="text-white mt-3">Grassroots Impact Dashboard</h1>
-          <p className="impact-hero-subtitle text-white-muted" style={{ maxWidth: '650px', margin: '1.5rem auto 0 auto', fontSize: '1.15rem', lineHeight: '1.6', color: 'rgba(255, 255, 255, 0.8)' }}>
-            We translate community contributions into audited grassroots actions across Assam. Explore our verified indicators and direct field testimonies.
-          </p>
-        </div>
-      </section>
+      {heroSection && (
+        <section className="hero-section-premium">
+          <div className="container-custom">
+            <span className="badge badge-gold">{heroSection.badge}</span>
+            <h1 className="text-white mt-3">{heroSection.heading}</h1>
+            <p className="hero-subtitle-premium">
+              {heroSection.subtitle}
+            </p>
+          </div>
+        </section>
+      )}
 
       {/* 2. SPECIFIC AUDITED METRICS */}
-      <section className="metrics-dashboard-section section-padding">
-        <div className="container-custom">
-          <div className="section-header text-center">
-            <span className="badge">VERIFIABLE OUTCOMES</span>
-            <h2>Ecological &amp; Humanitarian Indicators</h2>
-            <div className="gold-line margin-center" />
-          </div>
+      {metricsSection && (
+        <section className="metrics-dashboard-section section-padding">
+          <div className="container-custom">
+            <div className="section-header text-center">
+              <span className="badge">{metricsSection.badge}</span>
+              <h2>{metricsSection.heading}</h2>
+              <div className="gold-line margin-center" />
+            </div>
 
-          <div className="grid-responsive metrics-grid mt-5">
-            {metrics.map((metric) => (
-              <div className="glass-card metric-impact-card" key={metric.title}>
-                <div className="m-icon-box">{renderIcon(metric.id)}</div>
-                <h3>{metric.title}</h3>
-                <div className="m-big-stat text-gold">
-                  <strong>{metric.val}</strong>
-                  <span style={{ fontSize: '0.85rem' }}>{metric.suffix}</span>
+            <div className="grid-responsive metrics-grid mt-5">
+              {(metricsSection.items || []).map((metric) => (
+                <div className="glass-card metric-impact-card" key={metric.title}>
+                  <div className="m-icon-box">{renderIcon(metric.iconName || metric.id)}</div>
+                  <h3>{metric.title}</h3>
+                  <div className="m-big-stat text-gold">
+                    <strong>{metric.val}</strong>
+                    <span style={{ fontSize: '0.85rem' }}>{metric.suffix}</span>
+                  </div>
+                  <div className="m-divider-line" />
+                  <p>{metric.desc}</p>
                 </div>
-                <div className="m-divider-line" />
-                <p style={{ fontSize: '0.92rem', color: 'var(--muted)', lineHeight: '1.5' }}>{metric.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 3. VISUAL BEFORE/AFTER TRANSFORM */}
-      <section className="transformation-slider-section section-padding bg-cream" id="restoration">
-        <div className="container-custom">
-          <div className="section-header text-center">
-            <span className="badge">ENVIRONMENTAL TRANSFORMATION</span>
-            <h2>Witness Ecological Reforestation</h2>
-            <div className="gold-line margin-center" />
-            <p className="section-subtitle mt-2">
-              See the visual before/after changes that GAF community-led tree plantation and green awareness drives make inside educational institutions and public zones.
-            </p>
-          </div>
-
-          <ImpactSlider />
-        </div>
-      </section>
-
-      {/* 4. FIELD STORIES - VOICES FROM THE SOIL */}
-      <section className="field-stories-section section-padding">
-        <div className="container-custom">
-          <div className="section-header text-center">
-            <span className="badge">VOICES FROM THE SOIL</span>
-            <h2>Grassroots Stories of Change</h2>
-            <div className="gold-line margin-center" />
-            <p className="section-subtitle mt-2">
-              Read the real testimonies of parents, healthcare workers, and disaster relief coordinators whose lives are directly touched by GAF.
-            </p>
-          </div>
-
-          <div className="grid-responsive stories-grid mt-5">
-            {fieldStories.map((story) => (
-              <div className="glass-card story-card-premium" key={story.id}>
-                <div className="story-badge-icon">{renderIcon(story.iconName)}</div>
-                <h3>{story.title}</h3>
-                <blockquote className="story-quote-body">
-                  <p>"{story.quote}"</p>
-                </blockquote>
-                <div className="story-author-details">
-                  <strong>{story.author}</strong>
-                  <span>Verified grassroots Beneficiary</span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. CALL TO ACTION AREA */}
-      <section className="impact-cta-section section-padding bg-primary text-center">
-        <div className="container-custom">
-          <div className="cta-box-wrapper-inner">
-            <span className="badge badge-gold">CREATE AN OUTCOME</span>
-            <h2 className="text-white mt-3" style={{ color: 'var(--white)' }}>Be a Catalyst for Human Dignity</h2>
-            <p className="text-white-muted max-width-center mt-3" style={{ maxWidth: '600px', margin: '0 auto', color: 'rgba(255, 255, 255, 0.75)' }}>
-              Your support directly funds monthly tuberculosis nutrition packs, disaster dry rations, student hostel mentoring, street light installations, and stray animal veterinary supplies.
-            </p>
-            <div className="cta-buttons-row mt-4">
-              <Link to="/donate" className="btn btn-gold">Donate to a Campaign</Link>
-              <Link to="/work" className="btn btn-outline-gold">View Our 20 Programs</Link>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* STYLES MOVED TO INDEX.CSS */}
+      {/* 2.5 CSR IMPACT DASHBOARD */}
+      {dashboardSection && (
+        <section className="impact-dashboard-section section-padding bg-cream" id={dashboardSection.id}>
+          <div className="container-custom">
+            <div className="section-header text-center">
+              <span className="badge badge-gold">{dashboardSection.badge}</span>
+              <h2>{dashboardSection.heading}</h2>
+              <div className="gold-line margin-center" />
+              {dashboardSection.subtitle && (
+                <p className="section-subtitle mt-2">
+                  {dashboardSection.subtitle}
+                </p>
+              )}
+            </div>
+
+            <div className="dashboard-grid mt-5" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '24px' }}>
+              {dashboardSection.indicators?.map((ind, idx) => (
+                <div className="glass-card" key={idx} style={{ padding: '2rem', display: 'flex', alignItems: 'center', gap: '20px', backgroundColor: 'var(--white)' }}>
+                  <div style={{ padding: '12px', backgroundColor: 'rgba(217, 95, 67, 0.05)', border: '1px solid rgba(217, 95, 67, 0.1)', borderRadius: '4px', color: 'var(--gold)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                      <polyline points="22 4 12 14.01 9 11.01" />
+                    </svg>
+                  </div>
+                  <div>
+                    <span style={{ fontSize: '0.7rem', color: 'var(--muted)', fontWeight: '800', letterSpacing: '0.5px', textTransform: 'uppercase' }}>{ind.category}</span>
+                    <h4 style={{ fontSize: '1.6rem', color: 'var(--primary)', fontWeight: '800', margin: '2px 0 4px 0', fontFamily: 'var(--font-header)' }}>{ind.value}</h4>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--muted)', margin: 0, fontWeight: '600' }}>{ind.label}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 3. VISUAL BEFORE/AFTER TRANSFORM */}
+      {sliderSection && (
+        <section className="transformation-slider-section section-padding bg-cream">
+          <div className="container-custom">
+            <div className="section-header text-center">
+              <span className="badge">{sliderSection.badge}</span>
+              <h2>{sliderSection.heading}</h2>
+              <div className="gold-line margin-center" />
+              <p className="section-subtitle mt-2">
+                {sliderSection.subtitle}
+              </p>
+            </div>
+
+            <ImpactSlider />
+          </div>
+        </section>
+      )}
+
+      {/* 4. FIELD STORIES - VOICES FROM THE SOIL */}
+      {storiesSection && (
+        <section className="field-stories-section section-padding">
+          <div className="container-custom">
+            <div className="section-header text-center">
+              <span className="badge">{storiesSection.badge}</span>
+              <h2>{storiesSection.heading}</h2>
+              <div className="gold-line margin-center" />
+              <p className="section-subtitle mt-2">
+                {storiesSection.subtitle}
+              </p>
+            </div>
+
+            <div className="grid-responsive stories-grid mt-5">
+              {(storiesSection.items || []).map((story) => (
+                <div className="glass-card story-card-premium" key={story.id} style={{ display: 'flex', flexDirection: 'column', height: '100%', justifyContent: 'space-between', backgroundColor: 'var(--white)' }}>
+                  <div>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '15px' }}>
+                      <div className="story-badge-icon" style={{ margin: 0 }}>{renderIcon(story.iconName)}</div>
+                      {story.category && (
+                        <span style={{ fontSize: '0.72rem', backgroundColor: 'var(--sand)', color: 'var(--primary)', padding: '2px 8px', borderRadius: '4px', fontWeight: '800', letterSpacing: '0.5px' }}>
+                          {story.category}
+                        </span>
+                      )}
+                    </div>
+                    <h3>{story.title}</h3>
+                    <blockquote className="story-quote-body" style={{ fontStyle: 'italic', color: 'var(--muted)', fontSize: '0.95rem', lineHeight: '1.65', marginTop: '10px', marginBottom: '1.5rem', flexGrow: 1 }}>
+                      <p>"{story.quote}"</p>
+                    </blockquote>
+                  </div>
+                  <div>
+                    {story.impact && (
+                      <div style={{ marginBottom: '16px', padding: '10px 14px', backgroundColor: 'rgba(17, 63, 39, 0.03)', borderLeft: '3px solid var(--gold)', borderRadius: '0 4px 4px 0', fontSize: '0.85rem', color: 'var(--primary)', fontWeight: '600' }}>
+                        <strong>Outcome:</strong> {story.impact}
+                      </div>
+                    )}
+                    <div className="story-author-details" style={{ borderTop: '1px solid rgba(17, 63, 39, 0.08)', paddingTop: '1.2rem' }}>
+                      <strong>{story.author}</strong>
+                      <span style={{ fontSize: '0.78rem', color: 'var(--gold-hover)', fontWeight: '700', textTransform: 'uppercase', letterSpacing: '0.5px', marginTop: '3px' }}>Verified grassroots Beneficiary</span>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* 5. CALL TO ACTION AREA */}
+      {ctaSection && (
+        <section className="impact-cta-section section-padding bg-primary text-center">
+          <div className="container-custom">
+            <div className="cta-box-wrapper-inner">
+              <span className="badge badge-gold">{ctaSection.badge}</span>
+              <h2 className="cta-heading text-white mt-3">{ctaSection.heading}</h2>
+              <p className="cta-subtitle mt-3">
+                {ctaSection.subtitle}
+              </p>
+              <div className="cta-buttons-row mt-4">
+                {ctaSection.cta_primary && (
+                  <Link to={ctaSection.cta_primary.link} className="btn btn-gold">{ctaSection.cta_primary.text}</Link>
+                )}
+                {ctaSection.cta_secondary && (
+                  <Link to={ctaSection.cta_secondary.link} className="btn btn-outline-gold">{ctaSection.cta_secondary.text}</Link>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
+      <style>{`
+
+        .metric-impact-card {
+          padding: 2.2rem 1.8rem;
+          background-color: var(--white);
+          height: 100%;
+        }
+
+        .m-icon-box {
+          margin-bottom: 1.2rem;
+          width: 52px;
+          height: 52px;
+          background-color: rgba(17, 63, 39, 0.05);
+          border-radius: var(--radius-sm);
+          border: 1px solid rgba(17, 63, 39, 0.1);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .metric-impact-card h3 {
+          font-size: 1.2rem;
+          margin-bottom: 12px;
+          color: var(--primary);
+        }
+
+        .m-big-stat {
+          margin-bottom: 1.5rem;
+          font-family: var(--font-header);
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .m-big-stat strong {
+          font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+          font-weight: 800;
+          display: block;
+          line-height: 1.1;
+          letter-spacing: -0.02em;
+          color: var(--gold);
+          word-break: break-word;
+          overflow-wrap: break-word;
+        }
+
+        .m-big-stat span {
+          font-family: var(--font-body);
+          font-size: 0.78rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 1px;
+          color: var(--muted);
+        }
+
+        .m-divider-line {
+          height: 1px;
+          background-color: rgba(17, 63, 39, 0.08);
+          margin-bottom: 1.5rem;
+        }
+
+        .metric-impact-card p {
+          font-size: 0.95rem;
+          line-height: 1.6;
+        }
+
+        /* STORIES CARDS */
+        .story-card-premium {
+          padding: 2.5rem 2rem;
+          background-color: var(--white);
+          display: flex;
+          flex-direction: column;
+          height: 100%;
+        }
+
+        .story-badge-icon {
+          margin-bottom: 1.5rem;
+          width: 48px;
+          height: 48px;
+          background-color: rgba(217, 95, 67, 0.05);
+          border: 1px solid rgba(217, 95, 67, 0.1);
+          border-radius: var(--radius-sm);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        .story-card-premium h3 {
+          font-size: 1.25rem;
+          margin-bottom: 15px;
+          color: var(--primary);
+        }
+
+        .story-quote-body {
+          font-style: italic;
+          color: var(--muted);
+          font-size: 1rem;
+          line-height: 1.65;
+          margin-bottom: 2rem;
+          flex-grow: 1;
+        }
+
+        .story-author-details {
+          border-top: 1px solid rgba(17, 63, 39, 0.08);
+          padding-top: 1.2rem;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .story-author-details strong {
+          color: var(--primary);
+          font-size: 0.95rem;
+        }
+
+        .story-author-details span {
+          font-size: 0.78rem;
+          color: var(--gold-hover);
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          margin-top: 3px;
+        }
+
+        /* IMPACT CTA Banner */
+        .max-width-center {
+          max-width: 600px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .cta-buttons-row {
+          display: flex;
+          gap: 16px;
+          justify-content: center;
+          flex-wrap: wrap;
+        }
+      `}</style>
     </div>
   );
 };
