@@ -449,6 +449,19 @@ const Donate = () => {
           font-size: 0.88rem;
           line-height: 1.5;
         }
+
+        @media (max-width: 600px) {
+          .outcomes-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 10px !important;
+          }
+          .outcome-card {
+            padding: 1.25rem 0.85rem !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 10px !important;
+          }
+        }
       `}</style>
     </div>
   );

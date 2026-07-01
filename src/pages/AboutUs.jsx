@@ -126,7 +126,7 @@ const AboutUs = () => {
               )}
             </div>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px', marginTop: '3rem' }}>
+            <div className="statutory-grid-mobile" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: '20px', marginTop: '3rem' }}>
               {statutoryCredentialsSection.items?.map((cred, idx) => (
                 <div className="glass-card" key={idx} style={{ padding: '2rem', display: 'flex', flexDirection: 'column', justifyContent: 'space-between', backgroundColor: 'var(--white)' }}>
                   <div>
@@ -647,6 +647,27 @@ const AboutUs = () => {
 
         .font-weight-600 {
           font-weight: 600;
+        }
+
+        @media (max-width: 600px) {
+          .statutory-grid-mobile {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 12px !important;
+            margin-top: 2rem !important;
+          }
+          .statutory-grid-mobile .glass-card {
+            padding: 1.25rem 1rem !important;
+          }
+          .statutory-grid-mobile .glass-card h3 {
+            font-size: 0.95rem !important;
+            margin-top: 8px !important;
+          }
+          .statutory-grid-mobile .glass-card p {
+            font-size: 0.8rem !important;
+          }
+          .statutory-grid-mobile .glass-card strong {
+            font-size: 0.85rem !important;
+          }
         }
       `}</style>
     </div>

@@ -220,8 +220,15 @@ const Navigation = () => {
         </div>
       </div>
 
+      {/* MOBILE DRAWER OVERLAY */}
+      <div 
+        className={`mobile-drawer-overlay ${isMobileMenuOpen ? 'visible' : ''}`} 
+        onClick={() => setIsMobileMenuOpen(false)} 
+      />
+
       {/* MOBILE DRAWER */}
       <div className={`mobile-menu-drawer ${isMobileMenuOpen ? 'drawer-open' : ''}`}>
+        <button className="mobile-drawer-close-btn" onClick={() => setIsMobileMenuOpen(false)}>×</button>
         <div className="mobile-menu-content">
           <Link to="/" className={`mobile-nav-link ${isActive('/') ? 'active' : ''}`}>Home</Link>
           <Link to="/about" className={`mobile-nav-link ${isActive('/about') ? 'active' : ''}`}>About GAF</Link>
@@ -338,11 +345,29 @@ const Navigation = () => {
 
         @media (max-width: 768px) {
           .logo-img {
-            height: 46px;
+            height: 48px;
             max-width: 190px;
           }
           .nav-scrolled .logo-img {
-            height: 40px;
+            height: 42px;
+          }
+        }
+
+        @media (max-width: 576px) {
+          .fixed-nav {
+            height: 78px !important;
+            box-shadow: 0 2px 10px rgba(17, 63, 39, 0.03) !important;
+            border-bottom: 1px solid rgba(17, 63, 39, 0.08) !important;
+          }
+          .nav-scrolled {
+            background: #ffffff !important;
+            box-shadow: 0 2px 12px rgba(17, 63, 39, 0.05) !important;
+          }
+          .logo-img {
+            height: 52px !important;
+          }
+          .nav-scrolled .logo-img {
+            height: 46px !important;
           }
         }
 
@@ -629,39 +654,72 @@ const Navigation = () => {
           transform: translateY(-8px) rotate(-45deg);
         }
 
-        /* Mobile Drawer */
-        .mobile-menu-drawer {
+        /* Mobile Drawer & Overlay Styles */
+        .mobile-drawer-overlay {
           position: fixed;
           top: 0;
           left: 0;
           width: 100%;
           height: 100vh;
-          background: var(--sand);
+          background: rgba(17, 63, 39, 0.4);
+          backdrop-filter: blur(4px);
+          -webkit-backdrop-filter: blur(4px);
+          opacity: 0;
+          pointer-events: none;
+          z-index: 999;
+          transition: opacity 0.4s ease;
+        }
+        
+        .mobile-drawer-overlay.visible {
+          opacity: 1;
+          pointer-events: all;
+        }
+
+        .mobile-menu-drawer {
+          position: fixed;
+          top: 0;
+          right: 0;
+          left: auto;
+          width: 80vw;
+          max-width: 320px;
+          height: 100vh;
+          background: var(--white);
           z-index: 1000;
           display: flex;
           flex-direction: column;
-          justify-content: center;
-          padding: 2rem;
-          transform: translateY(-100%);
-          opacity: 0;
-          transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+          padding: 5rem 2rem 2rem 2rem;
+          transform: translateX(100%);
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
           pointer-events: none;
+          box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
+          overflow-y: auto;
+          box-sizing: border-box;
         }
 
         .drawer-open {
-          transform: translateY(0);
-          opacity: 1;
+          transform: translateX(0);
           pointer-events: all;
+        }
+
+        .mobile-drawer-close-btn {
+          position: absolute;
+          top: 1.5rem;
+          right: 1.5rem;
+          font-size: 2.2rem;
+          background: transparent;
+          border: none;
+          color: var(--primary);
+          cursor: pointer;
+          line-height: 1;
+          display: block;
         }
 
         .mobile-menu-content {
           display: flex;
           flex-direction: column;
-          align-items: center;
+          align-items: stretch;
           gap: 16px;
           width: 100%;
-          max-width: 400px;
-          margin: 0 auto;
         }
 
         .mobile-nav-link {
@@ -669,15 +727,16 @@ const Navigation = () => {
           font-weight: 700;
           font-size: 1.35rem;
           color: var(--primary);
-          text-align: center;
-          opacity: 0;
-          transform: translateY(20px);
-          transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          text-align: left;
+          opacity: 1;
+          transform: none;
+          padding: 8px 12px;
+          border-radius: 6px;
+          transition: background-color 0.15s ease, color 0.15s ease;
         }
 
-        .drawer-open .mobile-nav-link {
-          opacity: 1;
-          transform: translateY(0);
+        .mobile-nav-link:active {
+          background-color: rgba(217, 95, 67, 0.08);
         }
 
         .mobile-nav-link:hover, .mobile-nav-link.active {
@@ -685,15 +744,18 @@ const Navigation = () => {
         }
 
         .mobile-menu-divider {
-          width: 60px;
-          height: 2px;
-          background-color: var(--border-glass);
+          width: 100%;
+          height: 1px;
+          background-color: rgba(17, 63, 39, 0.08);
           margin: 10px 0;
         }
 
         .mobile-donate-btn {
           width: 100%;
-          padding: 1rem;
+          height: 48px !important;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .admin-login-link {
@@ -703,6 +765,7 @@ const Navigation = () => {
           color: var(--muted);
           margin-top: 15px;
           letter-spacing: 0.5px;
+          text-align: center;
         }
 
         .admin-login-link:hover {

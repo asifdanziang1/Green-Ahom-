@@ -326,7 +326,7 @@ const Home = () => {
 
         @media (max-width: 600px) {
           .stats-grid {
-            grid-template-columns: 1fr !important;
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
             gap: 16px !important;
           }
         }
@@ -524,7 +524,90 @@ const Home = () => {
           border: 1px solid rgba(17, 63, 39, 0.1);
         }
 
+        @media (max-width: 600px) {
+          /* Hero mobile optimizations */
+          .hero-section {
+            padding: 6rem 0 4rem 0 !important;
+            min-height: auto !important;
+            background: linear-gradient(to bottom, rgba(17, 63, 39, 0.99) 0%, rgba(17, 63, 39, 0.93) 50%, rgba(17, 63, 39, 0.85) 100%), 
+                        url('https://images.unsplash.com/photo-1542810634-71277d95dcbb?auto=format&fit=crop&w=800&q=80') center/cover no-repeat !important;
+          }
+          
+          .hero-heading {
+            font-size: 2.1rem !important;
+            line-height: 1.25 !important;
+            margin-top: 10px !important;
+          }
+          
+          .hero-subtitle {
+            font-size: 1rem !important;
+            line-height: 1.5 !important;
+            margin-top: 12px !important;
+            margin-bottom: 1.5rem !important;
+          }
 
+          .hero-cta-group {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 12px !important;
+            width: 100% !important;
+            margin-top: 24px !important;
+          }
+          
+          .hero-cta-group .btn {
+            width: 100% !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            height: 52px !important;
+            font-size: 1rem !important;
+          }
+
+          /* Horizontal swipeable campaign cards */
+          .initiatives-grid {
+            display: flex !important;
+            overflow-x: auto !important;
+            scroll-snap-type: x mandatory !important;
+            gap: 16px !important;
+            padding: 10px 4px 20px 4px !important;
+            margin-top: 24px !important;
+            -webkit-overflow-scrolling: touch !important;
+            -ms-overflow-style: none !important;
+            scrollbar-width: none !important;
+          }
+          
+          .initiatives-grid::-webkit-scrollbar {
+            display: none !important;
+          }
+
+          .initiative-card {
+            flex: 0 0 85% !important;
+            scroll-snap-align: center !important;
+            margin-bottom: 0 !important;
+            height: 380px !important;
+          }
+
+          /* Button CTAs for campaign cards */
+          .init-link {
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 100% !important;
+            padding: 12px 20px !important;
+            background-color: var(--gold) !important;
+            color: var(--white) !important;
+            border-radius: 4px !important;
+            font-size: 0.9rem !important;
+            font-weight: 700 !important;
+            text-align: center !important;
+            box-shadow: 0 2px 8px rgba(217, 95, 67, 0.2) !important;
+          }
+          
+          .init-link:active {
+            transform: scale(0.97) !important;
+            background-color: var(--gold-hover) !important;
+          }
+        }
       `}</style>
     </div>
   );

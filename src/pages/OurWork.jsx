@@ -479,6 +479,36 @@ const OurWork = () => {
         .empty-work-state h3 {
           margin-bottom: 8px;
         }
+
+        @media (max-width: 600px) {
+          .year-filters-row,
+          .filter-controls-row {
+            display: flex !important;
+            overflow-x: auto !important;
+            justify-content: flex-start !important;
+            align-items: center !important;
+            gap: 8px !important;
+            padding: 8px 4px 12px 4px !important;
+            width: 100% !important;
+            -webkit-overflow-scrolling: touch !important;
+            flex-wrap: nowrap !important;
+            -ms-overflow-style: none !important;
+            scrollbar-width: none !important;
+          }
+          .year-filters-row::-webkit-scrollbar,
+          .filter-controls-row::-webkit-scrollbar {
+            display: none !important;
+          }
+          .year-filter-btn,
+          .filter-btn {
+            flex: 0 0 auto !important;
+            white-space: nowrap !important;
+          }
+          .year-filters-container,
+          .category-filters-container {
+            overflow: hidden !important;
+          }
+        }
       `}</style>
     </div>
   );

@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import BottomNavigation from './components/BottomNavigation';
+
 
 // Pages imports
 import Home from './pages/Home';
@@ -35,6 +37,7 @@ function App() {
       </main>
 
       <Footer />
+      <BottomNavigation />
 
       <style>{`
         .app-root-layout {

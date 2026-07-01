@@ -605,6 +605,48 @@ section:last-of-type {
   color: var(--muted) !important;
 }
 
+/* --- MOBILE PHONE ONLY PREMIUM APP EXPERIENCE OVERRIDES --- */
+@media (max-width: 576px) {
+  /* Body offset for bottom navigation bar */
+  body {
+    padding-bottom: 74px !important;
+  }
+
+  /* Typography spacing optimizations */
+  p, li, span, a, label {
+    line-height: 1.45 !important;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.25 !important;
+  }
+
+  section h2 {
+    font-size: 1.7rem !important;
+  }
+
+  /* Make all buttons tall and touch-friendly */
+  .btn {
+    width: 100% !important;
+    height: 50px !important;
+    padding: 0 20px !important;
+    font-size: 0.95rem !important;
+    border-radius: 6px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Native smooth push/active effect on tap */
+  .btn:active, 
+  .mobile-nav-link:active,
+  .mobile-sub-nav-link:active,
+  .mobile-accordion-toggle:active {
+    transform: scale(0.97) !important;
+    filter: brightness(0.9) !important;
+    transition: transform 0.08s ease-in-out, filter 0.08s ease-in-out !important;
+  }
+}
+
+
 
 
 

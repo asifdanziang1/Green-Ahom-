@@ -4,6 +4,13 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState(''); // '', 'loading', 'success'
+  const [expandedSection, setExpandedSection] = useState(null);
+
+  const toggleSection = (section) => {
+    if (window.innerWidth <= 576) {
+      setExpandedSection(expandedSection === section ? null : section);
+    }
+  };
 
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -41,8 +48,11 @@ const Footer = () => {
           </div>
 
           {/* Column 2: Navigation Links */}
-          <div className="footer-col-links">
-            <h4 className="footer-heading text-gold">Explore</h4>
+          <div className={`footer-col-links mobile-collapsible ${expandedSection === 'explore' ? 'expanded' : ''}`}>
+            <h4 className="footer-heading text-gold" style={{ cursor: 'pointer' }} onClick={() => toggleSection('explore')}>
+              Explore
+              <span className="mobile-toggle-indicator" style={{ marginLeft: '8px' }}>{expandedSection === 'explore' ? '−' : '+'}</span>
+            </h4>
             <div className="footer-links-list">
               <Link to="/">Home</Link>
               <Link to="/about">About Us</Link>
@@ -54,8 +64,11 @@ const Footer = () => {
           </div>
 
           {/* Column 3: Actions Links */}
-          <div className="footer-col-links">
-            <h4 className="footer-heading text-gold">Get Involved</h4>
+          <div className={`footer-col-links mobile-collapsible ${expandedSection === 'involved' ? 'expanded' : ''}`}>
+            <h4 className="footer-heading text-gold" style={{ cursor: 'pointer' }} onClick={() => toggleSection('involved')}>
+              Get Involved
+              <span className="mobile-toggle-indicator" style={{ marginLeft: '8px' }}>{expandedSection === 'involved' ? '−' : '+'}</span>
+            </h4>
             <div className="footer-links-list">
               <Link to="/volunteer">Volunteer With Us</Link>
               <Link to="/donate">Donate / Support</Link>
@@ -65,45 +78,50 @@ const Footer = () => {
           </div>
 
           {/* Column 4: Newsletter */}
-          <div className="footer-col-newsletter">
-            <h4 className="footer-heading text-gold">Newsletter</h4>
-            <p className="newsletter-text">
-              Subscribe to receive quarterly field updates, project reports, and stories of change from Assam.
-            </p>
-            <form onSubmit={handleSubscribe} className="footer-newsletter-form">
-              <div className="newsletter-input-group">
-                <input
-                  type="email"
-                  placeholder="Your Email Address"
-                  className="form-control newsletter-input"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  disabled={status === 'loading' || status === 'success'}
-                  required
-                />
-                <button
-                  type="submit"
-                  className={`btn btn-gold newsletter-btn ${status === 'success' ? 'success' : ''}`}
-                  disabled={status === 'loading' || status === 'success'}
-                >
-                  {status === 'loading' ? (
-                    <span className="loader-dot" />
-                  ) : status === 'success' ? (
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                      <polyline points="20 6 9 17 4 12" />
-                    </svg>
-                  ) : (
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                      <polyline points="12 5 19 12 12 19" />
-                    </svg>
-                  )}
-                </button>
-              </div>
-              {status === 'success' && (
-                <span className="newsletter-success-msg">Thank you! You have subscribed successfully.</span>
-              )}
-            </form>
+          <div className={`footer-col-newsletter mobile-collapsible ${expandedSection === 'newsletter' ? 'expanded' : ''}`}>
+            <h4 className="footer-heading text-gold" style={{ cursor: 'pointer' }} onClick={() => toggleSection('newsletter')}>
+              Newsletter
+              <span className="mobile-toggle-indicator" style={{ marginLeft: '8px' }}>{expandedSection === 'newsletter' ? '−' : '+'}</span>
+            </h4>
+            <div className="newsletter-wrapper-mobile">
+              <p className="newsletter-text">
+                Subscribe to receive quarterly field updates, project reports, and stories of change from Assam.
+              </p>
+              <form onSubmit={handleSubscribe} className="footer-newsletter-form">
+                <div className="newsletter-input-group">
+                  <input
+                    type="email"
+                    placeholder="Your Email Address"
+                    className="form-control newsletter-input"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    disabled={status === 'loading' || status === 'success'}
+                    required
+                  />
+                  <button
+                    type="submit"
+                    className={`btn btn-gold newsletter-btn ${status === 'success' ? 'success' : ''}`}
+                    disabled={status === 'loading' || status === 'success'}
+                  >
+                    {status === 'loading' ? (
+                      <span className="loader-dot" />
+                    ) : status === 'success' ? (
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                        <polyline points="20 6 9 17 4 12" />
+                      </svg>
+                    ) : (
+                      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    )}
+                  </button>
+                </div>
+                {status === 'success' && (
+                  <span className="newsletter-success-msg">Thank you! You have subscribed successfully.</span>
+                )}
+              </form>
+            </div>
           </div>
         </div>
 
@@ -353,6 +371,42 @@ const Footer = () => {
         .sep-dot {
           color: rgba(255, 255, 255, 0.15);
           margin: 0 8px;
+        }
+
+        @media (max-width: 576px) {
+          .footer-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            margin-bottom: 0;
+          }
+          .mobile-toggle-indicator {
+            display: inline-block !important;
+            font-size: 1.25rem;
+            color: var(--gold);
+            line-height: 1;
+          }
+          .footer-links-list, .newsletter-wrapper-mobile {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+            opacity: 0;
+          }
+          .expanded .footer-links-list, 
+          .expanded .newsletter-wrapper-mobile {
+            max-height: 300px;
+            opacity: 1;
+            padding-top: 12px;
+            padding-bottom: 16px;
+          }
+        }
+        @media (min-width: 577px) {
+          .mobile-toggle-indicator {
+            display: none !important;
+          }
         }
       `}</style>
     </footer>
