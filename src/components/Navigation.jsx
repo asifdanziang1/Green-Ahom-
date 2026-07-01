@@ -30,6 +30,21 @@ const Navigation = () => {
     return () => clearTimeout(timer);
   }, [location]);
 
+  // Disable body scroll when mobile menu is open to prevent background scrolling
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+      document.body.style.height = '100vh';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.height = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.height = '';
+    };
+  }, [isMobileMenuOpen]);
+
   // Desktop Mega Menu Configuration
   const menuItems = [
     {
@@ -358,6 +373,8 @@ const Navigation = () => {
             height: 78px !important;
             box-shadow: 0 2px 10px rgba(17, 63, 39, 0.03) !important;
             border-bottom: 1px solid rgba(17, 63, 39, 0.08) !important;
+            width: 100% !important;
+            left: 0 !important;
           }
           .nav-scrolled {
             background: #ffffff !important;
@@ -667,14 +684,16 @@ const Navigation = () => {
           opacity: 0;
           pointer-events: none;
           z-index: 999;
-          transition: opacity 0.4s ease;
+          transition: opacity 0.4s ease, visibility 0.4s ease;
+          visibility: hidden;
         }
         
         .mobile-drawer-overlay.visible {
           opacity: 1;
           pointer-events: all;
+          visibility: visible;
         }
-
+ 
         .mobile-menu-drawer {
           position: fixed;
           top: 0;
@@ -689,16 +708,18 @@ const Navigation = () => {
           flex-direction: column;
           padding: 5rem 2rem 2rem 2rem;
           transform: translateX(100%);
-          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.4s ease;
           pointer-events: none;
           box-shadow: -10px 0 30px rgba(0, 0, 0, 0.05);
           overflow-y: auto;
           box-sizing: border-box;
+          visibility: hidden;
         }
-
+ 
         .drawer-open {
           transform: translateX(0);
           pointer-events: all;
+          visibility: visible;
         }
 
         .mobile-drawer-close-btn {
