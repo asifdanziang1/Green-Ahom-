@@ -297,7 +297,7 @@ const AnnualReports = () => {
 
       {/* 5. CSR AUDIT REQUEST */}
       {ctaSection && (
-        <section className="csr-request-section section-padding bg-sand">
+        <section className="csr-request-section section-padding bg-sand" id="request">
           <div className="container-custom csr-wrapper">
             <div className="csr-text-col">
               <span className="badge">{ctaSection.badge}</span>

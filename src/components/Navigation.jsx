@@ -4,6 +4,8 @@ import { Link, useLocation } from 'react-router-dom';
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
+  const [isMobileGetInvolvedOpen, setIsMobileGetInvolvedOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -18,10 +20,12 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on page transition asynchronously
+  // Close mobile menu and accordions on page transition asynchronously
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsMobileMenuOpen(false);
+      setIsMobileResourcesOpen(false);
+      setIsMobileGetInvolvedOpen(false);
     }, 0);
     return () => clearTimeout(timer);
   }, [location]);
@@ -29,137 +33,90 @@ const Navigation = () => {
   // Desktop Mega Menu Configuration
   const menuItems = [
     {
-      name: 'About',
-      type: 'dropdown',
-      title: 'About GAF',
-      desc: 'Green Ahom Federation is a registered Section 8 NPO working closely with marginalized communities, women, children, and disaster-affected populations across Assam.',
-      columns: [
-        {
-          title: 'Who We Are',
-          links: [
-            { name: 'Our Organization', path: '/about' },
-            { name: 'Board of Directors', path: '/about#board' },
-            { name: 'Historical Legacy', path: '/about#history' },
-          ]
-        },
-        {
-          title: 'Community Life',
-          links: [
-            { name: 'Photo Gallery', path: '/gallery' },
-            { name: 'Milestone Timeline', path: '/about#milestones' },
-          ]
-        }
-      ],
-      featured: {
-        tag: 'OUR LEGACY',
-        title: 'Water Engineering of Ahom Kingdom',
-        desc: '"Drawing inspiration from ancient historical methods to solve modern community challenges."',
-        path: '/about#history'
-      }
+      name: 'Home',
+      type: 'link',
+      path: '/'
+    },
+    {
+      name: 'About GAF',
+      type: 'link',
+      path: '/about'
     },
     {
       name: 'Our Work',
-      type: 'dropdown',
-      title: 'Our Programs',
-      desc: 'We combine immediate humanitarian disaster relief with long-term conceptual capacity building, forestry, and sustainable livelihoods.',
-      columns: [
-        {
-          title: 'Key Initiatives',
-          links: [
-            { name: 'Active Campaigns', path: '/work' },
-            { name: 'Ideal Academy Hailakandi', path: '/work#education' },
-            { name: 'Women Empowerment', path: '/work#livelihoods' },
-          ]
-        },
-        {
-          title: 'Proof & Metrics',
-          links: [
-            { name: 'Impact Dashboard', path: '/impact' },
-            { name: 'Restoration Slider', path: '/impact#restoration' },
-          ]
-        }
-      ],
-      featured: {
-        tag: 'FLAGSHIP PROJECT',
-        title: '364 Children at Ideal Academy',
-        desc: '"Conceptual and intensive affordable learning support for low-income communities in Hailakandi."',
-        path: '/work'
-      }
+      type: 'link',
+      path: '/work'
     },
     {
       name: 'Resources',
       type: 'dropdown',
-      title: 'Statutory Desk',
-      desc: 'Read about our audited financials, governance parameters, statutory credentials, and legal compliance structures.',
+      title: 'Resources Desk',
+      desc: 'Access verified records, CA-audited financials, legal incorporation documents, and detailed field metrics.',
       columns: [
         {
-          title: 'Compliance Docs',
+          title: 'Impact & Transparency',
+          icon: '📊',
           links: [
-            { name: 'Annual Audit Reports', path: '/reports' },
-            { name: 'AOA & MOA Files', path: '/reports#documents' },
+            { name: 'Impact Dashboard', path: '/impact', desc: 'Metrics, field stories, and geographic reach' }
           ]
         },
         {
-          title: 'Legal Statutory',
+          title: 'Documents & Compliance',
+          icon: '📁',
           links: [
-            { name: '12A & 80G Certificates', path: '/partners#credentials' },
-            { name: 'CSR-1 Implementing Agency', path: '/partners#credentials' },
+            { name: 'Governance & Financial Disclosures', path: '/reports', desc: 'Reports, AOA, MOA, CSR-1, 12A/80G, NITI Aayog' },
+            { name: 'Request CSR Audit Dossier', path: '/reports#request', desc: 'Request official audit documentation' }
+          ]
+        },
+        {
+          title: 'Media & Stories',
+          icon: '🖼️',
+          links: [
+            { name: 'Field Photo Gallery', path: '/gallery', desc: 'Forests, Wetlands, Artisans, Community' },
+            { name: 'Field Stories', path: '/impact#stories', desc: 'Success testimonials & outcomes' }
           ]
         }
       ],
       featured: {
-        tag: 'TRANSPARENCY',
-        title: 'CA Audited Statements',
-        desc: '"A registered Section 8 non-profit with complete public compliance records."',
-        path: '/reports'
+        tag: 'REQUEST ACCESS',
+        title: 'Request CSR Audit Dossier',
+        desc: 'Get the complete verified CA compliance dossier for corporate CSR evaluation.',
+        path: '/reports#request',
+        ctaText: 'Request Dossier',
+        highlight: true
       }
     },
     {
       name: 'Get Involved',
       type: 'dropdown',
-      title: 'Act With Us',
-      desc: 'From field rangers to corporate patrons, our community is active in making a real difference across the wetland ecosystems of Assam.',
+      title: 'Get Involved',
+      desc: 'Join GAF in building sustainable livelihoods and protecting the ecological heritage of Assam.',
       columns: [
         {
-          title: 'Join GAF',
+          title: 'Partner With Us',
+          icon: '🤝',
           links: [
-            { name: 'Volunteer With Us', path: '/volunteer' },
-            { name: 'Become a Partner', path: '/partners' },
+            { name: 'Sponsors & CSR', path: '/partners', desc: 'CSR partnerships, corporate patrons, and MoUs' },
+            { name: 'Donate Now', path: '/donate', desc: 'Support active field conservation campaigns' }
           ]
         },
         {
-          title: 'Contribute',
+          title: 'Join Us',
+          icon: '🙋',
           links: [
-            { name: 'Donate Funds', path: '/donate' },
-            { name: 'Support an Outcome', path: '/donate#outcomes' },
+            { name: 'Volunteer Portal', path: '/volunteer', desc: 'Active field roles, registration, and training' },
+            { name: 'Contact Us', path: '/contact', desc: 'Reach out to our Hailakandi & field units' }
           ]
         }
       ],
       featured: {
-        tag: 'BECOME A MEMBER',
-        title: 'Empower a Woman Weaver',
-        desc: '"Help rural women become self-employed through vocational tailoring courses."',
-        path: '/volunteer'
+        tag: 'JOIN OUR MISSION',
+        title: 'Become a Field Volunteer',
+        desc: 'Join our sower squads or ranger teams in Hailakandi and Barpeta.',
+        path: '/volunteer',
+        ctaText: 'Register Now'
       }
-    },
-    {
-      name: 'Contact',
-      type: 'link',
-      path: '/contact'
     }
-  ];
-
-  // Flat menu structure specifically optimized for mobile drawers
-  const mobileMenuItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About GAF', path: '/about' },
-    { name: 'Our Campaigns', path: '/work' },
-    { name: 'Impact Dashboard', path: '/impact' },
-    { name: 'Annual Reports', path: '/reports' },
-    { name: 'Photo Gallery', path: '/gallery' },
-    { name: 'Volunteer Portal', path: '/volunteer' },
-    { name: 'Sponsors & CSR', path: '/partners' },
-    { name: 'Contact Us', path: '/contact' }
   ];
 
   const isActive = (path) => location.pathname === path;
@@ -187,23 +144,20 @@ const Navigation = () => {
                   
                   {/* MEGA MENU CONTAINER */}
                   <div className="mega-menu">
-                    <div className="container-custom mega-menu-grid">
-                      {/* Column 1: Descriptive text block */}
-                      <div className="mega-desc-col">
-                        <span className="badge">{item.name}</span>
-                        <h3>{item.title}</h3>
-                        <p>{item.desc}</p>
-                      </div>
-                      
-                      {/* Column 2 & 3: Structured sublinks lists */}
+                    <div className="container-custom mega-menu-grid" style={{ gridTemplateColumns: item.columns.length === 3 ? '1fr 1fr 1fr 1.2fr' : '1.2fr 1.2fr 1.4fr' }}>
+                      {/* Sublinks columns */}
                       {item.columns.map((col, idx) => (
                         <div key={idx} className="mega-links-col">
-                          <h4>{col.title}</h4>
+                          <h4 style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            {col.icon && <span style={{ fontSize: '1.1rem' }}>{col.icon}</span>}
+                            <span>{col.title}</span>
+                          </h4>
                           <ul className="mega-links-list">
                             {col.links.map((link) => (
-                              <li key={link.name}>
-                                <Link to={link.path} className="mega-sublink">
-                                  {link.name}
+                              <li key={link.name} className="mega-sublink-item" style={{ marginBottom: '14px' }}>
+                                <Link to={link.path} className="mega-sublink" style={{ display: 'block' }}>
+                                  <div className="sublink-title" style={{ fontWeight: '700', color: 'var(--primary)', fontSize: '0.92rem', transition: 'color 0.2s' }}>{link.name}</div>
+                                  {link.desc && <span className="sublink-desc" style={{ display: 'block', fontSize: '0.78rem', color: 'var(--muted)', fontWeight: '500', marginTop: '2px', lineHeight: '1.35' }}>{link.desc}</span>}
                                 </Link>
                               </li>
                             ))}
@@ -211,17 +165,19 @@ const Navigation = () => {
                         </div>
                       ))}
                       
-                      {/* Column 4: Elegant featured card block */}
-                      <div className="mega-featured-col">
-                        <div className="featured-border-box">
-                          <span className="featured-tag">{item.featured.tag}</span>
-                          <h5>{item.featured.title}</h5>
-                          <p className="featured-quote">{item.featured.desc}</p>
-                          <Link to={item.featured.path} className="featured-cta-link">
-                            Learn More →
-                          </Link>
+                      {/* Highlighted CTA card */}
+                      {item.featured && (
+                        <div className="mega-featured-col">
+                          <div className={`featured-border-box ${item.featured.highlight ? 'featured-highlight-terracotta' : ''}`}>
+                            <span className="featured-tag">{item.featured.tag}</span>
+                            <h5>{item.featured.title}</h5>
+                            <p className="featured-quote" style={{ fontSize: '0.8rem', color: 'var(--muted)', margin: '4px 0 12px 0', lineHeight: '1.4' }}>{item.featured.desc}</p>
+                            <Link to={item.featured.path} className="btn btn-gold featured-cta-btn" style={{ fontSize: '0.75rem', padding: '6px 12px', borderRadius: '4px', textTransform: 'uppercase', fontWeight: '700' }}>
+                              {item.featured.ctaText || 'Learn More →'}
+                            </Link>
+                          </div>
                         </div>
-                      </div>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -267,16 +223,43 @@ const Navigation = () => {
       {/* MOBILE DRAWER */}
       <div className={`mobile-menu-drawer ${isMobileMenuOpen ? 'drawer-open' : ''}`}>
         <div className="mobile-menu-content">
-          {mobileMenuItems.map((item, index) => (
-            <Link
-              key={item.name}
-              to={item.path}
-              className={`mobile-nav-link ${isActive(item.path) ? 'active' : ''}`}
-              style={{ animationDelay: `${index * 0.05}s` }}
+          <Link to="/" className={`mobile-nav-link ${isActive('/') ? 'active' : ''}`}>Home</Link>
+          <Link to="/about" className={`mobile-nav-link ${isActive('/about') ? 'active' : ''}`}>About GAF</Link>
+          <Link to="/work" className={`mobile-nav-link ${isActive('/work') ? 'active' : ''}`}>Our Campaigns</Link>
+          
+          {/* Resources Mobile Accordion */}
+          <div className="mobile-accordion-item">
+            <button 
+              className="mobile-accordion-toggle"
+              onClick={() => setIsMobileResourcesOpen(!isMobileResourcesOpen)}
             >
-              {item.name}
-            </Link>
-          ))}
+              <span>Resources</span>
+              <span className={`accordion-icon ${isMobileResourcesOpen ? 'open' : ''}`} style={{ transition: 'transform 0.2s', transform: isMobileResourcesOpen ? 'rotate(45deg)' : 'none' }}>+</span>
+            </button>
+            <div className={`mobile-accordion-content ${isMobileResourcesOpen ? 'expanded' : ''}`}>
+              <Link to="/impact" className={`mobile-sub-nav-link ${isActive('/impact') ? 'active' : ''}`}>Impact Dashboard</Link>
+              <Link to="/reports" className={`mobile-sub-nav-link ${isActive('/reports') ? 'active' : ''}`}>Governance & Documents Hub</Link>
+              <Link to="/gallery" className={`mobile-sub-nav-link ${isActive('/gallery') ? 'active' : ''}`}>Field Photo Gallery</Link>
+            </div>
+          </div>
+
+          {/* Get Involved Mobile Accordion */}
+          <div className="mobile-accordion-item">
+            <button 
+              className="mobile-accordion-toggle"
+              onClick={() => setIsMobileGetInvolvedOpen(!isMobileGetInvolvedOpen)}
+            >
+              <span>Get Involved</span>
+              <span className={`accordion-icon ${isMobileGetInvolvedOpen ? 'open' : ''}`} style={{ transition: 'transform 0.2s', transform: isMobileGetInvolvedOpen ? 'rotate(45deg)' : 'none' }}>+</span>
+            </button>
+            <div className={`mobile-accordion-content ${isMobileGetInvolvedOpen ? 'expanded' : ''}`}>
+              <Link to="/volunteer" className={`mobile-sub-nav-link ${isActive('/volunteer') ? 'active' : ''}`}>Volunteer Portal</Link>
+              <Link to="/partners" className={`mobile-sub-nav-link ${isActive('/partners') ? 'active' : ''}`}>Sponsors & CSR</Link>
+              <Link to="/donate" className={`mobile-sub-nav-link ${isActive('/donate') ? 'active' : ''}`}>Donate Now</Link>
+              <Link to="/contact" className={`mobile-sub-nav-link ${isActive('/contact') ? 'active' : ''}`}>Contact Us</Link>
+            </div>
+          </div>
+
           <div className="mobile-menu-divider" />
           <Link
             to="/donate"
@@ -724,6 +707,80 @@ const Navigation = () => {
 
         .admin-login-link:hover {
           color: var(--primary);
+        }
+
+        .featured-highlight-terracotta {
+          background-color: #fff9f6 !important;
+          border-color: var(--gold) !important;
+        }
+
+        .featured-highlight-terracotta h5 {
+          color: var(--gold-hover) !important;
+        }
+
+        /* Mobile Accordion */
+        .mobile-accordion-item {
+          width: 100%;
+        }
+
+        .mobile-accordion-toggle {
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          font-family: var(--font-header);
+          font-weight: 700;
+          font-size: 1.35rem;
+          color: var(--primary);
+          background: transparent;
+          border: none;
+          padding: 8px 0;
+          cursor: pointer;
+          transition: color 0.2s ease;
+        }
+
+        .mobile-accordion-toggle:hover {
+          color: var(--gold);
+        }
+
+        .accordion-icon {
+          font-size: 1.4rem;
+          color: var(--gold);
+          line-height: 1;
+        }
+
+        .mobile-accordion-content {
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+          opacity: 0;
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          padding-left: 1.25rem;
+          border-left: 2px solid rgba(217, 95, 67, 0.15);
+          margin-top: 4px;
+          text-align: left;
+        }
+
+        .mobile-accordion-content.expanded {
+          max-height: 300px;
+          opacity: 1;
+          padding-top: 8px;
+          padding-bottom: 12px;
+        }
+
+        .mobile-sub-nav-link {
+          font-family: var(--font-body);
+          font-weight: 600;
+          font-size: 1rem;
+          color: var(--muted);
+          transition: color 0.2s ease;
+          text-align: left;
+        }
+
+        .mobile-sub-nav-link:hover, .mobile-sub-nav-link.active {
+          color: var(--gold);
         }
       `}</style>
     </nav>

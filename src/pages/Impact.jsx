@@ -222,6 +222,25 @@ const Impact = () => {
         </section>
       )}
 
+      {/* CROSS-LINKING VERIFICATION FOOTER */}
+      <section className="verification-strip-section section-padding bg-sand" style={{ borderTop: '1px solid rgba(17, 63, 39, 0.05)', padding: '3.5rem 0' }}>
+        <div className="container-custom" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '30px', flexWrap: 'wrap' }}>
+          <div style={{ flex: '1', minWidth: '280px' }}>
+            <span className="badge badge-gold">Audited Transparency</span>
+            <h3 style={{ color: 'var(--primary)', marginTop: '8px', fontSize: '1.4rem', fontFamily: 'var(--font-header)', fontWeight: '700' }}>Verify Our Biological & Social Indicators</h3>
+            <p style={{ color: 'var(--muted)', fontSize: '0.95rem', marginTop: '6px', fontWeight: '500', lineHeight: '1.5' }}>All operational achievements and grassroots expenditures are CA-audited and legally recorded.</p>
+          </div>
+          <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+            <Link to="/reports" className="btn btn-outline" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem' }}>
+              Verify Our Numbers (Download Reports) ➔
+            </Link>
+            <Link to="/gallery" className="btn btn-gold" style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.85rem' }}>
+              See Field Photos ➔
+            </Link>
+          </div>
+        </div>
+      </section>
+
       <style>{`
 
         .metric-impact-card {
