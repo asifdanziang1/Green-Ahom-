@@ -182,9 +182,7 @@ export function getDefaultContent() {
             { id: 'csr1', label: 'CSR-1 Registration Number', value: 'CSR00029857', desc: 'Ministry of Corporate Affairs — Section 135 Implementation Agency', category: 'CSR' },
             { id: 'darpan', label: 'NGO Darpan / Niti Aayog ID', value: 'AS/2022/0311876', desc: 'NITI Aayog Unique ID for Government Grant Eligibility', category: 'GOVERNMENT' },
             { id: 'fcra', label: 'FCRA Status', value: 'Not Applicable (Domestic Only)', desc: 'GAF currently operates exclusively within India and does not receive foreign contributions', category: 'COMPLIANCE' },
-            { id: 'inc_date', label: 'Date of Incorporation', value: '14th September, 2022', desc: 'Registered with ROC Shillong, State of Assam', category: 'INCORPORATION' },
-            { id: 'roc', label: 'Registrar of Companies', value: 'ROC Shillong (Assam & Meghalaya)', desc: 'Ministry of Corporate Affairs Regional Office', category: 'INCORPORATION' },
-            { id: 'ca_auditor', label: 'Statutory Auditor', value: 'ACA Ashu Bhardwaj (M.No. 560437)', desc: 'Chartered Accountant — Annual Statutory Audit Signatory', category: 'AUDIT' }
+            { id: 'inc_date', label: 'Date of Incorporation', value: '14th September, 2022', desc: 'Registered with ROC Shillong, State of Assam', category: 'INCORPORATION' }
           ]
         },
         {
