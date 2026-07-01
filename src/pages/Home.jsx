@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MetricCard from '../components/MetricCard';
 import ImpactSlider from '../components/ImpactSlider';
@@ -92,35 +92,6 @@ const Home = () => {
         </section>
       )}
 
-      {/* COMPLIANCE CREDENTIALS STRIP */}
-      <div className="compliance-ribbon" style={{ backgroundColor: 'var(--sand)', borderTop: '1px solid rgba(17, 63, 39, 0.08)', borderBottom: '1px solid rgba(17, 63, 39, 0.08)', padding: '16px 0', overflow: 'hidden' }}>
-        <div className="container-custom" style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexWrap: 'wrap', gap: '20px', fontSize: '0.82rem', color: 'var(--primary)', fontWeight: '700', fontFamily: 'var(--font-body)' }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--gold)' }}></span>
-            <span>CIN: U85300AS2022NPL022387</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--gold)' }}></span>
-            <span>PAN: AADCG7297L</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--gold)' }}></span>
-            <span>CSR-1: CSR00029857</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--gold)' }}></span>
-            <span>12A: AADCG7297LF20241</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--gold)' }}></span>
-            <span>80G: AADCG7297LG20241</span>
-          </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span style={{ width: '6px', height: '6px', borderRadius: '50%', backgroundColor: 'var(--gold)' }}></span>
-            <span>NGO DARPAN: AS/2022/0311876</span>
-          </div>
-        </div>
-      </div>
 
       {/* 3. SIGNATURE INITIATIVES */}
       {initiativesSection && (
@@ -184,14 +155,14 @@ const Home = () => {
 
       {/* 5. INDUCTIVE WORKING APPROACH DETAIL */}
       {highlightsSection && (
-        <section className="highlights-section section-padding bg-primary" id={highlightsSection.id}>
+        <section className="highlights-section section-padding bg-cream" id={highlightsSection.id}>
           <div className="container-custom">
             <div className="highlights-wrapper">
               <div className="highlights-text-col">
                 {highlightsSection.badge && <span className="badge badge-gold">{highlightsSection.badge}</span>}
-                <h2 className="text-white">{highlightsSection.heading}</h2>
+                <h2>{highlightsSection.heading}</h2>
                 <div className="gold-line" />
-                <p className="text-white-muted" dangerouslySetInnerHTML={{ __html: highlightsSection.content }} />
+                <p dangerouslySetInnerHTML={{ __html: highlightsSection.content }} style={{ marginTop: '20px' }} />
                 
                 {highlightsSection.quote && (
                   <blockquote className="highlight-quote">
@@ -205,10 +176,12 @@ const Home = () => {
                 )}
               </div>
               <div className="highlights-visual-col">
-                <div className="visual-card-premium">
-                  <div className="visual-logo-container">
-                    <img src="/logo.png" alt="Green Ahom Federation Logo" style={{ height: '64px', width: 'auto', objectFit: 'contain' }} />
-                  </div>
+                <div className="visual-card-premium" style={{ padding: 0 }}>
+                  <img 
+                    src={highlightsSection.image || '/extracted_images/ANNUAL_REPORT_2024-2025_p10_img16.jpg'} 
+                    alt={highlightsSection.heading} 
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
                 </div>
               </div>
             </div>
@@ -491,7 +464,7 @@ const Home = () => {
         }
 
         .highlight-quote {
-          background: rgba(255,255,255,0.05);
+          background: var(--sand);
           border-left: 3px solid var(--gold);
           padding: 24px;
           margin: 32px 0;
@@ -501,14 +474,14 @@ const Home = () => {
         .highlight-quote p {
           font-size: 1.15rem;
           font-style: italic;
-          color: white;
+          color: var(--primary);
           margin-bottom: 12px;
           line-height: 1.6;
         }
 
         .highlight-quote cite {
           font-size: 0.9rem;
-          color: var(--gold);
+          color: var(--gold-hover);
           font-style: normal;
           font-weight: 600;
         }
@@ -517,13 +490,12 @@ const Home = () => {
           position: relative;
           border-radius: var(--radius-lg);
           overflow: hidden;
-          background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.02) 100%);
-          border: 1px solid rgba(255,255,255,0.1);
           aspect-ratio: 4/3;
           display: flex;
           align-items: center;
           justify-content: center;
-          box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+          box-shadow: 0 20px 40px rgba(17, 63, 39, 0.08);
+          border: var(--border-flat);
         }
 
         .visual-logo-container {

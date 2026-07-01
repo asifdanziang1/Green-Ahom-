@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useContent } from '../admin/hooks/useContent';
 
 const AnnualReports = () => {
-  const [reports, setReports] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [activeFiscalYear, setActiveFiscalYear] = useState('2024-2025');
   const [csrForm, setCsrForm] = useState({

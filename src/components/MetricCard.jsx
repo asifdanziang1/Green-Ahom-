@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const MetricCard = ({ label, target, context, prefix = '', suffix = '', decimals = 0, duration = 2000 }) => {
   const [count, setCount] = useState(0);
@@ -24,6 +24,29 @@ const MetricCard = ({ label, target, context, prefix = '', suffix = '', decimals
   }
 
   useEffect(() => {
+    const currentCard = cardRef.current;
+
+    const animateCount = () => {
+      let startTimestamp = null;
+      const step = (timestamp) => {
+        if (!startTimestamp) startTimestamp = timestamp;
+        const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+        
+        // Easing function (easeOutQuad)
+        const easeProgress = progress * (2 - progress);
+        const currentCount = easeProgress * adjustedTarget;
+        
+        setCount(currentCount);
+        
+        if (progress < 1) {
+          window.requestAnimationFrame(step);
+        } else {
+          setCount(adjustedTarget);
+        }
+      };
+      window.requestAnimationFrame(step);
+    };
+
     const observer = new IntersectionObserver(
       (entries) => {
         const [entry] = entries;
@@ -35,37 +58,16 @@ const MetricCard = ({ label, target, context, prefix = '', suffix = '', decimals
       { threshold: 0.1 }
     );
 
-    if (cardRef.current) {
-      observer.observe(cardRef.current);
+    if (currentCard) {
+      observer.observe(currentCard);
     }
 
     return () => {
-      if (cardRef.current) {
-        observer.unobserve(cardRef.current);
+      if (currentCard) {
+        observer.unobserve(currentCard);
       }
     };
   }, [adjustedTarget, duration]);
-
-  const animateCount = () => {
-    let startTimestamp = null;
-    const step = (timestamp) => {
-      if (!startTimestamp) startTimestamp = timestamp;
-      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-      
-      // Easing function (easeOutQuad)
-      const easeProgress = progress * (2 - progress);
-      const currentCount = easeProgress * adjustedTarget;
-      
-      setCount(currentCount);
-      
-      if (progress < 1) {
-        window.requestAnimationFrame(step);
-      } else {
-        setCount(adjustedTarget);
-      }
-    };
-    window.requestAnimationFrame(step);
-  };
 
   const formatValue = (val) => {
     if (resolvedDecimals === 0) {
