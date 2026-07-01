@@ -143,6 +143,25 @@ const MetricCard = ({ label, target, context, prefix = '', suffix = '', decimals
           margin-top: auto; /* Push context to the bottom to align across cards of equal height */
           padding-top: 0.5rem;
         }
+
+        @media (max-width: 576px) {
+          .metric-card {
+            padding: 1.5rem 1rem !important;
+            box-shadow: 0 4px 12px rgba(17, 63, 39, 0.04) !important;
+            border-color: rgba(17, 63, 39, 0.12) !important;
+          }
+          .metric-number {
+            font-size: 2.1rem !important;
+            font-weight: 800 !important;
+            color: var(--gold-hover) !important;
+          }
+          .metric-label {
+            font-size: 0.95rem !important;
+          }
+          .metric-context {
+            font-size: 0.8rem !important;
+          }
+        }
       `}</style>
     </div>
   );

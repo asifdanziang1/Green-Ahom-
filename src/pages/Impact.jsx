@@ -275,6 +275,34 @@ const Impact = () => {
           gap: 4px;
         }
 
+        @media (max-width: 600px) {
+          .metrics-grid,
+          .dashboard-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+            gap: 12px !important;
+          }
+          .metrics-grid .glass-card,
+          .dashboard-grid .glass-card {
+            padding: 1.25rem 1rem !important;
+          }
+          .dashboard-grid .glass-card {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 10px !important;
+          }
+          .m-icon-box {
+            margin-bottom: 0.8rem !important;
+            width: 44px !important;
+            height: 44px !important;
+          }
+          .m-big-stat {
+            margin-bottom: 0.8rem !important;
+          }
+          .m-divider-line {
+            margin-bottom: 0.8rem !important;
+          }
+        }
+
         .m-big-stat strong {
           font-size: clamp(1.8rem, 3.2vw, 2.4rem);
           font-weight: 800;
