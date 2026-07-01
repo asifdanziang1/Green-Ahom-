@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect } from 'react';
 
 /**
  * RazorpayModal — Production Razorpay Checkout Integration
@@ -283,12 +283,15 @@ const RazorpayModal = ({
     }
   }, [amount, donorName, donorEmail, donorPhone, donorPan, onPaymentSuccess]);
 
-  // ── Trigger on open ──────────────────────────────────────
-  React.useEffect(() => {
+  // ── Trigger on open asynchronously to avoid cascading renders ──
+  useEffect(() => {
     if (isOpen && status === 'idle') {
-      initiatePayment();
+      const timer = setTimeout(() => {
+        initiatePayment();
+      }, 0);
+      return () => clearTimeout(timer);
     }
-  }, [isOpen]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isOpen, status, initiatePayment]);
 
   // ── Reset on close ───────────────────────────────────────
   const handleClose = () => {

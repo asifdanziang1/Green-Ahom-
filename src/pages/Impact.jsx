@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ImpactSlider from '../components/ImpactSlider';
 import { useContent } from '../admin/hooks/useContent';
 
 const Impact = () => {
-  const { getSection, getSectionByType, isLoading } = useContent('impact');
+  const { getSection, isLoading } = useContent('impact');
 
   useEffect(() => {
     window.scrollTo(0, 0);

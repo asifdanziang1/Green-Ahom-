@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 const Navigation = () => {
@@ -18,9 +18,12 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on page transition
+  // Close mobile menu on page transition asynchronously
   useEffect(() => {
-    setIsMobileMenuOpen(false);
+    const timer = setTimeout(() => {
+      setIsMobileMenuOpen(false);
+    }, 0);
+    return () => clearTimeout(timer);
   }, [location]);
 
   // Desktop Mega Menu Configuration
@@ -316,10 +319,18 @@ const Navigation = () => {
           max-width: 1300px;
           margin: 0 auto;
           padding: 0 1.5rem;
-          display: flex;
+          display: grid;
+          grid-template-columns: 1fr auto 1fr;
           align-items: center;
           width: 100%;
           gap: 40px;
+        }
+        
+        @media (max-width: 1024px) {
+          .nav-container {
+            display: flex;
+            justify-content: space-between;
+          }
         }
 
         .nav-logo {
@@ -366,6 +377,17 @@ const Navigation = () => {
 
         .nav-link-dropdown-parent {
           position: static; /* Crucial: mega menu absolute position aligns with .fixed-nav full width */
+        }
+
+        /* Invisible localized physical bridge to stabilize cursor hover transition across navbar gaps */
+        .dropdown-toggle::after {
+          content: '';
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          height: 25px;
+          background: transparent;
         }
 
         .nav-link-item {
@@ -431,22 +453,10 @@ const Navigation = () => {
           opacity: 0;
           visibility: hidden;
           transform: translateY(4px);
-          transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-                      transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                      visibility 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          transition: opacity 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+                      transform 0.15s cubic-bezier(0.16, 1, 0.3, 1),
+                      visibility 0.15s cubic-bezier(0.16, 1, 0.3, 1);
           pointer-events: none;
-        }
-
-        /* Invisible physical bridge to stabilize cursor hover transition across navbar gaps */
-        .mega-menu::before {
-          content: '';
-          position: absolute;
-          bottom: 100%;
-          left: 0;
-          width: 100%;
-          height: 40px;
-          background: transparent;
-          pointer-events: all;
         }
 
         .nav-link-dropdown-parent:hover .mega-menu {
@@ -579,7 +589,7 @@ const Navigation = () => {
           align-items: center;
           gap: 16px;
           z-index: 1001;
-          margin-left: auto;
+          justify-self: end;
         }
 
         .donate-btn {

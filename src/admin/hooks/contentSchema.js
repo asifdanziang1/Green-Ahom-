@@ -1,4 +1,4 @@
-﻿export function getDefaultContent() {
+export function getDefaultContent() {
   return {
     home: {
       meta: { title: 'Home | Green Ahom Federation', slug: '/', description: 'Green Ahom Federation (GAF) — CSR Implementation Partner NGO in Assam. Section 8 NPO specializing in education, healthcare, women empowerment, rural livelihoods, and humanitarian aid across 7 districts of Assam. CSR-1 Registered | 80G Exempt | 12A Certified.' },
@@ -95,6 +95,7 @@
           badge: 'WORKING APPROACH',
           heading: 'Integrated Grassroots Development',
           content: 'Through community-led initiatives and local partnerships, we work to create sustainable and inclusive social development. Our programs are designed to combine urgent relief packages with capacity building, ensuring high community ownership.',
+          image: '/extracted_images/ANNUAL_REPORT_2024-2025_p10_img16.jpg',
           quote: '"Our programs combine health, nutrition, livelihood, awareness, environmental sustainability, and humanitarian support to create long-term impact rather than short-term relief alone."',
           quote_cite: '— Green Ahom Federation operational statement',
           cta: { text: 'About Our Approach', link: '/about' }
