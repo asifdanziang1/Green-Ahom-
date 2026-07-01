@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { useContent } from '../admin/hooks/useContent';
 
 const Gallery = () => {
@@ -98,36 +99,49 @@ const Gallery = () => {
       {/* 2. FILTER CONTROLS & PHOTO GRID */}
       <section className="gallery-grid-section section-padding">
         <div className="container-custom">
-          {/* Filters */}
-          <div className="filter-controls-row">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                className={`filter-btn ${activeFilter === cat ? 'active' : ''}`}
-                onClick={() => setActiveFilter(cat)}
-              >
-                {cat}
-              </button>
-            ))}
+          {/* Filters & CTA */}
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '20px', borderBottom: '1px solid rgba(17, 63, 39, 0.08)', paddingBottom: '20px', marginBottom: '30px' }}>
+            <div className="filter-controls-row" style={{ margin: 0, border: 'none', padding: 0 }}>
+              {categories.map((cat) => (
+                <button
+                  key={cat}
+                  className={`filter-btn ${activeFilter === cat ? 'active' : ''}`}
+                  onClick={() => setActiveFilter(cat)}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+            <Link to="/impact" className="btn btn-outline" style={{ fontSize: '0.85rem', padding: '8px 16px', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              Read Full Impact Story ➔
+            </Link>
           </div>
 
           {/* Grid */}
           {filteredItems.length > 0 ? (
-            <div className="gallery-masonry-grid mt-5">
+            <div className="gallery-masonry-grid">
               {filteredItems.map((item, idx) => (
                 <div 
                   className="gallery-item-wrapper glass-card animate-reveal" 
                   key={item.id || idx}
                   onClick={() => openLightbox(item)}
-                  style={{ animationDelay: `${idx * 0.05}s` }}
+                  style={{ animationDelay: `${idx * 0.05}s`, display: 'block', overflow: 'hidden', backgroundColor: 'var(--white)' }}
                 >
-                  <div className="gallery-item-image" style={{ background: `linear-gradient(to bottom, rgba(17, 63, 39, 0.35), rgba(17, 63, 39, 0.75)), url(${item.imageUrl}) center/cover no-repeat` }}>
-                    <div className="item-symbol-decor">{renderIcon(item.iconName, 56)}</div>
-                    <div className="item-hover-metadata">
-                      <span className="meta-category">{item.category}</span>
-                      <h4>{item.title}</h4>
-                      <p className="meta-location">Location: {item.location}</p>
+                  <div className="gallery-item-image" style={{ background: `linear-gradient(to bottom, rgba(17, 63, 39, 0.1), rgba(17, 63, 39, 0.2)), url(${item.imageUrl || ''}) center/cover no-repeat` }}>
+                    <div className="item-symbol-decor">{renderIcon(item.iconName, 44)}</div>
+                    <div className="item-hover-metadata" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <span style={{ fontSize: '0.82rem', color: 'var(--gold)', fontWeight: '800', display: 'inline-flex', alignItems: 'center', gap: '6px', backgroundColor: 'rgba(17, 63, 39, 0.85)', padding: '8px 16px', borderRadius: '4px' }}>
+                        View Photo Details 🔍
+                      </span>
                     </div>
+                  </div>
+                  <div className="gallery-item-caption" style={{ padding: '1.25rem', display: 'flex', flexDirection: 'column', backgroundColor: 'var(--white)' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '8px' }}>
+                      <span style={{ fontSize: '0.68rem', fontWeight: '800', color: 'var(--gold)', letterSpacing: '1px', textTransform: 'uppercase' }}>{item.category}</span>
+                      <span style={{ fontSize: '0.72rem', color: 'var(--muted)', fontWeight: '700' }}>📍 {item.location}</span>
+                    </div>
+                    <h4 style={{ color: 'var(--primary)', fontSize: '1.05rem', fontWeight: '700', lineHeight: '1.35', marginBottom: '6px', marginTop: '0', textTransform: 'none' }}>{item.title}</h4>
+                    <p style={{ fontSize: '0.85rem', color: 'var(--muted)', lineHeight: '1.5', margin: 0 }}>{item.desc || 'GAF active field implementation visual record.'}</p>
                   </div>
                 </div>
               ))}
@@ -143,6 +157,17 @@ const Gallery = () => {
               <p>Our field units upload weekly updates. Check back soon for brand-new visual logs!</p>
             </div>
           )}
+          {/* MEDIA KIT CALLOUT FOR CORPORATE PARTNERS */}
+          <div className="glass-card media-kit-callout animate-reveal" style={{ marginTop: '50px', padding: '2.5rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '30px', flexWrap: 'wrap', backgroundColor: 'var(--white)' }}>
+            <div style={{ flex: '1', minWidth: '280px' }}>
+              <span className="badge badge-gold">For Partners & Press</span>
+              <h3 style={{ color: 'var(--primary)', marginTop: '8px', fontSize: '1.35rem', fontFamily: 'var(--font-header)', fontWeight: '700' }}>Download GAF Corporate CSR Media Kit</h3>
+              <p style={{ color: 'var(--muted)', fontSize: '0.95rem', marginTop: '4px', fontWeight: '500', lineHeight: '1.5' }}>Get access to high-resolution verified field action photo archives, video briefs, and vector logo assets for official compliance and CSR reporting.</p>
+            </div>
+            <a href="/reports" className="btn btn-gold" style={{ fontSize: '0.85rem', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+              Download CSR Media Kit (PDF) ➔
+            </a>
+          </div>
         </div>
       </section>
 
