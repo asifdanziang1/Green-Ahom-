@@ -4,6 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMobileWorkOpen, setIsMobileWorkOpen] = useState(false);
   const [isMobileResourcesOpen, setIsMobileResourcesOpen] = useState(false);
   const [isMobileGetInvolvedOpen, setIsMobileGetInvolvedOpen] = useState(false);
   const location = useLocation();
@@ -24,6 +25,7 @@ const Navigation = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsMobileMenuOpen(false);
+      setIsMobileWorkOpen(false);
       setIsMobileResourcesOpen(false);
       setIsMobileGetInvolvedOpen(false);
     }, 0);
@@ -59,8 +61,38 @@ const Navigation = () => {
     },
     {
       name: 'Our Work',
-      type: 'link',
-      path: '/work'
+      type: 'dropdown',
+      title: 'Our Key Programmatic Pillars',
+      desc: 'Explore Green Ahom Federation’s 8 strategic focus areas serving communities, environment, and wildlife across Assam.',
+      columns: [
+        {
+          title: 'Human Development & Relief',
+          icon: '🤝',
+          links: [
+            { name: '1. Education', path: '/work/education', desc: 'Rural smart labs & school upgrades' },
+            { name: '2. Health', path: '/work/health', desc: 'Mobile health clinics & maternal care' },
+            { name: '3. Relief', path: '/work/relief', desc: 'Emergency flood rations & boat rescue' },
+            { name: '4. Disaster Management', path: '/work/disaster-management', desc: 'Early warning sirens & bio-shields' }
+          ]
+        },
+        {
+          title: 'Empowerment & Environment',
+          icon: '🌿',
+          links: [
+            { name: '5. Animal Care', path: '/work/animal-care', desc: 'Livestock fodder & veterinary camps' },
+            { name: '6. Community Development', path: '/work/community-development', desc: 'Artisan micro-grants & clean water' },
+            { name: '7. Women Empowerment', path: '/work/women-empowerment', desc: 'SHGs, tailoring & Project Suchita' },
+            { name: '8. Environment Protection', path: '/work/environment-protection', desc: 'Afforestation, seed bombs & plastic recycling' }
+          ]
+        }
+      ],
+      featured: {
+        tag: 'OPERATIONAL DIRECTORY',
+        title: 'View All Audited Programs',
+        desc: 'Filter 3-year verified campaign history by financial year and category.',
+        path: '/work',
+        ctaText: 'Explore All Work →'
+      }
     },
     {
       name: 'Resources',
@@ -247,7 +279,28 @@ const Navigation = () => {
         <div className="mobile-menu-content">
           <Link to="/" className={`mobile-nav-link ${isActive('/') ? 'active' : ''}`}>Home</Link>
           <Link to="/about" className={`mobile-nav-link ${isActive('/about') ? 'active' : ''}`}>About GAF</Link>
-          <Link to="/work" className={`mobile-nav-link ${isActive('/work') ? 'active' : ''}`}>Our Campaigns</Link>
+          
+          {/* Our Work Mobile Accordion */}
+          <div className="mobile-accordion-item">
+            <button 
+              className="mobile-accordion-toggle"
+              onClick={() => setIsMobileWorkOpen(!isMobileWorkOpen)}
+            >
+              <span>Our Work</span>
+              <span className={`accordion-icon ${isMobileWorkOpen ? 'open' : ''}`} style={{ transition: 'transform 0.2s', transform: isMobileWorkOpen ? 'rotate(45deg)' : 'none' }}>+</span>
+            </button>
+            <div className={`mobile-accordion-content ${isMobileWorkOpen ? 'expanded' : ''}`}>
+              <Link to="/work" className={`mobile-sub-nav-link ${isActive('/work') ? 'active' : ''}`} style={{ fontWeight: '700', color: 'var(--gold)' }}>📋 All Campaigns Overview</Link>
+              <Link to="/work/education" className={`mobile-sub-nav-link ${isActive('/work/education') ? 'active' : ''}`}>1. Education</Link>
+              <Link to="/work/health" className={`mobile-sub-nav-link ${isActive('/work/health') ? 'active' : ''}`}>2. Health</Link>
+              <Link to="/work/relief" className={`mobile-sub-nav-link ${isActive('/work/relief') ? 'active' : ''}`}>3. Relief</Link>
+              <Link to="/work/animal-care" className={`mobile-sub-nav-link ${isActive('/work/animal-care') ? 'active' : ''}`}>4. Animal Care</Link>
+              <Link to="/work/community-development" className={`mobile-sub-nav-link ${isActive('/work/community-development') ? 'active' : ''}`}>5. Community Development</Link>
+              <Link to="/work/women-empowerment" className={`mobile-sub-nav-link ${isActive('/work/women-empowerment') ? 'active' : ''}`}>6. Women Empowerment</Link>
+              <Link to="/work/disaster-management" className={`mobile-sub-nav-link ${isActive('/work/disaster-management') ? 'active' : ''}`}>7. Disaster Management</Link>
+              <Link to="/work/environment-protection" className={`mobile-sub-nav-link ${isActive('/work/environment-protection') ? 'active' : ''}`}>8. Environment Protection</Link>
+            </div>
+          </div>
           
           {/* Resources Mobile Accordion */}
           <div className="mobile-accordion-item">
