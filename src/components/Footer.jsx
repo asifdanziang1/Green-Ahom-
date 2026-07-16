@@ -50,16 +50,18 @@ const Footer = () => {
           {/* Column 2: Navigation Links */}
           <div className={`footer-col-links mobile-collapsible ${expandedSection === 'explore' ? 'expanded' : ''}`}>
             <h4 className="footer-heading text-gold" style={{ cursor: 'pointer' }} onClick={() => toggleSection('explore')}>
-              Explore
+              Our Programs
               <span className="mobile-toggle-indicator" style={{ marginLeft: '8px' }}>{expandedSection === 'explore' ? '−' : '+'}</span>
             </h4>
             <div className="footer-links-list">
-              <Link to="/">Home</Link>
-              <Link to="/about">About Us</Link>
-              <Link to="/work">Our Work</Link>
-              <Link to="/impact">Impact Dashboard</Link>
-              <Link to="/gallery">Gallery</Link>
-              <Link to="/partners">Partners</Link>
+              <Link to="/work/education">Education</Link>
+              <Link to="/work/health">Health</Link>
+              <Link to="/work/relief">Relief</Link>
+              <Link to="/work/animal-care">Animal Care</Link>
+              <Link to="/work/community-development">Community Dev</Link>
+              <Link to="/work/women-empowerment">Women Empowerment</Link>
+              <Link to="/work/disaster-management">Disaster Mgmt</Link>
+              <Link to="/work/environment-protection">Environment Protection</Link>
             </div>
           </div>
 

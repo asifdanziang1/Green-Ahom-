@@ -16,6 +16,16 @@ import Volunteer from './pages/Volunteer';
 import Donate from './pages/Donate';
 import Contact from './pages/Contact';
 
+// Program Pages Imports
+import Education from './pages/Education';
+import Health from './pages/Health';
+import Relief from './pages/Relief';
+import AnimalCare from './pages/AnimalCare';
+import CommunityDevelopment from './pages/CommunityDevelopment';
+import WomenEmpowerment from './pages/WomenEmpowerment';
+import DisasterManagement from './pages/DisasterManagement';
+import EnvironmentProtection from './pages/EnvironmentProtection';
+
 function App() {
   return (
     <div className="app-root-layout">
@@ -26,6 +36,14 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/work" element={<OurWork />} />
+          <Route path="/work/education" element={<Education />} />
+          <Route path="/work/health" element={<Health />} />
+          <Route path="/work/relief" element={<Relief />} />
+          <Route path="/work/animal-care" element={<AnimalCare />} />
+          <Route path="/work/community-development" element={<CommunityDevelopment />} />
+          <Route path="/work/women-empowerment" element={<WomenEmpowerment />} />
+          <Route path="/work/disaster-management" element={<DisasterManagement />} />
+          <Route path="/work/environment-protection" element={<EnvironmentProtection />} />
           <Route path="/impact" element={<Impact />} />
           <Route path="/reports" element={<AnnualReports />} />
           <Route path="/gallery" element={<Gallery />} />
