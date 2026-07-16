@@ -1,0 +1,8 @@
+{
+  // Cloudflare Workers configuration for Green Ahom (React + Vite static site)
+  "name": "greenahom",
+  "compatibility_date": "2026-07-17",
+  "assets": {
+    "directory": "./dist"
+  }
+}
