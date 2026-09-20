@@ -75,22 +75,11 @@ export function getDefaultContent() {
           ]
         },
         {
-          id: 'home_restoration',
-          type: 'slider',
-          name: 'Before/After Restoration Showcase',
-          visible: true,
-          order: 4,
-          status: 'published',
-          badge: 'ENVIRONMENTAL ACTION',
-          heading: 'Witness Ecological Restoration',
-          subtitle: 'Our community plantation and cleanout drives transform barren eroded soil into secure biological sanctuaries.'
-        },
-        {
           id: 'home_highlights',
           type: 'highlights',
           name: 'Working Approach',
           visible: true,
-          order: 5,
+          order: 4,
           status: 'published',
           badge: 'WORKING APPROACH',
           heading: 'Integrated Grassroots Development',
@@ -105,7 +94,7 @@ export function getDefaultContent() {
           type: 'cta_banner',
           name: 'Call to Action Section',
           visible: true,
-          order: 6,
+          order: 5,
           status: 'published',
           badge: 'GET INVOLVED',
           heading: 'Support Grassroots Social Development',

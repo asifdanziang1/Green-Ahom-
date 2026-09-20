@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MetricCard from '../components/MetricCard';
-import ImpactSlider from '../components/ImpactSlider';
 import { useContent } from '../admin/hooks/useContent';
 
 const Home = () => {
@@ -19,7 +18,6 @@ const Home = () => {
   const heroSection = getSectionByType('hero');
   const statsSection = getSectionByType('stats');
   const initiativesSection = getSectionByType('initiatives');
-  const sliderSection = getSectionByType('slider');
   const highlightsSection = getSectionByType('highlights');
   const ctaSection = getSectionByType('cta_banner');
 
@@ -133,25 +131,6 @@ const Home = () => {
         </section>
       )}
 
-      {/* 4. BEFORE/AFTER RESTORATION SHOWCASE */}
-      {sliderSection && (
-        <section className="slider-section section-padding" id={sliderSection.id}>
-          <div className="container-custom">
-            <div className="section-header text-center">
-              {sliderSection.badge && <span className="badge">{sliderSection.badge}</span>}
-              <h2>{sliderSection.heading}</h2>
-              <div className="gold-line margin-center" />
-              {sliderSection.subtitle && (
-                <p className="section-subtitle mt-2">
-                  {sliderSection.subtitle}
-                </p>
-              )}
-            </div>
-
-            <ImpactSlider />
-          </div>
-        </section>
-      )}
 
       {/* 5. INDUCTIVE WORKING APPROACH DETAIL */}
       {highlightsSection && (
