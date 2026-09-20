@@ -2,20 +2,20 @@ import ProgramPageLayout from '../components/ProgramPageLayout';
 
 const EnvironmentProtection = () => {
   const data = {
-    title: "Environment Protection & Reforestation",
-    subtitle: "Conserving biodiversity, restoring native rainforest canopy, reclaiming wetlands, seed bombing, and plastic waste management across Assam's eco-sensitive corridors.",
+    title: "Environment Protection & Afforestation",
+    subtitle: "Conserving biodiversity, restoring native forest canopy through plantation drives, seed bombing, and ecological awareness campaigns across Assam.",
     badgeText: "ENVIRONMENTAL CONSERVATION",
     heroImages: [
-      "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1511497584788-8767611121ef?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=80"
+      "/client_content/program_images/Plantation Drive Programme/PLANTATION 1.jfif",
+      "/client_content/program_images/Plantation Drive Programme/IMG20250221104038.jpg",
+      "/client_content/program_images/Plantation Drive Programme/plantation 4.jfif"
     ],
     whySection: {
       heading: "Why Environmental Conservation is Vital in Assam",
-      leadText: "Assam's rich natural heritage—home to unique flora, fauna, and fragile wetlands—faces immense threats from deforestation, illegal encroachment, and plastic pollution.",
+      leadText: "Assam's rich natural heritage — home to unique flora, fauna, and fragile wetlands — faces immense threats from deforestation, illegal encroachment, and plastic pollution.",
       descriptionPoints: [
         {
-          title: "Depleting Rainforest Canopy",
+          title: "Depleting Forest Canopy",
           desc: "Rapid forest degradation displaces wild elephant herds and disrupts natural rainfall cycles."
         },
         {
@@ -27,99 +27,67 @@ const EnvironmentProtection = () => {
           desc: "Non-biodegradable waste in rural markets drains into rivers, endangering aquatic life and river dolphins."
         }
       ],
-      image: "https://images.unsplash.com/photo-1511497584788-8767611121ef?auto=format&fit=crop&w=800&q=80",
-      highlightStat: "125,000+",
-      highlightLabel: "Native Trees Planted & Seed Bombed"
+      image: "/client_content/program_images/Plantation Drive Programme/IMG20250221104214.jpg",
+      highlightStat: "Active",
+      highlightLabel: "Plantation Drive Programmes Across Multiple Districts"
     },
     approach: [
       {
         icon: "🌳",
-        title: "Native Rainforest Afforestation",
-        desc: "Establishing community tree nurseries and planting endemic timber, fruit, and medicinal saplings in degraded forest corridors.",
-        points: ["Species: Hollong, Nahar, Teak, Amla, Neem", "Geotagged sapling survival monitoring"]
+        title: "School & Community Plantation Drives",
+        desc: "Organising comprehensive plantation drives in schools and government office premises, planting native species to encourage ecological sustainability and climate awareness.",
+        points: ["Native species plantation", "School eco-clubs & awareness"]
       },
       {
         icon: "💣",
-        title: "Aerial Seed Bombing Drives",
+        title: "Seed Bombing Campaigns",
         desc: "Mobilizing youth volunteers to disperse nutrient-encapsulated seed balls over inaccessible hilly and eroded forest zones.",
-        points: ["High-germination clay-compost seed balls", "Pre-monsoon aerial deployment"]
+        points: ["High-germination clay-compost seed balls", "Pre-monsoon deployment"]
       },
       {
         icon: "🌿",
         title: "Wetland & Eco-Buffer Restoration",
         desc: "Cleaning invasive weeds from village waterbodies (Beels), planting riparian bamboo buffers, and protecting bird sanctuaries.",
-        points: ["Desiltation of natural drainage channels", "Migratory bird habitat protection"]
+        points: ["Desiltation of drainage channels", "Migratory bird habitat protection"]
       },
       {
         icon: "♻️",
-        title: "Plastic-Free Assam Campaign",
-        desc: "Setting up community plastic collection kiosks and converting single-use plastics into eco-bricks and paver tiles.",
-        points: ["Buyback micro-incentives for plastic waste", "School plastic collection competitions"]
+        title: "Plastic-Free Campaigns",
+        desc: "Setting up community plastic collection and awareness drives to reduce waste and promote eco-friendly alternatives.",
+        points: ["Community awareness campaigns", "School plastic collection drives"]
       }
     ],
     impactSection: {
       heading: "Restoring Ecological Balance Across Districts",
-      summary: "GAF's environment drives in Hailakandi, Dima Hasao, and Barpeta have restored degraded landscapes and created green community stewards.",
-      image1: "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80",
-      image2: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80",
+      summary: "GAF's plantation drives and environmental programmes across Hailakandi, Cachar, and other districts have contributed to ecological restoration and community awareness.",
+      image1: "/client_content/program_images/Plantation Drive Programme/plantation 5.jfif",
+      image2: "/client_content/program_images/Plantation Drive Programme/PLANTATION 1.jfif",
       highlights: [
         {
           icon: "🌲",
-          title: "82% Sapling Survival Rate",
-          desc: "Community-assigned Green Guardians ensure young trees are nurtured through maturity."
+          title: "Active Plantation Drives",
+          desc: "Community and school plantation programmes encouraging ecological sustainability and climate responsibility."
         },
         {
           icon: "🏞️",
-          title: "18 Village Wetlands Reclaimed",
-          desc: "Removed water hyacinth and restored natural water storage capacity for 30,000 villagers."
+          title: "Community Participation",
+          desc: "Environmental conservation initiatives encouraging community participation and awareness."
         },
         {
-          icon: "📦",
-          title: "25 Tons Plastic Waste Recycled",
-          desc: "Diverted plastic from rivers and converted it into durable village construction materials."
+          icon: "🌍",
+          title: "Ecological Awareness",
+          desc: "School and community programmes building environmental consciousness among youth and rural communities."
         }
       ]
     },
     stats: [
-      { number: "125,000+", label: "Trees & Seed Bombs", subtext: "Planted across forest corridors" },
-      { number: "18", label: "Wetlands Restored", subtext: "Reclaimed from invasive weeds" },
-      { number: "25 Tons", label: "Plastic Recycled", subtext: "Diverted from Assam rivers" },
-      { number: "82%", label: "Verified Survival Rate", subtext: "Geotagged tree audit tracking" }
+      { number: "Active", label: "Plantation Drives", subtext: "Across school & community premises" },
+      { number: "Multiple", label: "Districts Covered", subtext: "Environmental programmes" },
+      { number: "Native", label: "Species Planted", subtext: "Indigenous tree varieties" },
+      { number: "Community", label: "Participation", subtext: "Youth & volunteer-driven" }
     ],
-    stories: [
-      {
-        name: "Bhaskar Barman",
-        role: "Lead Environmental Ranger",
-        location: "Hailakandi Forest Belt",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
-        quote: "Planting native trees today secures Assam's biodiversity and climate resilience for the next century.",
-        fullStory: "Bhaskar has overseen GAF's seed bombing campaigns and tree nurseries, guiding 200+ youth rangers in planting native Hollong and Nahar trees."
-      },
-      {
-        name: "Pratima Rabha",
-        role: "Community Green Guardian",
-        location: "Goalpara District",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
-        quote: "Our village plastic buyback program turned waste management into a source of pride for local women.",
-        fullStory: "Pratima manages her village's plastic waste kiosk, collecting single-use plastics and earning supplemental income for her family."
-      }
-    ],
-    videos: [
-      {
-        title: "Seed Bombing Assam's Degraded Hills",
-        desc: "Youth volunteers dispersing 50,000 seed bombs ahead of the monsoon.",
-        thumbnail: "https://images.unsplash.com/photo-1511497584788-8767611121ef?auto=format&fit=crop&w=600&q=80",
-        duration: "3:20",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-      },
-      {
-        title: "Wetland Restoration & Plastic Recycling Drive",
-        desc: "Cleaning village wetlands and turning plastic waste into eco-bricks.",
-        thumbnail: "https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?auto=format&fit=crop&w=600&q=80",
-        duration: "2:40",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-      }
-    ]
+    stories: [],
+    videos: []
   };
 
   return <ProgramPageLayout programData={data} />;

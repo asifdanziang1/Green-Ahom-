@@ -3,12 +3,12 @@ import ProgramPageLayout from '../components/ProgramPageLayout';
 const Health = () => {
   const data = {
     title: "Healthcare Access & Medical Camps",
-    subtitle: "Delivering free mobile medical units, maternal healthcare, emergency telemedicine, and preventive health drives to underserved rural Assam.",
+    subtitle: "Delivering free eye camps, cataract surgeries, spectacle distribution, and nutritional support to TB patients across rural Assam.",
     badgeText: "HEALTHCARE INITIATIVE",
     heroImages: [
-      "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=1600&q=80"
+      "/client_content/program_images/Eye Camp Cataract Surgery Support Programme/WhatsApp Image 2024-05-05 at 16.06.14.jpeg",
+      "/client_content/program_images/Eye Camp Spectacles Distribution for Refractive Error Programme/WhatsApp Image 2024-05-05 at 11.42.38.jpeg",
+      "/client_content/program_images/Nutritional Food Packets Distribution to TB Patients/WhatsApp Image 2024-05-08 at 10.02.13.jpeg"
     ],
     whySection: {
       heading: "Why Rural Healthcare Access is Urgent in Assam",
@@ -27,16 +27,22 @@ const Health = () => {
           desc: "Poor transport infrastructure forces families to spend high amounts to reach urban medical facilities for basic diagnostics."
         }
       ],
-      image: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=800&q=80",
-      highlightStat: "28,500+",
-      highlightLabel: "Patients Treated in Mobile Medical Camps"
+      image: "/client_content/program_images/Eye Camp Cataract Surgery Support Programme/WhatsApp Image 2024-05-05 at 16.06.15 (1).jpeg",
+      highlightStat: "2,635+",
+      highlightLabel: "Beneficiaries Reached Through Health Programmes"
     },
     approach: [
       {
-        icon: "🚐",
-        title: "Mobile Health Units (MHUs)",
-        desc: "Deploying fully equipped mobile clinic vans staffed by certified doctors, nurses, and pharmacists to remote villages weekly.",
-        points: ["Free diagnostic blood tests", "Essential life-saving medicines"]
+        icon: "👁️",
+        title: "Eye Camp & Cataract Surgery Support",
+        desc: "Conducting free eye screening camps and fully sponsoring cataract surgeries and refractive spectacle distribution for elderly and underprivileged individuals in Hailakandi District.",
+        points: ["Free cataract surgery sponsorship", "Spectacle distribution for refractive errors"]
+      },
+      {
+        icon: "🍽️",
+        title: "TB Patient Nutrition Programme",
+        desc: "Distributing nutritional food packets to registered tuberculosis patients to improve recovery outcomes during treatment in Patharkandi Block, Karimganj District.",
+        points: ["High-protein nutrition supplements", "Partnered with ONGC Silchar CSR"]
       },
       {
         icon: "🩺",
@@ -49,77 +55,39 @@ const Health = () => {
         title: "Preventive Health & Hygiene Screening",
         desc: "Organizing mass screening camps for diabetes, hypertension, malaria, and waterborne infection management.",
         points: ["Free distribution of hygiene kits", "Clean water purification tablets"]
-      },
-      {
-        icon: "📡",
-        title: "Telemedicine & Rural Referral Network",
-        desc: "Connecting grassroots health workers with urban specialist doctors via satellite cloud-telemedicine terminals.",
-        points: ["Digital electronic medical records", "Emergency ambulance dispatch linkage"]
       }
     ],
     impactSection: {
       heading: "Transforming Rural Health Outcomes",
-      summary: "GAF's healthcare network bridges the medical divide in Hailakandi, Dima Hasao, and Barpeta districts with zero cost to poor families.",
-      image1: "https://images.unsplash.com/photo-1516549655169-df83a0774514?auto=format&fit=crop&w=800&q=80",
-      image2: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=600&q=80",
+      summary: "GAF's healthcare programmes across Hailakandi, Karimganj, and Cachar districts have provided critical medical support at zero cost to underserved families.",
+      image1: "/client_content/program_images/Eye Camp Spectacles Distribution for Refractive Error Programme/WhatsApp Image 2024-05-05 at 11.49.27.jpeg",
+      image2: "/client_content/program_images/Nutritional Food Packets Distribution to TB Patients/WhatsApp Image 2024-05-08 at 10.02.14.jpeg",
       highlights: [
         {
-          icon: "❤️",
-          title: "65% Reduction in Waterborne Illnesses",
-          desc: "Regular medical intervention combined with water purification tablet distribution drastically cut disease rates."
-        },
-        {
-          icon: "👶",
-          title: "1,200+ Safe Motherhood Registrations",
-          desc: "Pregnant women received continuous prenatal care and hospital birth assistance."
+          icon: "👁️",
+          title: "Eye Camps & Vision Restoration",
+          desc: "Free spectacle distribution and cataract surgery support restored vision for elderly and underprivileged patients."
         },
         {
           icon: "💊",
-          title: "Free Medicine Distribution",
-          desc: "Over ₹45 Lakhs worth of essential medicines dispensed directly to low-income patients."
+          title: "TB Nutrition Programme",
+          desc: "Nutritional food packets improved recovery outcomes for registered tuberculosis patients in Karimganj."
+        },
+        {
+          icon: "❤️",
+          title: "ONGC CSR Partnership",
+          desc: "Partnered with ONGC Silchar for ₹14.85L healthcare programme covering TB nutrition and cataract surgeries."
         }
       ]
     },
     stats: [
-      { number: "28,500+", label: "Patients Treated", subtext: "Free consultations & medicines" },
-      { number: "140+", label: "Medical Camps Held", subtext: "Across 45 rural hamlets" },
-      { number: "1,200+", label: "Mothers Assisted", subtext: "Maternal nutrition & care" },
-      { number: "100%", label: "Free Diagnostic Services", subtext: "Zero financial burden on poor" }
+      { number: "2,635+", label: "Beneficiaries Reached", subtext: "Health & nutrition programmes" },
+      { number: "₹14.85L", label: "ONGC CSR Partnership", subtext: "TB nutrition & eye care" },
+      { number: "5", label: "Districts Covered", subtext: "Healthcare interventions" },
+      { number: "100%", label: "Free Medical Services", subtext: "Zero financial burden on patients" }
     ],
-    stories: [
-      {
-        name: "Kulsum Begum",
-        role: "Mother of 2, Barpeta",
-        location: "Barpeta District",
-        image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80",
-        quote: "The mobile medical van arrived in our flooded village right when my toddler had severe fever.",
-        fullStory: "During the 2024 monsoon floods, Kulsum's village was surrounded by water. GAF's boat-clinic doctor treated her son and provided vital oral rehydration salts and antibiotics."
-      },
-      {
-        name: "Dr. R. K. Sarma",
-        role: "Lead Volunteer Medical Officer",
-        location: "Hailakandi Unit",
-        image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=600&q=80",
-        quote: "Preventive health screenings catch chronic conditions like diabetes and anemia before they become fatal.",
-        fullStory: "Dr. Sarma has spearheaded 50+ GAF health camps, ensuring elderly villagers receive continuous cardiac and diabetic medications at their doorstep."
-      }
-    ],
-    videos: [
-      {
-        title: "GAF Mobile Clinic Operating in Flood Zones",
-        desc: "Behind the scenes with GAF doctors navigating flood waters to treat patients.",
-        thumbnail: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=600&q=80",
-        duration: "4:10",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-      },
-      {
-        title: "Maternal Health & Nutrition Awareness Camp",
-        desc: "Empowering young mothers with nutrition guidelines and health kits.",
-        thumbnail: "https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?auto=format&fit=crop&w=600&q=80",
-        duration: "2:50",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-      }
-    ]
+    stories: [],
+    videos: []
   };
 
   return <ProgramPageLayout programData={data} />;

@@ -3,12 +3,12 @@ import ProgramPageLayout from '../components/ProgramPageLayout';
 const DisasterManagement = () => {
   const data = {
     title: "Disaster Preparedness & Risk Reduction",
-    subtitle: "Building climate resilience, early warning networks, flood-resistant infrastructure, and community sower response teams across Assam's high-risk ecological zones.",
+    subtitle: "Building climate resilience through community infrastructure, irrigation systems, street lighting, and humanitarian response across Assam's high-risk zones.",
     badgeText: "DISASTER MANAGEMENT INITIATIVE",
     heroImages: [
-      "https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?auto=format&fit=crop&w=1600&q=80"
+      "/client_content/program_images/Irrigation Canal Construction for Sustainable Agriculture in North Narainpur, Hailakandi/IMG-20250429-WA0000.jpg",
+      "/client_content/program_images/Street Light Installation Programme/street light 1.jfif",
+      "/client_content/program_images/Food Distribution Programme for Eliminating Hunger/DRY RATION DISTR 2.jfif"
     ],
     whySection: {
       heading: "Why Disaster Risk Preparedness is Critical in Assam",
@@ -27,22 +27,22 @@ const DisasterManagement = () => {
           desc: "External state disaster teams take hours or days to navigate flooded roads, emphasizing the need for trained local responders."
         }
       ],
-      image: "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?auto=format&fit=crop&w=800&q=80",
-      highlightStat: "50+",
-      highlightLabel: "High-Risk Villages Protected by Early Warning Squads"
+      image: "/client_content/program_images/Irrigation Canal Construction for Sustainable Agriculture in North Narainpur, Hailakandi/IMG-20250429-WA0001.jpg",
+      highlightStat: "5+",
+      highlightLabel: "Districts Covered with Disaster Preparedness Initiatives"
     },
     approach: [
       {
-        icon: "📢",
-        title: "Community Early Warning Systems (CEWS)",
-        desc: "Deploying solar-powered water level sensors, siren stations, and WhatsApp radio warning alerts for riverine communities.",
-        points: ["Real-time gauge monitoring", "SMS & siren evacuation alerts"]
+        icon: "🌊",
+        title: "Irrigation Canal Construction",
+        desc: "Building irrigation canals for sustainable agriculture in flood-prone areas like North Narainpur, Hailakandi to improve water management and crop resilience.",
+        points: ["Sustainable agriculture support", "Flood water management"]
       },
       {
-        icon: "🌊",
-        title: "Bio-Engineering & Erosion Control",
-        desc: "Planting vetiver grass networks, bamboo palisades, and geo-textile soil binding along vulnerable river embankments.",
-        points: ["Deep-root vetiver grass planting", "Eco-friendly slope stabilization"]
+        icon: "💡",
+        title: "Street Light Installation",
+        desc: "Installing solar-powered street lights in rural villages to improve safety, enable evening economic activity, and support disaster evacuation routes.",
+        points: ["Solar-powered LED lights", "Night-time safety for communities"]
       },
       {
         icon: "🛟",
@@ -52,74 +52,42 @@ const DisasterManagement = () => {
       },
       {
         icon: "🏗️",
-        title: "Resilient Elevated Shelter Infrastructure",
-        desc: "Constructing multi-purpose elevated community high-plinth shelters with solar power and rain harvesting.",
-        points: ["Flood-proof high platform shelters", "Integrated cattle evacuation ramps"]
+        title: "Resilient Community Infrastructure",
+        desc: "Constructing community centres, sanitation facilities, and elevated shelters to serve as disaster response hubs.",
+        points: ["Community centre construction", "Sanitation infrastructure (IHHL/WASH)"]
       }
     ],
     impactSection: {
       heading: "Building Long-Term Disaster Resilience",
-      summary: "GAF's proactive risk reduction mitigates loss of life and property before disasters strike.",
-      image1: "https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=800&q=80",
-      image2: "https://images.unsplash.com/photo-1509099836639-18ba1795216d?auto=format&fit=crop&w=600&q=80",
+      summary: "GAF's proactive infrastructure development and community preparedness across multiple districts helps mitigate loss of life and property.",
+      image1: "/client_content/program_images/Street Light Installation Programme/street light 2.jfif",
+      image2: "/client_content/program_images/Irrigation Canal Construction for Sustainable Agriculture in North Narainpur, Hailakandi/IMG-20250429-WA0000.jpg",
       highlights: [
         {
-          icon: "⏰",
-          title: "4-Hour Advance Evacuation Warning",
-          desc: "GAF early warning sensors alerted 12 riverine villages before peak flood surge in 2024."
+          icon: "🌾",
+          title: "Irrigation for Sustainable Agriculture",
+          desc: "Canal construction in Hailakandi ensures year-round water supply for farming communities."
         },
         {
-          icon: "🌱",
-          title: "15 Kilometers Embankment Stabilized",
-          desc: "Vetiver grass and bamboo planting reduced riverbank collapse rates by 60%."
+          icon: "💡",
+          title: "Village Street Illumination",
+          desc: "Street lights installed across rural areas improve safety and support disaster preparedness evacuation."
         },
         {
           icon: "🦺",
-          title: "650 Certified Youth Responders Active",
-          desc: "Local volunteer squads equipped with life jackets, stretchers, and rescue gear."
+          title: "Community-Led Response",
+          desc: "Local volunteer squads equipped and trained for rapid disaster response."
         }
       ]
     },
     stats: [
-      { number: "50+", label: "Villages Protected", subtext: "Equipped with early warning sirens" },
-      { number: "650", label: "Youth Responders Trained", subtext: "Certified in search & rescue" },
-      { number: "15 KM", label: "Embankments Bio-Shielded", subtext: "Vetiver grass & bamboo palisades" },
+      { number: "5+", label: "Districts Covered", subtext: "Disaster preparedness initiatives" },
+      { number: "Multiple", label: "Street Lights Installed", subtext: "Across rural villages" },
+      { number: "Hailakandi", label: "Irrigation Canal", subtext: "North Narainpur project" },
       { number: "100%", label: "Community-Led Response", subtext: "Immediate ground mobilization" }
     ],
-    stories: [
-      {
-        name: "Jiten Gogoi",
-        role: "Early Warning Volunteer",
-        location: "Dhemaji District",
-        image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80",
-        quote: "Our siren alerted 300 families at 2 AM when the upstream dam released flood waters. Everyone evacuated safely.",
-        fullStory: "Jiten manages the GAF solar warning station in his village. His prompt alert enabled families to move livestock and belongings to high ground before water inundated homes."
-      },
-      {
-        name: "Hemanta Saikia",
-        role: "Disaster Preparedness Field Officer",
-        location: "Hailakandi Unit",
-        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
-        quote: "Disaster preparedness turns helplessness into structured, life-saving community action.",
-        fullStory: "Hemanta has led 40+ mock evacuation drills and trained youth squads across the Barak Valley."
-      }
-    ],
-    videos: [
-      {
-        title: "GAF Community Early Warning System Demonstration",
-        desc: "How solar sirens and gauge sensors warn rural villages hours before floods hit.",
-        thumbnail: "https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=600&q=80",
-        duration: "3:45",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-      },
-      {
-        title: "Bio-Engineering Riverbank Protection with Vetiver Grass",
-        desc: "Planting deep-root grass to stop Brahmaputra soil erosion.",
-        thumbnail: "https://images.unsplash.com/photo-1518173946687-a4c8a383392e?auto=format&fit=crop&w=600&q=80",
-        duration: "2:55",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-      }
-    ]
+    stories: [],
+    videos: []
   };
 
   return <ProgramPageLayout programData={data} />;
