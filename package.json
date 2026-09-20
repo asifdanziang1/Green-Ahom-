@@ -5,6 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "cms:dev": "npm --prefix cms run dev",
+    "cms:build": "npm --prefix cms run build",
+    "cms:seed": "npm --prefix cms run seed",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "npm run build && wrangler dev",
