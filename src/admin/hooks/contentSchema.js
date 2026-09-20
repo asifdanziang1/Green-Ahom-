@@ -130,61 +130,17 @@ export function getDefaultContent() {
           subtitle: 'Rooted in the ecological heritage of Assam. Working towards statutory compliance, human dignity, and sustainable grassroots empowerment.'
         },
         {
-          id: 'about_legacy',
-          type: 'legacy',
-          name: 'Historical Legacy',
+          id: 'about_compliance',
+          type: 'compliance',
+          name: 'Registration & Trust',
           visible: true,
           order: 2,
           status: 'published',
-          badge: 'PHILOSOPHICAL ANCHOR',
-          heading: 'The Legacy of Ahom Water Engineering',
-          content: '<p>Green Ahom Federation draws its profound philosophical and operational inspiration from the sophisticated water engineering, environmental resource management, and ecological heritage of the historic Ahom Kingdom.</p><p>For over six hundred years, the Ahom rulers demonstrated a flawless grasp of hydrology and ecological balance. They constructed massive earthen embankments (bunds) to tame the mighty Brahmaputra river system, and excavated grand historical reservoirs—such as Joysagar, Sivasagar, and Gaurisagar—which served as advanced rainwater harvesting hubs. These systems successfully prevented catastrophic flooding while supplying clean water to hundreds of agricultural settlements.</p><p>GAF aims to revive this historic ethos of ecological balance and community-driven water preservation in modern Northeast India. By implementing comprehensive school plantation drives, taming erosion through community action, and initiating rural street illumination, we honor our ancestors\' sophisticated environmental engineering with direct grassroots action.</p>',
-          visual_title: 'Ahom Ecological Legacy',
-          visual_desc: 'Honoring 600 years of sophisticated water engineering, earth embankments, and sustainable community hydrology through local ecological action.'
+          badge: 'Registered Organisation',
+          heading: 'Registration & Trust',
+          subtitle: 'Green Ahom Federation is a government-registered non-profit under the Indian Companies Act, 2013.'
         },
-        {
-          id: 'about_compliance',
-          type: 'compliance',
-          name: 'Statutory Compliance',
-          visible: true,
-          order: 3,
-          status: 'published',
-          badge: 'STATUTORY INTEGRITY',
-          heading: 'Legal Framework & Compliance',
-          subtitle: 'Green Ahom Federation is bound by absolute compliance under Section 8 of the Indian Companies Act, 2013.',
-          content: '<h3>Non-Profit Constitutional Safeguards</h3><p>Under GAF\'s Altered Memorandum of Association (MOA) and Articles of Association (AOA) witnessed in Delhi on <strong>April 28, 2026</strong>, GAF operates under rigid Section 8 constitutional limits:</p><ul class="bullet-checks-list mt-3"><li><strong>Absolute Dividend Prohibition:</strong> 100% of profits or income are solely applied to the promotion of GAF\'s public welfare and ecological objectives. No dividends or bonuses can be paid directly or indirectly to any subscriber or member.</li><li><strong>Limited Liability:</strong> The liability of the subscribers is limited strictly to the nominal value of their shares.</li><li><strong>Authorized Share Capital:</strong> ₹50,000 divided into 5,000 equity shares of ₹10 each.</li><li><strong>Certified CA Audit:</strong> All ledger transactions are fully verified by certified witness and accountant <strong>ACA Ashu Bhardwaj (M. No. 560437)</strong>.</li></ul>',
-          cert_title: 'Ministry of Corporate Affairs',
-          cert_desc: 'Incorporated under the Indian Companies Act, 2013.',
-          cert_meta: [
-            { label: 'CIN:', value: 'U85300AS2022NPL022387' },
-            { label: 'PAN:', value: 'AADCG7297L' },
-            { label: 'ROC Oversight:', value: 'ROC Shillong (State of Assam)' },
-            { label: 'Registration Type:', value: 'Section 8 (Limited by Shares)' },
-            { label: 'Date of Incorporation:', value: '14.09.2022' },
-            { label: 'CA Sign-off Date:', value: '28.04.2026' }
-          ]
-        },
-        {
-          id: 'about_statutory_credentials',
-          type: 'statutory_credentials',
-          name: 'Statutory Registrations',
-          visible: true,
-          order: 3.5,
-          status: 'published',
-          badge: 'CSR DUE DILIGENCE',
-          heading: 'Statutory Registration & Compliance Credentials',
-          subtitle: 'All registration numbers for CSR due diligence, tax compliance verification, and corporate partnership evaluation.',
-          items: [
-            { id: 'cin', label: 'Corporate Identity Number (CIN)', value: 'U85300AS2022NPL022387', desc: 'Ministry of Corporate Affairs, Government of India', category: 'INCORPORATION' },
-            { id: 'pan', label: 'Permanent Account Number (PAN)', value: 'AADCG7297L', desc: 'Income Tax Department, Government of India', category: 'TAX' },
-            { id: 'reg_12a', label: '12A Registration Number', value: 'AADCG7297LF20241', desc: 'Section 12A of the Income Tax Act, 1961 — Non-Profit Status', category: 'TAX' },
-            { id: 'reg_80g', label: '80G Certificate Number', value: 'AADCG7297LG20241', desc: 'Section 80G — 50% Tax Deduction Eligibility for Donors', category: 'TAX' },
-            { id: 'csr1', label: 'CSR-1 Registration Number', value: 'CSR00029857', desc: 'Ministry of Corporate Affairs — Section 135 Implementation Agency', category: 'CSR' },
-            { id: 'darpan', label: 'NGO Darpan / Niti Aayog ID', value: 'AS/2022/0311876', desc: 'NITI Aayog Unique ID for Government Grant Eligibility', category: 'GOVERNMENT' },
-            { id: 'fcra', label: 'FCRA Status', value: 'Not Applicable (Domestic Only)', desc: 'GAF currently operates exclusively within India and does not receive foreign contributions', category: 'COMPLIANCE' },
-            { id: 'inc_date', label: 'Date of Incorporation', value: '14th September, 2022', desc: 'Registered with ROC Shillong, State of Assam', category: 'INCORPORATION' }
-          ]
-        },
+
         {
           id: 'about_directors',
           type: 'directors',
