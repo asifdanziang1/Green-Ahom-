@@ -6,9 +6,9 @@ const Education = () => {
     subtitle: "Empowering rural children in Assam with quality learning resources, STEM kits, digital literacy, and eco-friendly school infrastructure.",
     badgeText: "EDUCATION INITIATIVE",
     heroImages: [
-      "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=1600&q=80"
+      "/extracted_images/ANNUAL_REPORT_2024-2025_p13_img24.jpg",
+      "/extracted_images/ANNUAL_REPORT_2024-2025_p13_img25.jpg",
+      "/client_content/program_images/Plantation Drive Programme/IMG20250221104038.jpg"
     ],
     whySection: {
       heading: "Why Rural Education Matters in Assam",
@@ -27,9 +27,9 @@ const Education = () => {
           desc: "Remote classrooms rarely have access to computers or interactive STEM modules, leaving students at a disadvantage."
         }
       ],
-      image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80",
-      highlightStat: "15,400+",
-      highlightLabel: "Students Supported Across 62 Schools"
+      image: "/extracted_images/ANNUAL_REPORT_2024-2025_p13_img25.jpg",
+      highlightStat: "364",
+      highlightLabel: "Students Enrolled at Ideal Academy"
     },
     approach: [
       {
@@ -60,66 +60,34 @@ const Education = () => {
     impactSection: {
       heading: "Building Long-Term Educational Resilience",
       summary: "Through strategic interventions in Hailakandi, Barpeta, and Karimganj districts, Green Ahom Federation has rejuvenated rural educational ecosystems.",
-      image1: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=800&q=80",
-      image2: "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80",
+      image1: "/extracted_images/ANNUAL_REPORT_2024-2025_p13_img24.jpg",
+      image2: "/client_content/program_images/Plantation Drive Programme/IMG20250221104214.jpg",
       highlights: [
         {
           icon: "📈",
-          title: "38% Increase in Attendance",
-          desc: "Better classroom infrastructure and digital learning modules led to a sharp rise in daily attendance rates."
+          title: "364 Students at Ideal Academy",
+          desc: "Quality, affordable education from Nursery to Class X for underprivileged rural children."
         },
         {
           icon: "👧",
-          title: "Gender Parity in Retention",
-          desc: "Constructing private sanitation units helped retain adolescent female students through senior grades."
+          title: "Inclusive Enrollment",
+          desc: "Supporting SC, ST, OBC, MOBC, Minority, and economically backward communities."
         },
         {
           icon: "🏆",
-          title: "STEM & Science Olympiad Winners",
-          desc: "Rural students from GAF smart-labs earned regional top spots in Assam State Science Olympiads."
+          title: "Conceptual Learning Model",
+          desc: "Intensive mentoring, hostel support, and guided academic facilities for first-generation learners."
         }
       ]
     },
     stats: [
-      { number: "15,400+", label: "Students Enrolled", subtext: "Across Hailakandi & Barpeta" },
-      { number: "62", label: "Schools Upgraded", subtext: "Smart labs & sanitation" },
-      { number: "4,500+", label: "Solar Lamps Distributed", subtext: "For night study" },
+      { number: "364", label: "Students Enrolled", subtext: "At Ideal Academy, Hailakandi" },
+      { number: "Nursery–X", label: "Academic Coverage", subtext: "Full primary to secondary" },
+      { number: "5", label: "Districts Covered", subtext: "Education programmes" },
       { number: "100%", label: "Audited Transparency", subtext: "Verified CSR tracking" }
     ],
-    stories: [
-      {
-        name: "Anamika Das",
-        role: "Class 9 Student, Hailakandi",
-        location: "Hailakandi District",
-        image: "https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80",
-        quote: "The solar study lamp enabled me to study for my matriculation exams even during monsoon blackouts.",
-        fullStory: "Anamika's village experienced regular evening electricity outages. With GAF's solar study lamp and digital learning kit, she scored 88% in her board examinations."
-      },
-      {
-        name: "Biren Rabha",
-        role: "Headmaster, Rural LP School",
-        location: "Goalpara District",
-        image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80",
-        quote: "Our school went from flood-damaged walls to a vibrant, solar-lit digital learning sanctuary.",
-        fullStory: "Before GAF's intervention, attendance dropped by half during rains. Now with restored roofs, desks, and tablet learning, attendance stands at 95% year-round."
-      }
-    ],
-    videos: [
-      {
-        title: "Bringing Digital Labs to Tea Garden Schools",
-        desc: "Documentary showing GAF solar tablet installation in rural Hailakandi classrooms.",
-        thumbnail: "https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80",
-        duration: "3:40",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-      },
-      {
-        title: "Youth Green Ambassadors in Action",
-        desc: "Students establishing biodiversity gardens in village school premises.",
-        thumbnail: "https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=600&q=80",
-        duration: "2:15",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-      }
-    ]
+    stories: [],
+    videos: []
   };
 
   return <ProgramPageLayout programData={data} />;

@@ -6,9 +6,9 @@ const AnimalCare = () => {
     subtitle: "Protecting stray animals, flood-affected livestock, and wildlife through emergency veterinary camps, fodder distribution, and rescue operations.",
     badgeText: "ANIMAL WELFARE INITIATIVE",
     heroImages: [
-      "https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=1600&q=80"
+      "/client_content/program_images/Animal Welfare Rescue, Feeding & Medical Support Programme/ANIMAL WELFARE 1.jfif",
+      "/client_content/program_images/Animal Welfare Rescue, Feeding & Medical Support Programme/animal feed 1.jfif",
+      "/client_content/program_images/Animal Welfare Rescue, Feeding & Medical Support Programme/ANIMAL WELFARE 2.jfif"
     ],
     whySection: {
       heading: "Why Animal & Livestock Welfare is Vital in Assam",
@@ -27,99 +27,67 @@ const AnimalCare = () => {
           desc: "Urban and rural stray dogs and cattle face trauma, vehicle accidents, and lack of basic medical treatment."
         }
       ],
-      image: "https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=800&q=80",
-      highlightStat: "12,800+",
-      highlightLabel: "Animals Treated & Rescued"
+      image: "/client_content/program_images/Animal Welfare Rescue, Feeding & Medical Support Programme/animal medi.jfif",
+      highlightStat: "₹35.4L",
+      highlightLabel: "Annual Animal Welfare Budget Allocation"
     },
     approach: [
       {
-        icon: "🚜",
-        title: "Emergency Cattle Fodder Drives",
-        desc: "Transporting tons of dry straw, green fodder, and mineral supplements to flood high-grounds for stranded farm animals.",
-        points: ["Dry fodder bag distribution", "Mineral lick block installation"]
+        icon: "🐄",
+        title: "Animal Feeding Programmes",
+        desc: "Regular feeding drives for stray and vulnerable animals including cattle, dogs, and other domestic animals across rural and semi-urban areas.",
+        points: ["Community animal feeder network", "Emergency food supply during floods"]
       },
       {
         icon: "💉",
-        title: "Mobile Veterinary Camps",
-        desc: "Deploying certified veterinary doctors to vaccinate cattle and treat injured strays across rural districts.",
+        title: "Veterinary Medical Support",
+        desc: "Deploying veterinary doctors and medical teams to provide treatment, vaccination, and wound care for injured and sick animals.",
         points: ["Foot-and-Mouth disease vaccination", "Deworming & wound care"]
       },
       {
         icon: "🛟",
-        title: "Wildlife & Livestock Rescue Squads",
-        desc: "Operating boat rescue units to extract trapped cows, goats, and domestic animals from flooded riverlands.",
-        points: ["Waterproof cattle transport rafts", "24/7 animal emergency line"]
+        title: "Animal Rescue Operations",
+        desc: "Operating rescue units to extract trapped animals from flood-affected areas and provide immediate shelter and care.",
+        points: ["Flood rescue operations", "Injured animal rehabilitation"]
       },
       {
         icon: "🐶",
-        title: "Stray Animal Sterilization & Rabies Drives",
-        desc: "Conducting anti-rabies vaccination (ARV) drives and humane spay-neuter campaigns in rural market hubs.",
-        points: ["Rabies-free village campaigns", "Community animal feeder network"]
+        title: "Stray Animal Welfare",
+        desc: "Conducting anti-rabies vaccination drives and humane care campaigns in rural market hubs and urban areas.",
+        points: ["Rabies vaccination drives", "Community awareness programmes"]
       }
     ],
     impactSection: {
       heading: "Safeguarding Rural Livelihoods & Animal Lives",
       summary: "In Assam, livestock represent the primary financial security for rural families. GAF's intervention protects both animal lives and family economies.",
-      image1: "https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=800&q=80",
-      image2: "https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=600&q=80",
+      image1: "/client_content/program_images/Animal Welfare Rescue, Feeding & Medical Support Programme/download (1).jfif",
+      image2: "/client_content/program_images/Animal Welfare Rescue, Feeding & Medical Support Programme/download (2).jfif",
       highlights: [
         {
           icon: "🐮",
-          title: "8,500+ Cattle Saved from Starvation",
-          desc: "Over 120 tons of dry fodder distributed during high-flood periods in Hailakandi & Barpeta."
+          title: "Regular Animal Feeding",
+          desc: "Feeding programmes for stray and vulnerable animals across multiple districts."
         },
         {
           icon: "💉",
-          title: "100% Vaccination Coverage in Targeted Hubs",
-          desc: "Prevented mass livestock epidemics during monsoon post-flood recovery phases."
+          title: "Medical Support & Vaccination",
+          desc: "Veterinary camps providing free treatment and vaccination for injured and sick animals."
         },
         {
           icon: "🐾",
-          title: "4,300+ Anti-Rabies Shots Administered",
-          desc: "Protected stray dogs and rural residents against rabies transmission."
+          title: "Rescue & Rehabilitation",
+          desc: "Active rescue operations during floods and emergencies to save stranded animals."
         }
       ]
     },
     stats: [
-      { number: "12,800+", label: "Animals Treated", subtext: "Cattle, strays & rescued wildlife" },
-      { number: "120 Tons", label: "Fodder Distributed", subtext: "During peak flood months" },
-      { number: "4,300+", label: "Vaccinations Administered", subtext: "ARV & Foot-and-Mouth protection" },
-      { number: "100%", label: "Humane Rescue Operations", subtext: "Certified veterinary supervision" }
+      { number: "₹35.4L", label: "Annual Budget", subtext: "Animal welfare allocation" },
+      { number: "Multiple", label: "Districts Covered", subtext: "Feeding & rescue operations" },
+      { number: "Regular", label: "Feeding Drives", subtext: "Stray & vulnerable animals" },
+      { number: "100%", label: "Humane Operations", subtext: "Compassion for all living beings" }
     ],
-    stories: [
-      {
-        name: "Mukesh Boro",
-        role: "Dairy Farmer",
-        location: "Darrang District",
-        image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80",
-        quote: "GAF's fodder boat arrived when my 4 cows had eaten nothing for three continuous days of flooding.",
-        fullStory: "Mukesh depends on his cows for milk production. When floodwaters covered his village pasture, GAF delivered dry fodder and essential veterinary care right to his embankment shelter."
-      },
-      {
-        name: "Dr. Dipankar Nath",
-        role: "Veterinary Officer, GAF Squad",
-        location: "Barpeta Rescue Unit",
-        image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=600&q=80",
-        quote: "Protecting livestock protects the backbone of Assam's agricultural family economy.",
-        fullStory: "Dr. Nath has personally conducted 60+ veterinary camps in remote riverine villages, treating cattle and domestic animals free of charge."
-      }
-    ],
-    videos: [
-      {
-        title: "GAF Livestock Rescue Boat Operations",
-        desc: "Rescuing stranded cattle from submerged islands in Assam during monsoon peak.",
-        thumbnail: "https://images.unsplash.com/photo-1548767797-d8c844163c4c?auto=format&fit=crop&w=600&q=80",
-        duration: "3:30",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-      },
-      {
-        title: "Free Veterinary & Fodder Distribution Drive",
-        desc: "High-impact veterinary treatment and vaccination for village cattle.",
-        thumbnail: "https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=600&q=80",
-        duration: "2:40",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-      }
-    ]
+    stories: [],
+    videos: []
   };
 
   return <ProgramPageLayout programData={data} />;

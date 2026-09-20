@@ -6,9 +6,9 @@ const Relief = () => {
     subtitle: "Rapid deployment of dry ration packs, clean drinking water, emergency shelters, and survival kits during Assam's severe annual flood crises.",
     badgeText: "DISASTER RELIEF INITIATIVE",
     heroImages: [
-      "https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=1600&q=80",
-      "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=1600&q=80"
+      "/client_content/program_images/Food Distribution Programme for Eliminating Hunger/IMG-20260310-WA0043.jpg",
+      "/client_content/program_images/Food Distribution Programme for Eliminating Hunger/DRY RATION DISTR 2.jfif",
+      "/client_content/program_images/Food Distribution Programme for Eliminating Hunger/IMG-20260310-WA0047.jpg"
     ],
     whySection: {
       heading: "Why Emergency Relief is Lifesaving in Assam",
@@ -27,9 +27,9 @@ const Relief = () => {
           desc: "Submerged tube wells result in acute drinking water shortages, leading to rapid disease spread."
         }
       ],
-      image: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=800&q=80",
-      highlightStat: "42,000+",
-      highlightLabel: "Individuals Reached with Relief Ration Kits"
+      image: "/client_content/program_images/Food Distribution Programme for Eliminating Hunger/DRY RATION DISTR 3.jfif",
+      highlightStat: "₹48.3L",
+      highlightLabel: "Worth of Dry Rations Distributed Across 5 Districts"
     },
     approach: [
       {
@@ -59,67 +59,35 @@ const Relief = () => {
     ],
     impactSection: {
       heading: "Immediate Ground Response & Rehabilitation",
-      summary: "Green Ahom Federation's relief operations in Hailakandi, Barpeta, and Cachar have saved thousands of lives during major flood events.",
-      image1: "https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80",
-      image2: "https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=600&q=80",
+      summary: "Green Ahom Federation's relief operations across Hailakandi, Barpeta, Cachar, Karimganj and Nalbari have provided critical humanitarian support during major flood events.",
+      image1: "/client_content/program_images/Food Distribution Programme for Eliminating Hunger/IMG-20260310-WA0043.jpg",
+      image2: "/client_content/program_images/Food Distribution Programme for Eliminating Hunger/IMG-20260310-WA0047.jpg",
       highlights: [
         {
           icon: "🍲",
-          title: "Over 350,000 Meals Served",
-          desc: "Community relief kitchens operated round-the-clock during peak flood submerged days."
+          title: "Dry Ration Distribution",
+          desc: "Emergency food packets distributed to economically weaker households and daily wage earners facing hardship."
         },
         {
           icon: "🛡️",
-          title: "Zero Waterborne Outbreaks in Camps",
-          desc: "Clean water purification tablets prevented cholera and dysentery epidemics in GAF relief zones."
+          title: "Multi-District Coverage",
+          desc: "Relief operations reached vulnerable populations across Cachar, Hailakandi, Karimganj, Barpeta, and Nalbari."
         },
         {
           icon: "🏘️",
-          title: "Post-Flood Home Rebuilding Support",
-          desc: "Provided bamboo, CGI sheets, and structural tools for families rebuilding homes after waters receded."
+          title: "Community-Driven Response",
+          desc: "Grassroots volunteer networks mobilised to ensure rapid distribution to the most affected areas."
         }
       ]
     },
     stats: [
-      { number: "42,000+", label: "People Provided Relief", subtext: "Rations, water & medicine" },
-      { number: "18,500+", label: "Ration Kits Delivered", subtext: "15-day family food packs" },
-      { number: "85+", label: "Villages Covered", subtext: "In Hailakandi, Barpeta & Cachar" },
-      { number: "100%", label: "Verified CSR Audits", subtext: "Detailed field distribution logs" }
+      { number: "₹48.3L", label: "Relief Operations Value", subtext: "Dry rations across 5 districts" },
+      { number: "7", label: "Districts Reached", subtext: "Humanitarian relief coverage" },
+      { number: "1000s", label: "Families Supported", subtext: "Food, water & shelter" },
+      { number: "100%", label: "Verified Distribution", subtext: "Detailed field distribution logs" }
     ],
-    stories: [
-      {
-        name: "Prabin Kalita",
-        role: "Farmer & Village Elder",
-        location: "Barpeta District",
-        image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=600&q=80",
-        quote: "When water rose 8 feet above our fields, Green Ahom Federation boats arrived with food and tarpaulins.",
-        fullStory: "Prabin's family spent 4 days stranded on a road embankment. GAF's rescue team provided ration kits, clean water, and mosquito nets to keep his family safe."
-      },
-      {
-        name: "Sunita Das",
-        role: "GAF Relief Volunteer Squad Lead",
-        location: "Hailakandi Relief Hub",
-        image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=600&q=80",
-        quote: "Transparency in relief delivery ensures every single packet reaches the most desperate families.",
-        fullStory: "Sunita led a team of 30 young volunteers who navigated flood waters day and night, ensuring zero wastage and 100% verified distribution."
-      }
-    ],
-    videos: [
-      {
-        title: "GAF Flood Relief Action in Assam",
-        desc: "Ground footage of GAF boats distributing survival rations to marooned villagers.",
-        thumbnail: "https://images.unsplash.com/photo-1547683905-f686c993aae5?auto=format&fit=crop&w=600&q=80",
-        duration: "3:15",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-      },
-      {
-        title: "Building Emergency Shelters & Clean Water Hubs",
-        desc: "How GAF sets up flood embankment relief camps.",
-        thumbnail: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?auto=format&fit=crop&w=600&q=80",
-        duration: "2:50",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ"
-      }
-    ]
+    stories: [],
+    videos: []
   };
 
   return <ProgramPageLayout programData={data} />;
